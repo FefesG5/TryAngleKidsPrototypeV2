@@ -1,0 +1,21 @@
+/* Footer.module.css */
+.footer {
+  width: 100%;
+  padding: 1rem 0;
+  background-color: #d1d6d7;
+  /* background-color: #CDD2D3; */
+  /* background-color: #C7CCCD; */
+  /* background-color: #BFC4C5; */
+  /* background-color: #B8BDBE; */
+
+  color: white;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  left: 0;
+}
+
+.logo {
+  display: inline-block;
+  margin-top: 8px;
+}
