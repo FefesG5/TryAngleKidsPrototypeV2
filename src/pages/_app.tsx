@@ -1,12 +1,12 @@
 import React from "react";
 import type { AppProps } from "next/app";
-import RootLayout from "@/app/layout";
-import "../styles/globals.css";
+import RootLayout from "@/app/RootLayout";
+import "@/styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <RootLayout>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </RootLayout>
   );
 }
