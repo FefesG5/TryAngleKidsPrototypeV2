@@ -1,0 +1,33 @@
+/* Home.module.css */
+.container {
+  padding: 2rem;
+  min-height: 100vh; /* Full height */
+}
+
+.heading {
+  color: rgb(var(--foreground-rgb));
+  font-size: 2rem; /* Moderately large */
+  margin-top: 2rem; /* Adds spacing at the top */
+  text-align: center; /* Centers the heading */
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  text-align: center; /* Centers the list */
+}
+
+.nav-list li {
+  margin: 0.5rem 0; /* Spacing between list items */
+}
+
+.link {
+  color: blue; /* Pink text color */
+  text-decoration: none; /* No underline */
+  font-weight: 500; /* Medium font weight */
+  transition: color 0.2s ease; /* Smooth transition for color */
+}
+
+.link:hover {
+  color: darkslateblue; /* Slightly darker pink on hover */
+}
