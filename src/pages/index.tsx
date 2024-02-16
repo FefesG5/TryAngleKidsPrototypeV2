@@ -7,15 +7,15 @@ export default function Home() {
       <h1 className={styles.heading}>
         Welcome to Try Angle Kids Video Lessons
       </h1>
-      <nav>
-        <ul className={styles.navList}>
+      <nav className={styles.navList}>
+        <ul>
           <li>
-            <Link href="/lesson1" className={styles.link}>
+            <Link href="/lessons/1" className={styles.link}>
               Lesson 1
             </Link>
           </li>
           <li>
-            <Link href="/lesson2" className={styles.link}>
+            <Link href="/lessons/2" className={styles.link}>
               Lesson 2
             </Link>
           </li>
