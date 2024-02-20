@@ -5,22 +5,13 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <h1 className={styles.heading}>
-        Welcome to Try Angle Kids Video Lessons
+      Try Angle Kids Interactive Quiz
       </h1>
-      <nav className={styles.navList}>
-        <ul>
-          <li>
-            <Link href="/lessons/1" className={styles.link}>
-              Lesson 1
-            </Link>
-          </li>
-          <li>
-            <Link href="/lessons/2" className={styles.link}>
-              Lesson 2
-            </Link>
-          </li>
-        </ul>
-      </nav>
+      <Link href="/lessons" passHref>
+        <button className={styles.callToAction}>
+          Start Learning
+        </button>
+      </Link>
     </div>
   );
 }
