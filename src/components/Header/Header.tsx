@@ -7,10 +7,10 @@ import Link from "next/link";
 const Header: React.FC = () => {
   return (
     <header className={styles.header}>
-      <div>
+      <div className={styles.logoContainer}>
         <Link href="/">
           <Image
-            src="/logo.svg" // Assuming you have a Next.js logo SVG in your public directory
+            src="/logo.svg"
             alt="Try Angle Kids Logo"
             className={styles.logo}
             width={300}
@@ -18,7 +18,20 @@ const Header: React.FC = () => {
           />
         </Link>
       </div>
-      {/* Add navigation items or other content here */}
+
+      <nav className={styles.nav}>
+        <ul className={styles.navList}>
+          <li className={styles.navItem}>
+            <Link href="/about">About</Link>
+          </li>
+          <li className={styles.navItem}>
+            <Link href="/lessons">Lessons</Link>
+          </li>
+          <li className={styles.navItem}>
+            <Link href="/report-issue">Report Issue</Link>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 };
