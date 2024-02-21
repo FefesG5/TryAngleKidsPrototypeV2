@@ -8,8 +8,13 @@
   background-repeat: no-repeat;
 
   min-height: 100vh;
+  /* padding: 1rem; Cool Design idea*/
 }
 
 .mainContent {
   flex: 1;
+}
+
+.container {
+  min-height: 100vh;
 }

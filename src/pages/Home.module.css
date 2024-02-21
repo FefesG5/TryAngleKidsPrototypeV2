@@ -1,11 +1,11 @@
 /* Home.module.css */
 .container {
-  padding: 2rem;
-  min-height: 100vh; /* Full height */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /* padding: 2rem; */
+  /* min-height: 100vh; Full height */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  /* align-items: center; */
 }
 
 .heading {
@@ -29,16 +29,10 @@
 }
 
 .call-to-action:hover {
-  background-color: #e03565; /* Darken color on hover */
 }
 
 .link {
-  color: blue;
-  text-decoration: none; /* No underline */
-  font-weight: 500; /* Medium font weight */
-  transition: color 0.2s ease; /* Smooth transition for color */
 }
 
 .link:hover {
-  color: darkslateblue; /* Slightly darker pink on hover */
 }
