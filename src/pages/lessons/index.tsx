@@ -1,9 +1,9 @@
 import Link from "next/link";
-import styles from "./LessonsIndex.module.css";
+import styles from "./AvailableYears.module.css";
 
 const availableYears = ["2024", "2025"]; // Example years
 
-const LessonsIndex = () => (
+const AvailableYears = () => (
   <div>
     <h1>Select a Year to Start Learning</h1>
     <div>
@@ -16,4 +16,4 @@ const LessonsIndex = () => (
   </div>
 );
 
-export default LessonsIndex;
+export default AvailableYears;

@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import styles from './YearLessonsIndex.module.css'; // Adjust the path to your styles as necessary
+import styles from "./LessonsList.module.css"; // Adjust the path to your styles as necessary
 
 // This would be replaced by actual data fetching logic
 const lessons = [
@@ -9,7 +9,7 @@ const lessons = [
   // ... more lessons
 ];
 
-const YearLessonsIndex = () => {
+const LessonsList = () => {
   const router = useRouter();
   const { year } = router.query;
 
@@ -27,4 +27,4 @@ const YearLessonsIndex = () => {
   );
 };
 
-export default YearLessonsIndex;
+export default LessonsList;
