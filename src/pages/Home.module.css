@@ -1,38 +1,38 @@
 /* Home.module.css */
 .container {
-  /* padding: 2rem; */
-  /* min-height: 100vh; Full height */
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: center; */
-  /* align-items: center; */
+  padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .heading {
-  color: rgb(var(--foreground-rgb));
-  font-size: 3rem; /* Moderately large */
+  /* color: rgb(var(--foreground-rgb)); */
+  color: #1a1a1a;
+  font-size: 4rem; /* Moderately large */
   margin-bottom: 1rem; /* Adds spacing at the top */
   text-align: center; /* Centers the heading */
 }
 
-.call-to-action {
-  background-color: #ff4081; /* Contrasting color */
-  border: none;
+.callToAction {
+  background-color: #e63946; /* A bright color for the button */
+  color: white; /* White text */
   padding: 1rem 2rem;
-  font-size: 1.25rem;
-  color: white;
-  border-radius: 4px;
+  font-size: 1.5rem; /* Larger font size for the button */
+  border: none;
+  border-radius: 7px; /* Rounded corners */
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin: 2rem; /* Spacing around the button */
-  text-align: center; /* Center the text inside the button */
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s; /* Smooth transition for interaction */
+  margin-top: 2rem; /* Extra space above the button */
+  box-shadow: 0px 10px 20px rgba(0, 123, 255, 0.3);
 }
 
-.call-to-action:hover {
-}
-
-.link {
-}
-
-.link:hover {
+.callToAction:hover {
+  background-color: #d62828;
+  box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39); /* Subtle shadow effect */
+  transform: scale(1.05); /* Slightly enlarges the button when hovered */
 }
