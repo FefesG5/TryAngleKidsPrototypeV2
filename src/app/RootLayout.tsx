@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import Header from "@/components/Header/Header";
-import { inter } from "./ui/fonts";
+import { inter, poppins, roboto } from "./ui/fonts";
 import Footer from "@/components/Footer/Footer";
 import styles from "./RootLayout.module.css";
 
