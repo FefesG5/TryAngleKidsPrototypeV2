@@ -34,5 +34,5 @@
 .callToAction:hover {
   background-color: #1d3557;
   box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39); /* Subtle shadow effect */
-  transform: scale(1.05); /* Slightly enlarges the button when hovered */
+  transform: scale(1.04); /* Slightly enlarges the button when hovered */
 }
