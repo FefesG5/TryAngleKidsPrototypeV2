@@ -17,7 +17,7 @@
 }
 
 .callToAction {
-  background-color: #e63946; /* A bright color for the button */
+  background-color: #457b9d; /* A bright color for the button */
   color: white; /* White text */
   padding: 1rem 2rem;
   font-size: 1.5rem; /* Larger font size for the button */
@@ -32,7 +32,7 @@
 }
 
 .callToAction:hover {
-  background-color: #d62828;
+  background-color: #1d3557;
   box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39); /* Subtle shadow effect */
   transform: scale(1.05); /* Slightly enlarges the button when hovered */
 }
