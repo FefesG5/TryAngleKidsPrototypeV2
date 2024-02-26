@@ -2,6 +2,8 @@
 .footer {
   width: 100%;
   padding: 1rem 0;
+  display: flex;
+  justify-content: center;
   background-color: #d1d6d7;
   /* background-color: #CDD2D3; */
   /* background-color: #C7CCCD; */
@@ -17,5 +19,4 @@
 
 .logo {
   display: inline-block;
-  margin-top: 8px;
 }
