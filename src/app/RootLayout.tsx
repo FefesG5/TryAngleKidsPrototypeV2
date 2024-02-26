@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import Header from "@/components/Header/Header";
-import { inter, poppins, roboto } from "./ui/fonts";
+import { inter, poppins, roboto, cabin } from "./ui/fonts";
 import Footer from "@/components/Footer/Footer";
 import styles from "./RootLayout.module.css";
 
@@ -18,7 +18,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className={`${inter.className} ${styles.mainContent}`}>
+      <main className={`${cabin.className} ${styles.mainContent}`}>
         <div className={styles.container}>{children}</div>
       </main>
       <Footer />

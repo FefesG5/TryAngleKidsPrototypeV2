@@ -3,11 +3,11 @@ import React from "react";
 import Image from "next/image";
 import styles from "./Header.module.css";
 import Link from "next/link";
-import { inter, poppins, roboto } from "@/app/ui/fonts";
+import { inter, poppins, roboto, cabin } from "@/app/ui/fonts";
 
 const Header: React.FC = () => {
   return (
-    <header className={`${inter.className} ${styles.header}`}>
+    <header className={`${cabin.className} ${styles.header}`}>
       <div className={styles.logoContainer}>
         <Link href="/">
           <Image

@@ -1,10 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import styles from "./Footer.module.css";
+import { inter, poppins, roboto, cabin } from "@/app/ui/fonts";
 
 const Footer: React.FC = () => {
   return (
-    <footer className={styles.footer}>
+    <footer className={`${cabin.className} ${styles.footer}`}>
       <div>
         Powered by{" "}
         <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">
