@@ -14,8 +14,8 @@ const LessonsList = () => {
   const { year } = router.query;
 
   return (
-    <div>
-      <h1>Lessons for {year}</h1>
+    <div className={styles.lessonsContainer}>
+      <h1 className={styles.lessonsHeading}>Lessons for {year}</h1>
       <div>
         {lessons.map((lesson) => (
           <Link key={lesson.id} href={`/lessons/${year}/${lesson.id}`} passHref>
