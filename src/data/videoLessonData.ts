@@ -9,6 +9,7 @@ export const videoLessonData = {
       id: 1,
       question: "What is the purpose of measuring?",
       timestamp: 70,
+      answered: false,
       choices: [
         "To create confusion",
         "To find out the size or the amount of something, like time, weight, temperature, or speed",
@@ -29,6 +30,7 @@ export const videoLessonData = {
       question:
         "What are some examples of standard units for measuring length?",
       timestamp: 101,
+      answered: false,
       choices: [
         "Inches and centimeters",
         "Salamanders and turtles",
@@ -48,6 +50,7 @@ export const videoLessonData = {
       question:
         "What are the important rules mentioned for measuring length with non-standard units?",
       timestamp: 201,
+      answered: false,
       choices: [
         "All units must be different sizes",
         "Units should overlap each other",
