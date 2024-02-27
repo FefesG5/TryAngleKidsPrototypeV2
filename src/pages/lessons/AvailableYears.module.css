@@ -16,7 +16,7 @@
 }
 
 .yearButton {
-  background-color: #457b9d; /* A calming color for the button */
+  background-color: #fada5e; /* A calming color for the button */
   color: white;
   padding: 0.75rem 1.5rem;
   font-size: 1.25rem; /* Slightly smaller than the call-to-action button */
@@ -31,7 +31,7 @@
 }
 
 .yearButton:hover {
-  background-color: #1d3557;
+  background-color: #c7a600;
   box-shadow: 0 3px 10px 0 rgba(0, 118, 255, 0.37);
   transform: scale(1.04);
 }
