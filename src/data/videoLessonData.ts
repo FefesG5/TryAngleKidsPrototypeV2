@@ -6,6 +6,7 @@ export const videoLessonData = {
   category: "measurements",
   questions: [
     {
+      id: 1,
       question: "What is the purpose of measuring?",
       timestamp: 70,
       choices: [
@@ -18,6 +19,7 @@ export const videoLessonData = {
         "To find out the size or the amount of something, like time, weight, temperature, or speed",
     },
     {
+      id: 2,
       question:
         "What are some examples of standard units for measuring length?",
       timestamp: 101,
@@ -30,6 +32,7 @@ export const videoLessonData = {
       correctAnswer: "Inches and centimeters",
     },
     {
+      id: 3,
       question:
         "What are the important rules mentioned for measuring length with non-standard units?",
       timestamp: 201,
