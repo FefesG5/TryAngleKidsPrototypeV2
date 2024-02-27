@@ -1,0 +1,9 @@
+/* VideoPlayer.module.css */
+.videoPlayer {
+  /* ... your existing styles ... */
+}
+
+.videoPlayer iframe {
+  border: none; /* This replaces the frameBorder attribute */
+  /* Add any additional styles you want for the iframe here */
+}

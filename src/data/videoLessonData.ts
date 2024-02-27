@@ -1,4 +1,6 @@
 export const videoLessonData = {
+  year: "2024",
+  lessonNumber: "1",
   videoId: "2wUsdsae0ro",
   videoSrc: "https://www.youtube.com/embed/2wUsdsae0ro",
   category: "measurements",
