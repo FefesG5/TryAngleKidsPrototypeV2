@@ -17,6 +17,12 @@ export const videoLessonData = {
       ],
       correctAnswer:
         "To find out the size or the amount of something, like time, weight, temperature, or speed",
+      feedback: {
+        correct:
+          "Exactly right! Measuring helps us determine the size, volume, or quantity of objects or substances, which is crucial in everyday life and various scientific fields.",
+        incorrect:
+          "Not quite. The main purpose of measuring is to determine the size, volume, or quantity of something accurately, which is essential for precision and understanding in various contexts.",
+      },
     },
     {
       id: 2,
@@ -30,6 +36,12 @@ export const videoLessonData = {
         "Paper clips and erasers",
       ],
       correctAnswer: "Inches and centimeters",
+      feedback: {
+        correct:
+          "Correct! Inches and centimeters are standard units of measurement for length, which allow for consistent and universal understanding of size.",
+        incorrect:
+          "That's not right. For measuring length, standard units like inches and centimeters are used to ensure consistency and accuracy across measurements.",
+      },
     },
     {
       id: 3,
@@ -44,6 +56,12 @@ export const videoLessonData = {
       ],
       correctAnswer:
         "Units should be the same size and direction, should touch but not overlap, usually make a straight line, and measurement starts at one end and finishes at the other end",
+      feedback: {
+        correct:
+          "Absolutely correct! When measuring with non-standard units, consistency and alignment are key to obtaining an accurate measurement.",
+        incorrect:
+          "Not quite correct. When using non-standard units for measurement, it's important to ensure they are all the same size and are placed in a straight line without overlapping, starting from one end of the object to the other.",
+      },
     },
   ],
 };
