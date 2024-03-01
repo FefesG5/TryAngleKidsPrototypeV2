@@ -24,8 +24,7 @@ const LessonDetails = () => {
         Details for lesson {lesson} in the year {year}.
       </p>
       <VideoPlayer
-        videoSrc={videoLessonData.videoSrc}
-        questions={videoLessonData.questions}
+        video={videoLessonData}
         onQuestionAnswered={(questionId, isCorrect) => {
           // Placeholder function, replace with actual logic for handling answers
           console.log(`Question ${questionId} answered. Correct: ${isCorrect}`);

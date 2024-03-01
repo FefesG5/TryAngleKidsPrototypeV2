@@ -1,37 +1,20 @@
-// In components/VideoPlayer.js
 import { useState, useEffect, useRef } from "react";
 import ReactPlayer from "react-player";
 import QuizModal from "../Quiz/Quiz";
-
-export type Question = {
-  id: number;
-  question: string;
-  timestamp: number;
-  answered: boolean;
-  choices: string[];
-  correctAnswer: string;
-  feedback: {
-    correct: string;
-    incorrect: string;
-  };
-};
+import { Question, Video } from "@/types/quizTypes";
 
 export type VideoPlayerProp = {
-  videoSrc: string;
-  questions: Question[];
+  video: Video;
   onQuestionAnswered: (questionId: number, isCorrect: boolean) => void;
 };
 
-const VideoPlayer = ({
-  videoSrc,
-  questions: initialQuestions,
-  onQuestionAnswered,
-}: VideoPlayerProp) => {
+const VideoPlayer = ({ video, onQuestionAnswered }: VideoPlayerProp) => {
   const playerRef = useRef<ReactPlayer>(null);
   const [playing, setPlaying] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
-  const [localQuestions, setLocalQuestions] =
-    useState<Question[]>(initialQuestions);
+  const [localQuestions, setLocalQuestions] = useState<Question[]>(
+    video.questions,
+  );
 
   useEffect(() => {
     const checkQuestions = () => {
@@ -72,7 +55,7 @@ const VideoPlayer = ({
         ref={playerRef}
         playing={playing}
         controls={true}
-        url={videoSrc}
+        url={video.videoSrc}
         volume={0.25}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
