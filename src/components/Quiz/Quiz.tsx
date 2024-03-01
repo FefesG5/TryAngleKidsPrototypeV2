@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Question } from "@/components/VideoPlayer/VideoPlayer"; // Assuming this is the correct path
+import { Question } from "@/types/quizTypes";
 
 interface QuizModalProps {
   question: Question;

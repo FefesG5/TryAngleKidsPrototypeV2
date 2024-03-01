@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import ReactPlayer from "react-player";
 import QuizModal from "../Quiz/Quiz";
 import { Question, Video } from "@/types/quizTypes";
@@ -6,6 +6,13 @@ import { Question, Video } from "@/types/quizTypes";
 export type VideoPlayerProp = {
   video: Video;
   onQuestionAnswered: (questionId: number, isCorrect: boolean) => void;
+};
+
+type ProgressState = {
+  played: number;
+  playedSeconds: number;
+  loaded: number;
+  loadedSeconds: number;
 };
 
 const VideoPlayer = ({ video, onQuestionAnswered }: VideoPlayerProp) => {
@@ -16,25 +23,17 @@ const VideoPlayer = ({ video, onQuestionAnswered }: VideoPlayerProp) => {
     video.questions,
   );
 
-  useEffect(() => {
-    const checkQuestions = () => {
-      if (!playerRef.current) return;
+  const handleProgress = (state: ProgressState) => {
+    const { playedSeconds } = state;
+    const nextQuestion = localQuestions.find(
+      (question) => !question.answered && playedSeconds >= question.timestamp,
+    );
 
-      const currentTime = playerRef.current.getCurrentTime();
-      const nextQuestion = localQuestions.find(
-        (question) => !question.answered && currentTime >= question.timestamp,
-      );
-
-      if (nextQuestion) {
-        setPlaying(false); // This will pause the video
-        setCurrentQuestion(nextQuestion);
-      }
-    };
-
-    const interval = setInterval(checkQuestions, 1000);
-
-    return () => clearInterval(interval); // Clean up on component unmount
-  }, [localQuestions]);
+    if (nextQuestion && playing) {
+      setPlaying(false); // This will pause the video
+      setCurrentQuestion(nextQuestion);
+    }
+  };
 
   const handleAnswerSubmit = (isCorrect: boolean) => {
     if (currentQuestion) {
@@ -59,6 +58,7 @@ const VideoPlayer = ({ video, onQuestionAnswered }: VideoPlayerProp) => {
         volume={0.25}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
+        onProgress={handleProgress}
       />
       {currentQuestion && (
         <QuizModal
