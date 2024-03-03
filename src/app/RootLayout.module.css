@@ -1,14 +1,27 @@
+@keyframes backgroundSlide {
+  0% {
+    background-position: 50% 50%;
+  }
+  50% {
+    background-position: 70% 50%;
+  }
+  100% {
+    background-position: 50% 50%;
+  }
+}
+
 .layout {
   display: flex;
   flex-direction: column;
 
   background-image: url("/background.webp");
   background-size: cover;
-  background-position: center;
+  background-position: 45% 50%;
   background-repeat: no-repeat;
 
   min-height: 100vh;
   /* padding: 1rem; Cool Design idea*/
+  animation: backgroundSlide 30s ease-in-out infinite;
 }
 
 .mainContent {
