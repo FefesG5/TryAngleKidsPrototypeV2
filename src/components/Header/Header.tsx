@@ -29,7 +29,7 @@ const Header: React.FC = () => {
             <Link href="/lessons">Lessons</Link>
           </li>
           <li className={styles.navItem}>
-            <Link href="/educator-access">Educator Access</Link>
+            <Link href="/educator">Educator Access</Link>
           </li>
           <li className={styles.navItem}>
             <Link href="/report-issue">Report Issue</Link>

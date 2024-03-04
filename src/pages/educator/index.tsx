@@ -7,8 +7,9 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
-import { app } from "../../firebaseConfig";
+import { app } from "../../../firebaseConfig";
 import SignIn from "@/components/SignIn/SignIn";
+import Link from "next/link";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -16,9 +17,11 @@ const db = getFirestore(app);
 const EducatorAccess = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      setLoading(true);
       if (user) {
         // Check if user is in the 'educators' list
         const educatorsQuery = query(
@@ -36,6 +39,7 @@ const EducatorAccess = () => {
       } else {
         setIsAuthenticated(false);
       }
+      setLoading(false);
     });
 
     return () => unsubscribe();
@@ -51,19 +55,34 @@ const EducatorAccess = () => {
     }
   };
 
-  return (
-    <>
-      <h1>Educator Access</h1>
-      {error && <p>{error}</p>}
-      {isAuthenticated ? (
-        <>
-          <p>You are logged in.</p>
-          <button onClick={signOutUser}>Sign Out</button>
-        </>
-      ) : (
+  if (loading) {
+    return <div>Loading...</div>; // Or replace with a spinner component if you have one
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <>
+        {error && <p>{error}</p>}
         <SignIn setError={setError} />
-      )}
-    </>
+      </>
+    );
+  }
+
+  return (
+    <div>
+      <h1>Educator Dashboard</h1>
+      <nav>
+        <ul>
+          <li>
+            <Link href="/educator/uploads">Uploads</Link>
+          </li>
+          <li>
+            <Link href="/educator/settings">Settings</Link>
+          </li>
+        </ul>
+      </nav>
+      <button onClick={signOutUser}>Sign Out</button>
+    </div>
   );
 };
 
