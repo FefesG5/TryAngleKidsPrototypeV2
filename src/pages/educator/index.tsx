@@ -7,8 +7,8 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
-import { app } from "../../../firebaseConfig";
 import SignIn from "@/components/SignIn/SignIn";
+import { app } from "../../../firebaseConfig";
 import Link from "next/link";
 
 const auth = getAuth(app);
