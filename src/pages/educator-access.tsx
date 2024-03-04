@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  signOut,
-} from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signOut } from "firebase/auth";
 import {
   getFirestore,
   collection,
@@ -13,10 +8,10 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { app } from "../../firebaseConfig";
+import SignIn from "@/components/SignIn/Signin";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
-const googleProvider = new GoogleAuthProvider();
 
 const EducatorAccess = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -46,18 +41,11 @@ const EducatorAccess = () => {
     return () => unsubscribe();
   }, []);
 
-  const signInWithGoogle = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider);
-    } catch (error) {
-      setError("Failed to sign in. Please try again.");
-    }
-  };
-
   const signOutUser = async () => {
     try {
       await signOut(auth);
       setIsAuthenticated(false); // Ensure the user is set as not authenticated
+      setError(""); // Optionally reset the error state
     } catch (error) {
       setError("Error signing out. Please try again.");
     }
@@ -73,10 +61,7 @@ const EducatorAccess = () => {
           <button onClick={signOutUser}>Sign Out</button>
         </>
       ) : (
-        <>
-          <p>Please sign in to access educator features.</p>
-          <button onClick={signInWithGoogle}>Sign in with Google</button>
-        </>
+        <SignIn setError={setError} />
       )}
     </>
   );

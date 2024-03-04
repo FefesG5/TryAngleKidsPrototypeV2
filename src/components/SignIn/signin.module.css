@@ -1,0 +1,12 @@
+.signInContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.signInText {
+  margin-bottom: 1rem;
+  font-family: "Cabin", sans-serif;
+  color: #333;
+}
