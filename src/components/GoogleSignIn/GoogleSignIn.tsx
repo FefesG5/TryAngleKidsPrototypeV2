@@ -1,7 +1,7 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { app } from "../../../firebaseConfig";
-import styles from "./SignIn.module.css";
 import Image from "next/image";
+import styles from "./GoogleSignIn.module.css"
 
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
@@ -10,7 +10,7 @@ interface SignInProps {
   setError: (error: string) => void;
 }
 
-const SignIn: React.FC<SignInProps> = ({ setError }) => {
+const GoogleSignIn: React.FC<SignInProps> = ({ setError }) => {
   const signInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
@@ -51,4 +51,4 @@ const SignIn: React.FC<SignInProps> = ({ setError }) => {
   height={100}
 />;
 
-export default SignIn;
+export default GoogleSignIn;

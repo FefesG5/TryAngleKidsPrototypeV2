@@ -7,7 +7,7 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
-import SignIn from "@/components/SignIn/SignIn";
+import GoogleSignIn from "@/components/GoogleSignIn/GoogleSignIn";
 import { app } from "../../../firebaseConfig";
 import Link from "next/link";
 
@@ -63,7 +63,7 @@ const EducatorAccess = () => {
     return (
       <>
         {error && <p>{error}</p>}
-        <SignIn setError={setError} />
+        <GoogleSignIn setError={setError} />
       </>
     );
   }
