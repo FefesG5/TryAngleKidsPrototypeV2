@@ -29,7 +29,10 @@ const EducatorAccess = () => {
           where("email", "==", user.email),
         );
         const querySnapshot = await getDocs(educatorsQuery);
-        if (!querySnapshot.empty) {
+        const educator = querySnapshot.docs.find(
+          (doc) => doc.data().isAuthorized,
+        );
+        if (educator) {
           setIsAuthenticated(true);
           setError("");
         } else {
