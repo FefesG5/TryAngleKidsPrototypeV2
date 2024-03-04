@@ -1,6 +1,6 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { app } from "../../../firebaseConfig";
-import styles from "./signin.module.css";
+import styles from "./SignIn.module.css";
 import Image from "next/image";
 
 const auth = getAuth(app);

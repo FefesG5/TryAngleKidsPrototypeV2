@@ -8,7 +8,7 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { app } from "../../firebaseConfig";
-import SignIn from "@/components/SignIn/Signin";
+import SignIn from "@/components/SignIn/SignIn";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
