@@ -3,16 +3,30 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220; /* Light theme gradient start color */
-  --background-end-rgb: 255, 255, 255; /* Light theme gradient end color */
+  /* --foreground-rgb: 0, 0, 0; */
+  /* --background-start-rgb: 214, 219, 220; Light theme gradient start color */
+  /* --background-end-rgb: 255, 255, 255; Light theme gradient end color */
+  --foreground-rgb: 29, 29, 29; /* Slightly off-black for softer contrast */
+  --background-start-rgb: 241, 243, 246; /* Soft blueish grey for a light theme gradient start color */
+  --background-end-rgb: 255, 255, 255; /* Pure white for a light theme gradient end color */
+  --accent-color-rgb: 59, 165, 93; /* Soft green for buttons and accents */
+  --secondary-color-rgb: 59, 79, 165; /* Soft blue for secondary accents or links */
 }
 
+/* @media (prefers-color-scheme: dark) { */
+/* :root { */
+/* --foreground-rgb: 255, 255, 255; */
+/* --background-start-rgb: 0, 0, 0; Dark theme gradient start color */
+/* --background-end-rgb: 23, 25, 35; */
+/* } */
+/* } */
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0; /* Dark theme gradient start color */
-    --background-end-rgb: 23, 25, 35;
+    --background-end-rgb: 23, 25, 35; /* Dark theme gradient end color */
+    --accent-color-rgb: 48, 209, 88; /* Brighter green for dark theme buttons and accents */
+    --secondary-color-rgb: 10, 132, 255; /* Bright blue for dark theme secondary accents or links */
   }
 }
 
@@ -29,5 +43,11 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .accent-color {
+    color: rgb(var(--accent-color-rgb));
+  }
+  .secondary-color {
+    color: rgb(var(--secondary-color-rgb));
   }
 }
