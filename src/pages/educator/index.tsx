@@ -8,8 +8,10 @@ import {
   getDocs,
 } from "firebase/firestore";
 import GoogleSignIn from "@/components/GoogleSignIn/GoogleSignIn";
+import Spinner from "@/components/Spinner/Spinner";
 import { app } from "../../../firebaseConfig";
 import Link from "next/link";
+import { SP } from "next/dist/shared/lib/utils";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -59,7 +61,7 @@ const EducatorAccess = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>; // Or replace with a spinner component if you have one
+    return <Spinner />; // Or replace with a spinner component if you have one
   }
 
   if (!isAuthenticated) {
