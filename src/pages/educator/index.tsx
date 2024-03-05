@@ -9,6 +9,7 @@ import {
 } from "firebase/firestore";
 import GoogleSignIn from "@/components/GoogleSignIn/GoogleSignIn";
 import Spinner from "@/components/Spinner/Spinner";
+import EducatorDashboard from "@/components/EducatorDashboard/EducatorDashboard";
 import { app } from "../../../firebaseConfig";
 import Link from "next/link";
 
@@ -72,22 +73,7 @@ const EducatorAccess = () => {
     );
   }
 
-  return (
-    <div>
-      <h1>Educator Dashboard</h1>
-      <nav>
-        <ul>
-          <li>
-            <Link href="/educator/uploads">Uploads</Link>
-          </li>
-          <li>
-            <Link href="/educator/settings">Settings</Link>
-          </li>
-        </ul>
-      </nav>
-      <button onClick={signOutUser}>Sign Out</button>
-    </div>
-  );
+  return <EducatorDashboard signOutUser={signOutUser} />;
 };
 
 export default EducatorAccess;
