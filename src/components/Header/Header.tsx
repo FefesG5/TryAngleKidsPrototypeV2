@@ -1,11 +1,14 @@
 // Header.tsx
-import React from "react";
+import { useContext } from "react";
 import Image from "next/image";
 import styles from "./Header.module.css";
 import Link from "next/link";
+import { ThemeContext } from "@/contexts/ThemeContext";
 import { inter, poppins, roboto, cabin } from "@/app/ui/fonts";
 
 const Header: React.FC = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
   return (
     <header className={`${cabin.className} ${styles.header}`}>
       <div className={styles.logoContainer}>
@@ -36,6 +39,10 @@ const Header: React.FC = () => {
           </li>
         </ul>
       </nav>
+
+      <button onClick={toggleTheme}>
+        Switch to {theme === "light" ? "Dark" : "Light"} Theme
+      </button>
     </header>
   );
 };

@@ -40,6 +40,15 @@ body {
   min-height: 100vh;
 }
 
+body.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 23, 25, 35;
+  --accent-color-rgb: 48, 209, 88;
+  --secondary-color-rgb: 10, 132, 255;
+  /* Override other variables as needed */
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
