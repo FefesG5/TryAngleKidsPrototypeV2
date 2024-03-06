@@ -10,14 +10,14 @@
 
 .heading {
   /* color: rgb(var(--foreground-rgb)); */
-  color: #1a1a1a;
+  color: var(--text-color);
   font-size: 4rem; /* Moderately large */
   margin-bottom: 1rem; /* Adds spacing at the top */
   text-align: center; /* Centers the heading */
 }
 
 .callToAction {
-  background-color: #457b9d; /* A bright color for the button */
+  background-color: var(--accent-color); /* A bright color for the button */
   color: white; /* White text */
   padding: 1rem 2rem;
   font-size: 1.5rem; /* Larger font size for the button */
@@ -32,7 +32,7 @@
 }
 
 .callToAction:hover {
-  background-color: #1d3557;
+  background-color: var(--accent-color-hover);
   box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39); /* Subtle shadow effect */
   transform: scale(1.04); /* Slightly enlarges the button when hovered */
 }

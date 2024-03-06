@@ -7,16 +7,9 @@
   --footer-bg-color: #d1d6d7; /* Light theme footer background color */
   --text-color: #292929; /* Light theme text color, slightly off-black for softer contrast */
   --background-image: url("/background-theme-light.webp"); /* Light theme background image */
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0; /* Dark theme gradient start color */
-    --background-end-rgb: 23, 25, 35; /* Dark theme gradient end color */
-    --accent-color-rgb: 48, 209, 88; /* Brighter green for dark theme buttons and accents */
-    --secondary-color-rgb: 10, 132, 255; /* Bright blue for dark theme secondary accents or links */
-  }
+  --accent-color: #007bff; /* Light theme accent color */
+  --secondary-color: #ffa500; /* Light theme secondary color */
+  --accent-color-hover: #0056b3; /* Light theme accent color hover */
 }
 
 /* Dark theme styles */
@@ -25,6 +18,9 @@
   --footer-bg-color: #27272a; /* Dark theme footer background color */
   --text-color: #ffffff; /* Dark theme text color */
   --background-image: url("/background-theme-dark.webp"); /* Dark theme background image */
+  --accent-color: #00bcd4; /* Dark theme accent color */
+  --secondary-color: #9c27b0; /* Dark theme secondary color */
+  --accent-color-hover: #62efff; /* Dark theme accent color hover */
 }
 
 body {
