@@ -9,7 +9,7 @@
 }
 
 .yearHeading {
-  color: #1a1a1a;
+  color: var(--text-color);
   font-size: 3rem; /* Slightly smaller than the main heading */
   margin-bottom: 1rem;
   text-align: center;
