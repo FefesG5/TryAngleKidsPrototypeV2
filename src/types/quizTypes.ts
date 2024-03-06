@@ -1,3 +1,8 @@
+export interface Feedback {
+  correct: string;
+  incorrect: string;
+}
+
 export interface Question {
   id: number;
   question: string;
@@ -5,10 +10,7 @@ export interface Question {
   answered: boolean;
   choices: string[];
   correctAnswer: string;
-  feedback: {
-    correct: string;
-    incorrect: string;
-  };
+  feedback: Feedback;
 }
 
 export interface Video {
