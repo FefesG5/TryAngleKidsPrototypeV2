@@ -25,7 +25,7 @@ const GoogleSignIn: React.FC<SignInProps> = ({ setError }) => {
   return (
     <div className={styles.signInContainer}>
       <p className={styles.signInText}>
-        Please sign in to access educator features.
+        Please sign in to access educator features
       </p>
       <button
         className={styles.googleSignInButton}
@@ -35,8 +35,8 @@ const GoogleSignIn: React.FC<SignInProps> = ({ setError }) => {
         <Image
           src="/web_light_sq_SI.svg"
           alt="Google logo"
-          width={200}
-          height={50}
+          width={183}
+          height={40}
         />
       </button>
     </div>
