@@ -1,6 +1,7 @@
-// components/VideoUploadForm.tsx
 import { useState } from "react";
 import { Question, Feedback, Video } from "@/types/quizTypes";
+import { db } from "../../../firebaseConfig";
+import { collection, addDoc } from "firebase/firestore";
 
 const VideoUploadForm: React.FC = () => {
   const [formData, setFormData] = useState<Video>({
@@ -38,7 +39,16 @@ const VideoUploadForm: React.FC = () => {
         // Direct assignment for known keys
         updatedQuestions[questionIndex][name] = value;
       } else if (name === "timestamp") {
-        updatedQuestions[questionIndex][name] = parseInt(value);
+        // Convert the string value to a number for the timestamp
+        const numValue = parseInt(value, 10);
+
+        // Check if the parsed value is a valid number before updating
+        if (!isNaN(numValue)) {
+          updatedQuestions[questionIndex].timestamp = numValue;
+        } else {
+          // Handle invalid number (e.g., set to a default value or keep the old value)
+          updatedQuestions[questionIndex].timestamp = 0;
+        }
       } else if (name === "correct" || name === "incorrect") {
         // Here we directly use known keys without indexing using a string
         updatedQuestions[questionIndex].feedback[name] = value;
@@ -52,9 +62,16 @@ const VideoUploadForm: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log(formData);
+
+    try {
+      const docRef = await addDoc(collection(db, "lessons"), formData);
+      console.log("Document written with ID: ", docRef.id);
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
   };
 
   return (
@@ -103,10 +120,10 @@ const VideoUploadForm: React.FC = () => {
             onChange={(e) => handleInputChange(e, qIndex)}
           />
           <input
-            type="number"
+            type="text"
             name="timestamp"
             placeholder="Timestamp"
-            value={question.timestamp}
+            value={question.timestamp.toString()}
             onChange={(e) => handleInputChange(e, qIndex)}
           />
           {question.choices.map((choice, cIndex) => (

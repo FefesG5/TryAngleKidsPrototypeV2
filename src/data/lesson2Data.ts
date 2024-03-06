@@ -75,3 +75,113 @@ export const Lesson2Data = {
     },
   ],
 };
+
+// {year: '2024', lessonNumber: '3', videoId: '7XuNVVlD98g', videoSrc: 'https://www.youtube.com/watch?v=7XuNVVlD98g', category: 'Probability', …}
+// category
+// :
+// "Probability"
+// lessonNumber
+// :
+// "3"
+// questions
+// :
+// Array(4)
+// 0
+// :
+// {id: 1, question: 'What does it mean if an event is certain to happen?', timestamp: 55, answered: false, choices: Array(4), …}
+// 1
+// :
+// answered
+// :
+// false
+// choices
+// :
+// (4) ['Certain', 'Possible', 'Impossible', 'Likely']
+// correctAnswer
+// :
+// "Impossible"
+// feedback
+// :
+// {correct: 'Correct! Eating rocks for dinner is impossible because rocks are not edible and can be dangerous.', incorrect: "That's not right. Eating rocks is impossible since they are not edible and pose health risks."}
+// id
+// :
+// 2
+// question
+// :
+// "What is the probability of eating rocks for dinner?"
+// timestamp
+// :
+// 122
+// [[Prototype]]
+// :
+// Object
+// 2
+// :
+// answered
+// :
+// false
+// choices
+// :
+// (4) ['Certain', 'Impossible', 'Possible', 'Unlikely']
+// correctAnswer
+// :
+// "Possible"
+// feedback
+// :
+// {correct: "Absolutely correct! When an event is possible, it means there's a chance that it might occur.", incorrect: 'Not quite correct. An event that might happen is described as possible.'}
+// id
+// :
+// 3
+// question
+// :
+// "Which word describes an event that might happen?"
+// timestamp
+// :
+// 214
+// [[Prototype]]
+// :
+// Object
+// 3
+// :
+// answered
+// :
+// false
+// choices
+// :
+// (4) ['You will fly to the moon and meet a dwarf named Betty', 'You will fall asleep', 'A unicorn will carry you to bed', 'You will read a book']
+// correctAnswer
+// :
+// "You will fall asleep"
+// feedback
+// :
+// {correct: 'Exactly right! Falling asleep every night after dinner is considered a certain event.', incorrect: 'Not quite. The correct answer is falling asleep, a…vent that happens every night, making it certain.'}
+// id
+// :
+// 4
+// question
+// :
+// "After dinner, what is certain to happen?"
+// timestamp
+// :
+// 328
+// [[Prototype]]
+// :
+// Object
+// length
+// :
+// 4
+// [[Prototype]]
+// :
+// Array(0)
+// videoId
+// :
+// "7XuNVVlD98g"
+// videoSrc
+// :
+// "https://www.youtube.com/watch?v=7XuNVVlD98g"
+// year
+// :
+// "2024"
+// [[Prototype]]
+// :
+// Object
