@@ -3,23 +3,12 @@
 @tailwind utilities;
 
 :root {
-  /* --foreground-rgb: 0, 0, 0; */
-  /* --background-start-rgb: 214, 219, 220; Light theme gradient start color */
-  /* --background-end-rgb: 255, 255, 255; Light theme gradient end color */
-  --foreground-rgb: 29, 29, 29; /* Slightly off-black for softer contrast */
-  --background-start-rgb: 241, 243, 246; /* Soft blueish grey for a light theme gradient start color */
-  --background-end-rgb: 255, 255, 255; /* Pure white for a light theme gradient end color */
-  --accent-color-rgb: 59, 165, 93; /* Soft green for buttons and accents */
-  --secondary-color-rgb: 59, 79, 165; /* Soft blue for secondary accents or links */
+  --header-bg-color: #d1d6d7; /* Light theme header background color */
+  --footer-bg-color: #d1d6d7; /* Light theme footer background color */
+  --text-color: #292929; /* Light theme text color, slightly off-black for softer contrast */
+  --background-image: url("/background-theme-light.webp"); /* Light theme background image */
 }
 
-/* @media (prefers-color-scheme: dark) { */
-/* :root { */
-/* --foreground-rgb: 255, 255, 255; */
-/* --background-start-rgb: 0, 0, 0; Dark theme gradient start color */
-/* --background-end-rgb: 23, 25, 35; */
-/* } */
-/* } */
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -30,23 +19,20 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-    to bottom,
-    rgb(var(--background-start-rgb)),
-    rgb(var(--background-end-rgb))
-  );
-  min-height: 100vh;
+/* Dark theme styles */
+[data-theme="dark"] {
+  --header-bg-color: #27272a; /* Dark theme header background color */
+  --footer-bg-color: #27272a; /* Dark theme footer background color */
+  --text-color: #ffffff; /* Dark theme text color */
+  --background-image: url("/background-theme-dark.webp"); /* Dark theme background image */
 }
 
-body.dark {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 0, 0, 0;
-  --background-end-rgb: 23, 25, 35;
-  --accent-color-rgb: 48, 209, 88;
-  --secondary-color-rgb: 10, 132, 255;
-  /* Override other variables as needed */
+body {
+  color: var(--text-color);
+  background-image: var(--background-image);
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
 }
 
 @layer utilities {
