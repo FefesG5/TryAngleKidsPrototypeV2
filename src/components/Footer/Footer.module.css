@@ -4,13 +4,13 @@
   padding: 1rem 0;
   display: flex;
   justify-content: center;
-  background-color: #d1d6d7;
+  background-color: var(--footer-bg-color);
   /* background-color: #CDD2D3; */
   /* background-color: #C7CCCD; */
   /* background-color: #BFC4C5; */
   /* background-color: #B8BDBE; */
 
-  color: white;
+  color: var(text-color);
   text-align: center;
   position: relative;
   bottom: 0;

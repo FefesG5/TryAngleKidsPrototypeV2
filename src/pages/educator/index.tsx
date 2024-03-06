@@ -11,7 +11,6 @@ import GoogleSignIn from "@/components/GoogleSignIn/GoogleSignIn";
 import Spinner from "@/components/Spinner/Spinner";
 import EducatorDashboard from "@/components/EducatorDashboard/EducatorDashboard";
 import { app } from "../../../firebaseConfig";
-import Link from "next/link";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
