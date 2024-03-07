@@ -113,7 +113,8 @@ const VideoUploadForm: React.FC = () => {
       />
       {formData.questions.map((question, qIndex) => (
         <div key={qIndex}>
-          <textarea
+          <input
+            type="text"
             name="question"
             placeholder={`Question ${qIndex + 1}`}
             value={question.question}
@@ -143,13 +144,15 @@ const VideoUploadForm: React.FC = () => {
             value={question.correctAnswer}
             onChange={(e) => handleInputChange(e, qIndex)}
           />
-          <textarea
+          <input
+            type="text"
             name="correct"
             placeholder="Correct Feedback"
             value={question.feedback.correct}
             onChange={(e) => handleInputChange(e, qIndex)}
           />
-          <textarea
+          <input
+            type="text"
             name="incorrect"
             placeholder="Incorrect Feedback"
             value={question.feedback.incorrect}
