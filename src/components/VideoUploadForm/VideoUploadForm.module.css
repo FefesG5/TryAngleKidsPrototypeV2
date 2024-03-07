@@ -1,0 +1,43 @@
+/* VideoUploadForm.module.css */
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-family: "Roboto", sans-serif; /* or 'Inter', 'Poppins', 'Cabin' */
+  max-width: calc(100vw - 40px);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.formInput,
+.formButton {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.formButton {
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.questionGroup {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* @media screen and (min-width: 768px) {
+    .questionGroup {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  } */
