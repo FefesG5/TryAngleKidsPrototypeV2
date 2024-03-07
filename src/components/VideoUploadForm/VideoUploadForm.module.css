@@ -19,7 +19,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
-  background-color: #f2f2f2;
+  background-color: var(--input-bg-color);
   color: var(--text-color);
 }
 

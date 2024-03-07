@@ -10,6 +10,7 @@
   --accent-color: #007bff; /* Light theme accent color */
   --secondary-color: #ffa500; /* Light theme secondary color */
   --accent-color-hover: #0056b3; /* Light theme accent color hover */
+  --input-bg-color: #ffffff;
 }
 
 /* Dark theme styles */
@@ -21,6 +22,7 @@
   --accent-color: #00bcd4; /* Dark theme accent color */
   --secondary-color: #9c27b0; /* Dark theme secondary color */
   --accent-color-hover: #62efff; /* Dark theme accent color hover */
+  --input-bg-color: #333333;
 }
 
 body {
@@ -28,6 +30,40 @@ body {
   background-size: cover;
   background-position: center;
   min-height: 100vh;
+}
+
+/* Target Chrome, Safari, and Opera */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid #ccc;
+  -webkit-text-fill-color: var(--text-color);
+  -webkit-box-shadow: 0 0 0px 1000px var(--input-bg-color) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Target Firefox */
+input:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/* Target Edge */
+input::-ms-clear {
+  display: none;
+}
+
+/* Universal styles for inputs that have been interacted with */
+input:valid,
+input:focus,
+textarea:valid,
+textarea:focus {
+  background-color: var(--input-bg-color);
 }
 
 @layer utilities {
