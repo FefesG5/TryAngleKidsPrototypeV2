@@ -11,12 +11,12 @@ const VideoUploadForm: React.FC = () => {
     videoId: "",
     videoSrc: "",
     category: "",
-    questions: Array.from({ length: 4 }, (_, index) => ({
-      id: index + 1,
+    questions: Array.from({ length: 3 }, (_, index) => ({
+      id: index,
       question: "",
       timestamp: 0,
       answered: false,
-      choices: Array(4).fill(""), // Initialize 4 choices with empty strings
+      choices: Array(4).fill(""),
       correctAnswer: "",
       feedback: {
         correct: "",
@@ -31,36 +31,28 @@ const VideoUploadForm: React.FC = () => {
     choiceIndex?: number,
   ) => {
     const { name, value } = e.target;
-    if (typeof questionIndex === "number") {
-      const updatedQuestions = [...formData.questions];
 
-      if (name.startsWith("choices")) {
-        updatedQuestions[questionIndex].choices[choiceIndex!] = value;
-      } else if (name === "question" || name === "correctAnswer") {
-        // Direct assignment for known keys
-        updatedQuestions[questionIndex][name] = value;
-      } else if (name === "timestamp") {
-        // Convert the string value to a number for the timestamp
-        const numValue = parseInt(value, 10);
+    setFormData((prevFormData) => {
+      let newFormData = { ...prevFormData };
 
-        // Check if the parsed value is a valid number before updating
-        if (!isNaN(numValue)) {
-          updatedQuestions[questionIndex].timestamp = numValue;
-        } else {
-          // Handle invalid number (e.g., set to a default value or keep the old value)
-          updatedQuestions[questionIndex].timestamp = 0;
+      if (typeof questionIndex === "number") {
+        const updatedQuestions = [...newFormData.questions];
+        const currentQuestion = updatedQuestions[questionIndex];
+
+        if (name.startsWith("choices")) {
+          const choiceNum = parseInt(name.split("[")[1], 10);
+          currentQuestion.choices[choiceNum] = value;
+        } else if (name in currentQuestion) {
+          (currentQuestion as any)[name] = value;
+        } else if (name === "correct" || name === "incorrect") {
+          currentQuestion.feedback[name] = value;
         }
-      } else if (name === "correct" || name === "incorrect") {
-        // Here we directly use known keys without indexing using a string
-        updatedQuestions[questionIndex].feedback[name] = value;
+        updatedQuestions[questionIndex] = currentQuestion;
+        return { ...newFormData, questions: updatedQuestions };
       } else {
-        console.error("Unknown form field: ", name);
+        return { ...newFormData, [name]: value };
       }
-
-      setFormData({ ...formData, questions: updatedQuestions });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -77,99 +69,120 @@ const VideoUploadForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit} className={styles.formContainer}>
-      <input
-        type="text"
-        name="year"
-        placeholder="Year"
-        value={formData.year}
-        onChange={handleInputChange}
-        className={styles.formInput}
-      />
-      <input
-        type="text"
-        name="lessonNumber"
-        placeholder="Lesson Number"
-        value={formData.lessonNumber}
-        onChange={handleInputChange}
-        className={styles.formInput}
-      />
-      <input
-        type="text"
-        name="videoSrc"
-        placeholder="Video Source"
-        value={formData.videoSrc}
-        onChange={handleInputChange}
-        className={styles.formInput}
-      />
-      <input
-        type="text"
-        name="videoId"
-        placeholder="Video ID"
-        value={formData.videoId}
-        onChange={handleInputChange}
-        className={styles.formInput}
-      />
-      <input
-        type="text"
-        name="category"
-        placeholder="Category"
-        value={formData.category}
-        onChange={handleInputChange}
-        className={styles.formInput}
-      />
+      <label className={styles.label}>
+        Year
+        <input
+          type="text"
+          name="year"
+          value={formData.year}
+          onChange={handleInputChange}
+          className={styles.formInput}
+        />
+      </label>
+      <label className={styles.label}>
+        Lesson Number
+        <input
+          type="text"
+          name="lessonNumber"
+          value={formData.lessonNumber}
+          onChange={handleInputChange}
+          className={styles.formInput}
+        />
+      </label>
+      <label className={styles.label}>
+        Video Source
+        <input
+          type="text"
+          name="videoSrc"
+          value={formData.videoSrc}
+          onChange={handleInputChange}
+          className={styles.formInput}
+        />
+      </label>
+      <label className={styles.label}>
+        Video ID
+        <input
+          type="text"
+          name="videoId"
+          value={formData.videoId}
+          onChange={handleInputChange}
+          className={styles.formInput}
+        />
+      </label>
+      <label className={styles.label}>
+        Category
+        <input
+          type="text"
+          name="category"
+          value={formData.category}
+          onChange={handleInputChange}
+          className={styles.formInput}
+        />
+      </label>
       {formData.questions.map((question, qIndex) => (
         <div key={qIndex} className={styles.questionGroup}>
-          <input
-            type="text"
-            name="question"
-            placeholder={`Question ${qIndex + 1}`}
-            value={question.question}
-            onChange={(e) => handleInputChange(e, qIndex)}
-            className={styles.formInput}
-          />
-          <input
-            type="text"
-            name="timestamp"
-            placeholder="Timestamp"
-            value={question.timestamp.toString()}
-            onChange={(e) => handleInputChange(e, qIndex)}
-            className={styles.formInput}
-          />
-          {question.choices.map((choice, cIndex) => (
+          <label className={styles.label}>
+            Question {qIndex + 1}
             <input
-              key={cIndex}
               type="text"
-              name={`choices[${cIndex}]`}
-              placeholder={`Choice ${cIndex + 1}`}
-              value={choice}
-              onChange={(e) => handleInputChange(e, qIndex, cIndex)}
+              name="question"
+              value={question.question}
+              onChange={(e) => handleInputChange(e, qIndex)}
               className={styles.formInput}
             />
+          </label>
+          <label className={styles.label}>
+            Timestamp
+            <input
+              type="text"
+              name="timestamp"
+              value={question.timestamp}
+              onChange={(e) => handleInputChange(e, qIndex)}
+              className={styles.formInput}
+            />
+          </label>
+          {question.choices.map((choice, cIndex) => (
+            <label key={cIndex} className={styles.label}>
+              Choice {cIndex + 1}
+              <input
+                type="text"
+                name={`choices[${cIndex}]`}
+                value={choice}
+                onChange={(e) => handleInputChange(e, qIndex, cIndex)}
+                className={styles.formInput}
+              />
+            </label>
           ))}
-          <input
-            type="text"
-            name="correctAnswer"
-            placeholder="Correct Answer"
-            value={question.correctAnswer}
-            onChange={(e) => handleInputChange(e, qIndex)}
-            className={styles.formInput}
-          />
-          <input
-            type="text"
-            name="correct"
-            placeholder="Correct Feedback"
-            value={question.feedback.correct}
-            onChange={(e) => handleInputChange(e, qIndex)}
-            className={styles.formInput}
-          />
-          <input
-            type="text"
-            name="incorrect"
-            placeholder="Incorrect Feedback"
-            value={question.feedback.incorrect}
-            onChange={(e) => handleInputChange(e, qIndex)}
-            className={styles.formInput}
-          />
+          <label className={styles.label}>
+            Correct Answer
+            <input
+              type="text"
+              name="correctAnswer"
+              value={question.correctAnswer}
+              onChange={(e) => handleInputChange(e, qIndex)}
+              className={styles.formInput}
+            />
+          </label>
+          <label className={styles.label}>
+            Correct Feedback
+            <input
+              type="text"
+              name="correctFeedback"
+              value={question.feedback.correct}
+              onChange={(e) => handleInputChange(e, qIndex)}
+              className={styles.formInput}
+            />
+          </label>
+          <label className={styles.label}>
+            Incorrect Feedback
+            <input
+              type="text"
+              name="incorrectFeedback"
+              value={question.feedback.incorrect}
+              onChange={(e) => handleInputChange(e, qIndex)}
+              className={styles.formInput}
+            />
+          </label>
         </div>
       ))}
       <button type="submit" className={styles.formButton}>

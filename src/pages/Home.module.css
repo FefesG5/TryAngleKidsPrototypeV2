@@ -9,7 +9,6 @@
 }
 
 .heading {
-  /* color: rgb(var(--foreground-rgb)); */
   color: var(--text-color);
   font-size: 4rem; /* Moderately large */
   margin-bottom: 1rem; /* Adds spacing at the top */
