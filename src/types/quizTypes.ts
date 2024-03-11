@@ -16,7 +16,6 @@ export interface Question {
 export interface Video {
   year: string;
   lessonNumber: string;
-  videoId: string;
   videoSrc: string;
   category: string;
   questions: Question[];

@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { Question, Feedback, Video } from "@/types/quizTypes";
 import { db } from "../../../firebaseConfig";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 import styles from "./VideoUploadForm.module.css";
 
 const VideoUploadForm: React.FC = () => {
   const [formData, setFormData] = useState<Video>({
     year: "",
     lessonNumber: "",
-    videoId: "",
     videoSrc: "",
     category: "",
     questions: Array.from({ length: 3 }, (_, index) => ({
@@ -33,23 +32,39 @@ const VideoUploadForm: React.FC = () => {
     const { name, value } = e.target;
 
     setFormData((prevFormData) => {
-      let newFormData = { ...prevFormData };
+      const newFormData = { ...prevFormData };
 
-      if (typeof questionIndex === "number") {
-        const updatedQuestions = [...newFormData.questions];
-        const currentQuestion = updatedQuestions[questionIndex];
+      if (
+        typeof questionIndex === "number" &&
+        questionIndex < newFormData.questions.length
+      ) {
+        const newQuestions = [...newFormData.questions];
+        const currentQuestion = { ...newQuestions[questionIndex] };
 
         if (name.startsWith("choices")) {
-          const choiceNum = parseInt(name.split("[")[1], 10);
-          currentQuestion.choices[choiceNum] = value;
-        } else if (name in currentQuestion) {
+          const newChoices = [...currentQuestion.choices];
+          if (
+            typeof choiceIndex === "number" &&
+            choiceIndex < newChoices.length
+          ) {
+            newChoices[choiceIndex] = value;
+          }
+          currentQuestion.choices = newChoices;
+        } else if (name === "correctFeedback" || name === "incorrectFeedback") {
+          // Splitting the name to target 'correct' or 'incorrect' in the feedback object
+          const feedbackKey = name.replace("Feedback", "");
+          currentQuestion.feedback = {
+            ...currentQuestion.feedback,
+            [feedbackKey]: value,
+          };
+        } else {
+          // Directly assign to question's properties if not a choice or feedback
           (currentQuestion as any)[name] = value;
-        } else if (name === "correct" || name === "incorrect") {
-          currentQuestion.feedback[name] = value;
         }
-        updatedQuestions[questionIndex] = currentQuestion;
-        return { ...newFormData, questions: updatedQuestions };
+        newQuestions[questionIndex] = currentQuestion;
+        return { ...newFormData, questions: newQuestions };
       } else {
+        // Directly assign to video's properties if not part of questions
         return { ...newFormData, [name]: value };
       }
     });
@@ -57,11 +72,39 @@ const VideoUploadForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData);
+
+    // Since Firestore is organized by 'years' -> 'lessons' -> 'lessonId',
+    // you must ensure that 'year' and 'lessonNumber' are set
+    if (!formData.year || !formData.lessonNumber) {
+      console.error("Year and lesson number must be set");
+      return;
+    }
+
+    // Format the questions array to match Firestore structure
+    const formattedQuestions = formData.questions.map((question) => ({
+      answered: false, // Set default answered status
+      choices: question.choices,
+      correctAnswer: question.correctAnswer,
+      feedback: {
+        correct: question.feedback.correct,
+        incorrect: question.feedback.incorrect,
+      },
+      question: question.question,
+      timestamp: question.timestamp,
+    }));
+
+    const lessonData = {
+      videoSrc: formData.videoSrc,
+      category: formData.category,
+      questions: formattedQuestions,
+    };
 
     try {
-      const docRef = await addDoc(collection(db, "lessons"), formData);
-      console.log("Document written with ID: ", docRef.id);
+      // Add the lesson to the 'lessons' collection of the specified 'year'
+      const lessonsRef = collection(db, "years", formData.year, "lessons");
+      const lessonRef = doc(lessonsRef, formData.lessonNumber); // Use lessonNumber as the document ID
+      await setDoc(lessonRef, lessonData); // setDoc will create or overwrite the document
+      console.log("Document written with ID: ", formData.lessonNumber);
     } catch (error) {
       console.error("Error adding document: ", error);
     }
@@ -95,16 +138,6 @@ const VideoUploadForm: React.FC = () => {
           type="text"
           name="videoSrc"
           value={formData.videoSrc}
-          onChange={handleInputChange}
-          className={styles.formInput}
-        />
-      </label>
-      <label className={styles.label}>
-        Video ID
-        <input
-          type="text"
-          name="videoId"
-          value={formData.videoId}
           onChange={handleInputChange}
           className={styles.formInput}
         />
