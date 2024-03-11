@@ -1,40 +1,36 @@
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
-import {doc, getDoc} from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../../../firebaseConfig";
 import Spinner from "@/components/Spinner/Spinner";
 import VideoPlayer from "@/components/VideoPlayer/VideoPlayer";
+import { Video } from "@/types/quizTypes";
 
-interface ILesson {
-  videoSrc?: string; // Use optional if this field might not exist in all documents
-  // ...add other fields expected to be in the lesson document
-}
+const fetchLessonDetail = async (year: string, lesson: string) => {
+  const lessonRef = doc(db, "years", year, "lessons", lesson);
+  const lessonSnapshot = await getDoc(lessonRef);
 
-const fetchLesson = async (year: string, lessonId: string): Promise<ILesson & { id: string }> => {
-  const lessonDocRef = doc(db, "years", year, "lessons", lessonId);
-  const lessonSnapShot = await getDoc(lessonDocRef);
-
-  if (lessonSnapShot.exists()) {
-    const lessonData = lessonSnapShot.data() as ILesson;
-    return {
-      id: lessonSnapShot.id, // Get the id from the snapshot
-      ...lessonData // Spread the lesson data assuming it doesn't contain an id
-    };
+  if (lessonSnapshot.exists()) {
+    return lessonSnapshot.data() as Video; // Casting the data to match the Video type
   } else {
-    throw new Error("Lesson not found");
+    throw new Error(
+      `No such lesson with ID ${lesson} found for the year ${year}`,
+    );
   }
 };
 
 const LessonDetails = () => {
   const router = useRouter();
-  // Ensure 'year' and 'lessonId' are strings
-  const year = typeof router.query.year === 'string' ? router.query.year : '';
-  const lessonId = typeof router.query.lessonId === 'string' ? router.query.lessonId : '';
+  const { year, lesson } = router.query;
 
-  const { data: lesson, isLoading, error } = useQuery<ILesson, Error>({
-    queryKey: ['lesson', year, lessonId],
-    queryFn: () => fetchLesson(year, lessonId),
-    enabled: year !== '' && lessonId !== '',
+  const {
+    data: lessonDetail,
+    isLoading,
+    error,
+  } = useQuery<Video, Error>({
+    queryKey: ["lessonDetail", year, lesson],
+    queryFn: () => fetchLessonDetail(year as string, lesson as string),
+    enabled: !!year && !!lesson,
   });
 
   if (isLoading) return <Spinner />;
@@ -45,17 +41,21 @@ const LessonDetails = () => {
 
   return (
     <div>
-      <h1>Lesson {lessonId}</h1>
+      <h1>Lesson {lesson}</h1>
       <p>
-        Details for lesson {lessonId} in the year {year}.
+        Details for lesson {lesson} in the year {year}.
       </p>
-      {lesson.videoSrc && (
+      {lessonDetail ? (
         <VideoPlayer
-          videoSrc={lesson.videoSrc} // assuming your VideoPlayer component expects a prop named 'videoSrc'
+          video={lessonDetail}
           onQuestionAnswered={(questionId, isCorrect) => {
-            console.log(`Question ${questionId} answered. Correct: ${isCorrect}`);
+            console.log(
+              `Question ${questionId} answered. Correct: ${isCorrect}`,
+            );
           }}
         />
+      ) : (
+        <div>Loading lesson details...</div>
       )}
     </div>
   );
