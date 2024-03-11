@@ -1,25 +1,49 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import styles from "./LessonsList.module.css"; // Adjust the path to your styles as necessary
+import { useQuery } from "@tanstack/react-query";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../../../firebaseConfig";
+import Spinner from "@/components/Spinner/Spinner";
+import styles from "./LessonsList.module.css";
 
-// This would be replaced by actual data fetching logic
-const lessons = [
-  { id: "1", name: "Lesson 1" },
-  { id: "2", name: "Lesson 2" },
-  // ... more lessons
-];
+const fetchLessonsForYear = async (year: string) => {
+  const lessonsRef = collection(db, "years", year, "lessons");
+  const querySnapshot = await getDocs(lessonsRef);
+  return querySnapshot.docs.map((doc) => doc.id);
+};
 
 const LessonsList = () => {
   const router = useRouter();
-  const { year } = router.query;
+  // Directly use the year from the query as yearString after type checking
+  const yearString =
+    typeof router.query.year === "string" ? router.query.year : undefined;
+
+  const {
+    data: lessons,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["lessons", yearString],
+    queryFn: () => fetchLessonsForYear(yearString!),
+    // Only execute the query if the year is available
+    enabled: !!yearString,
+  });
+
+  if (isLoading) return <Spinner />;
+
+  if (error) return <div>An error has occurred: {error.message}</div>;
 
   return (
     <div className={styles.lessonsContainer}>
-      <h1 className={styles.lessonsHeading}>Lessons for {year}</h1>
+      <h1 className={styles.lessonsHeading}>Lessons for {yearString}</h1>
       <div>
-        {lessons.map((lesson) => (
-          <Link key={lesson.id} href={`/lessons/${year}/${lesson.id}`} passHref>
-            <button className={styles.lessonButton}>{lesson.name}</button>
+        {lessons?.map((lessonId) => (
+          <Link
+            key={lessonId}
+            href={`/lessons/${yearString}/${lessonId}`}
+            passHref
+          >
+            <button className={styles.lessonButton}>Lesson {lessonId}</button>
           </Link>
         ))}
       </div>
