@@ -8,7 +8,7 @@ import "nprogress/nprogress.css";
 
 import { Router } from "next/router";
 
-import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // Setup NProgress for each route change
 NProgress.configure({ showSpinner: false });
