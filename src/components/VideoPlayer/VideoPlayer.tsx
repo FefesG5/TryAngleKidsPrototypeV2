@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import ReactPlayer from "react-player";
 import QuizModal from "../Quiz/Quiz";
 import { Question, Video } from "@/types/quizTypes";
+import styles from "./VideoPlayer.module.css";
 
 export type VideoPlayerProp = {
   video: Video;
@@ -49,8 +50,9 @@ const VideoPlayer = ({ video, onQuestionAnswered }: VideoPlayerProp) => {
     }
   };
   return (
-    <>
+    <div className={styles.VideoContainer}>
       <ReactPlayer
+        className={styles.ReactPlayer}
         ref={playerRef}
         playing={playing}
         controls={true}
@@ -66,7 +68,7 @@ const VideoPlayer = ({ video, onQuestionAnswered }: VideoPlayerProp) => {
           onAnswerSubmit={handleAnswerSubmit}
         />
       )}
-    </>
+    </div>
   );
 };
 

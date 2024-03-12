@@ -1,0 +1,14 @@
+.VideoContainer {
+  position: relative;
+  padding-top: 56.25%; /* Maintain the aspect ratio of 16:9 */
+  width: 100%; /* Full width to maintain responsiveness */
+}
+
+.ReactPlayer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%; /* Full width to maintain responsiveness */
+  height: 100%; /* Full height to maintain aspect ratio */
+}
