@@ -1,26 +1,32 @@
 .VideoContainer {
   position: relative;
-  padding-top: 56.25%; /* Maintain the aspect ratio of 16:9 */
-  width: 100%; /* Full width to maintain responsiveness */
+  overflow: hidden; /* This prevents any overflow */
+  max-width: 100%; /* Ensures the container doesn't exceed the width of its parent */
+  margin: auto; /* This will center the container */
+  aspect-ratio: 16 / 9; /* This sets a consistent aspect ratio for the video */
 }
 
 .ReactPlayer {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(
+    -50%,
+    -50%
+  ); /* This will center the video in all browsers */
   width: 100%; /* Full width to maintain responsiveness */
   height: 100%; /* Full height to maintain aspect ratio */
 }
 
+/* Additional responsive styles if needed */
 @media screen and (max-width: 768px) {
   .VideoContainer {
-    padding-top: 75%; /* Adjust the aspect ratio for smaller screens */
+    aspect-ratio: 4 / 3; /* Adjust the aspect ratio for smaller screens if necessary */
   }
 }
 
 @media screen and (max-width: 480px) {
   .VideoContainer {
-    padding-top: 100%; /* More square aspect ratio for very small screens */
+    aspect-ratio: 1; /* More square aspect ratio for very small screens */
   }
 }
