@@ -58,6 +58,8 @@ const VideoPlayer = ({ video, onQuestionAnswered }: VideoPlayerProp) => {
         controls={true}
         url={video.videoSrc}
         volume={0.25}
+        width="95%"
+        height="95%"
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onProgress={handleProgress}
