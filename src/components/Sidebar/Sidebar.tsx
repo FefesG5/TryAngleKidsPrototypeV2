@@ -33,7 +33,6 @@ const Sidebar = ({ isOpen, closeSidebar }: SidebarProps) => {
       ref={sidebarRef}
       className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}
     >
-      {/* ... sidebar contents ... */}
       <ul className={styles.navList}>
         {/* Navigation Items */}
         <li className={styles.navItem} onClick={closeSidebar}>

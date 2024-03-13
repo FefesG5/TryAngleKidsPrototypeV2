@@ -7,7 +7,9 @@
   right: 0;
   width: 30%; /* Control the width of the sidebar */
   height: 92%; /* Full height */
-  background-color: #fff; /* Match header background or adjust as needed */
+  background-color: var(
+    --header-bg-color
+  ); /* Match header background or adjust as needed */
   box-shadow: -2px 0 4px rgba(0, 0, 0, 0.2);
   padding-top: 2rem; /* Space at the top */
   z-index: 2000; /* Ensure it's above other content */
