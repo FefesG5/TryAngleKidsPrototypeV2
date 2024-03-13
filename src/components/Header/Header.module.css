@@ -17,6 +17,7 @@
 .logoContainer {
   cursor: pointer;
   display: flex;
+  padding-right: 4rem;
 }
 
 .hamburger {
