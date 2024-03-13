@@ -1,13 +1,23 @@
 // Header.tsx
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Image from "next/image";
 import styles from "./Header.module.css";
 import Link from "next/link";
+import Sidebar from "../Sidebar/Sidebar";
 import { ThemeContext } from "@/contexts/ThemeContext";
 import { inter, poppins, roboto, cabin } from "@/app/ui/fonts";
 
 const Header: React.FC = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { theme, toggleTheme } = useContext(ThemeContext);
+
+  const handleSidebarToggle = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+  };
 
   return (
     <header className={`${cabin.className} ${styles.header}`}>
@@ -23,7 +33,17 @@ const Header: React.FC = () => {
         </Link>
       </div>
 
-      <nav className={styles.nav}>
+      {/* Hamburger Icon */}
+      <button className={styles.hamburger} onClick={handleSidebarToggle}>
+        ☰
+      </button>
+
+      {/* Conditional rendering of the Sidebar */}
+      {isSidebarOpen && (
+        <Sidebar isOpen={isSidebarOpen} closeSidebar={closeSidebar} />
+      )}
+
+      <nav className={`${styles.nav} ${isSidebarOpen ? styles.navOpen : ""}`}>
         <ul className={styles.navList}>
           <li className={styles.navItem}>
             <Link href="/about">About</Link>
@@ -40,7 +60,8 @@ const Header: React.FC = () => {
         </ul>
       </nav>
 
-      <button onClick={toggleTheme}>
+      {/* Render theme changer button in header */}
+      <button onClick={toggleTheme} className={styles.themeChanger}>
         Switch to {theme === "light" ? "Dark" : "Light"} Theme
       </button>
     </header>

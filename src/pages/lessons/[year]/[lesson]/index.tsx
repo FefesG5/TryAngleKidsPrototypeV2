@@ -5,6 +5,7 @@ import { db } from "../../../../../firebaseConfig";
 import Spinner from "@/components/Spinner/Spinner";
 import VideoPlayer from "@/components/VideoPlayer/VideoPlayer";
 import { Video } from "@/types/quizTypes";
+import styles from "./LessonDetails.module.css";
 
 const fetchLessonDetail = async (year: string, lesson: string) => {
   const lessonRef = doc(db, "years", year, "lessons", lesson);
@@ -40,7 +41,7 @@ const LessonDetails = () => {
   if (!lesson) return <div>Lesson not found.</div>;
 
   return (
-    <div>
+    <div className={styles.LessonContainer}>
       <h1>Lesson {lesson}</h1>
       <p>
         Details for lesson {lesson} in the year {year}.

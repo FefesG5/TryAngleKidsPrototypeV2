@@ -19,8 +19,27 @@
   display: flex;
 }
 
+.hamburger {
+  display: none; /* It hides the hamburger on larger screens by default */
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  position: absolute;
+  top: 1rem; /* You can adjust the position as needed */
+  right: 1rem;
+}
+
+.themeChanger {
+  display: none; /* Hide by default */
+  /* ...other button styling... */
+}
+
 .nav {
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
 }
 
 .navList {
@@ -28,8 +47,30 @@
   display: flex;
   padding: 0;
   margin: 0;
+  margin-left: auto;
 }
 
 .navItem {
-  margin-left: 2rem;
+  padding: 0 1rem;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block; /* This will show the hamburger menu on smaller screens */
+  }
+
+  .themeChanger {
+    display: none;
+  }
+
+  .nav {
+    display: none; /* This will hide the nav bar on smaller screens */
+  }
+}
+
+@media (min-width: 769px) {
+  .themeChanger {
+    display: block;
+  }
 }

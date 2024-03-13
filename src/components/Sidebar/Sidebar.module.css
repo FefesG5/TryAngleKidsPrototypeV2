@@ -1,0 +1,60 @@
+.sidebar {
+  display: none; /* Initially hide the sidebar */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 30%; /* Control the width of the sidebar */
+  height: 92%; /* Full height */
+  background-color: #fff; /* Match header background or adjust as needed */
+  box-shadow: -2px 0 4px rgba(0, 0, 0, 0.2);
+  padding-top: 2rem; /* Space at the top */
+  z-index: 2000; /* Ensure it's above other content */
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%); /* Start off-screen */
+}
+
+.open {
+  display: flex; /* Show the sidebar */
+  transform: translateX(0); /* Move into view */
+}
+
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%; /* Ensure list covers the full width of the sidebar */
+}
+
+.navItem {
+  display: flex;
+  justify-content: center; /* Center items horizontally */
+  flex-grow: 1; /* Allow items to grow to fill space */
+  padding: 1rem; /* Give some padding around each item */
+}
+
+.hamburger {
+  display: block; /* Ensure this is visible to toggle sidebar */
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem; /* Position the hamburger icon inside the header */
+}
+
+.themeChangerSidebar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 45%; /* Adjust sidebar width on smaller screens */
+  }
+
+  .themeChangerSidebar {
+    display: block;
+  }
+}
