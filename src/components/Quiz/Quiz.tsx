@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Question } from "@/types/quizTypes";
+import styles from "./Quiz.module.css";
 
 interface QuizModalProps {
   question: Question;
@@ -25,35 +26,31 @@ const QuizModal: React.FC<QuizModalProps> = ({ question, onAnswerSubmit }) => {
   };
 
   return (
-    <div
-      style={{
-        position: "absolute",
-        top: "20%",
-        left: "50%",
-        transform: "translateX(-50%)",
-        backgroundColor: "white",
-        padding: "20px",
-        borderRadius: "8px",
-        zIndex: 1000,
-      }}
-    >
-      <h2>{question.question}</h2>
-      <div>
-        {question.choices.map((choice, index) => (
-          <button
-            key={index}
-            onClick={() => handleAnswerSelection(choice)}
-            style={{ display: "block", margin: "10px 0" }}
-          >
-            {choice}
-          </button>
-        ))}
+    <>
+      <div className={styles.overlay}></div>
+      <div className={styles.quizModal}>
+        <h2>{question.question}</h2>
+        <div className={styles.quizChoices}>
+          {question.choices.map((choice, index) => (
+            <button
+              key={index}
+              className={styles.quizButton}
+              onClick={() => handleAnswerSelection(choice)}
+            >
+              {choice}
+            </button>
+          ))}
+        </div>
+        {feedback && <p>{feedback}</p>}
+        <button
+          className={styles.quizButton}
+          onClick={handleSubmit}
+          disabled={!selectedAnswer}
+        >
+          Continue
+        </button>
       </div>
-      {feedback && <p>{feedback}</p>}
-      <button onClick={handleSubmit} disabled={!selectedAnswer}>
-        Continue
-      </button>
-    </div>
+    </>
   );
 };
 

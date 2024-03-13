@@ -1,0 +1,106 @@
+/* QuizModal.module.css */
+.quizModal {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 95%;
+  max-height: 90vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* Ensure buttons stretch to fit the modal */
+  overflow-y: auto; /* Allow scrolling if the content exceeds the max-height */
+  z-index: 1000;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.quizQuestion {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.quizChoices {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quizButton {
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #f7f7f7;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.quizButton:hover {
+  background-color: #e2e8f0;
+}
+
+.quizButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Larger screens */
+@media (min-width: 768px) {
+  .quizModal {
+    max-width: 50%; /* Adjust the max-width for larger screens */
+    padding: 40px;
+  }
+
+  .quizQuestion {
+    font-size: 1.25rem;
+  }
+
+  .quizButton {
+    font-size: 1rem;
+    padding: 15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .quizModal {
+    max-width: 30%;
+    padding: 40px;
+  }
+
+  .quizQuestion {
+    font-size: 1.5rem;
+  }
+
+  .quizButton {
+    font-size: 1.1rem;
+    padding: 20px;
+  }
+}
+
+/* Small screens, landscape orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+  .quizModal {
+    max-height: 80vh;
+  }
+}
