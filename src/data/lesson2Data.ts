@@ -43,7 +43,7 @@ export const Lesson2Data = {
       id: 3,
       question:
         "Which bug did most of the speaker's brothers and sisters like the best?",
-      timestamp: 431,
+      timestamp: 341,
       answered: false,
       choices: ["Spider", "Ladybug", "Butterfly", "They didn't like bugs"],
       correctAnswer: "Butterfly",

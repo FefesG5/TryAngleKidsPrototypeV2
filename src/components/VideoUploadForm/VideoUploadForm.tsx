@@ -81,7 +81,8 @@ const VideoUploadForm: React.FC = () => {
     }
 
     // Format the questions array to match Firestore structure
-    const formattedQuestions = formData.questions.map((question) => ({
+    const formattedQuestions = formData.questions.map((question, index) => ({
+      id: index + 1,
       answered: false, // Set default answered status
       choices: question.choices,
       correctAnswer: question.correctAnswer,
