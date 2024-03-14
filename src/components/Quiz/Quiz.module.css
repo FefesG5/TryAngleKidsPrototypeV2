@@ -62,8 +62,10 @@
 }
 
 .quizButton:disabled {
-  background-color: #ccc;
+  background-color: #d1d5db;
+  color: #9ca3af;
   cursor: not-allowed;
+  border: 1px solid #cbd5e1;
 }
 
 .feedbackText {
