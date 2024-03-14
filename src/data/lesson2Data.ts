@@ -8,7 +8,7 @@ export const Lesson2Data = {
     {
       id: 1,
       question: "What can numbers and data help us understand?",
-      timestamp: 7,
+      timestamp: 70,
       answered: false,
       choices: [
         "Only mathematical problems",
@@ -28,7 +28,7 @@ export const Lesson2Data = {
       id: 2,
       question:
         "What is a way to count using special lines mentioned in the video?",
-      timestamp: 158,
+      timestamp: 203,
       answered: false,
       choices: ["Number lines", "Tally marks", "Drawing circles", "Alphabets"],
       correctAnswer: "Tally marks",
@@ -43,7 +43,7 @@ export const Lesson2Data = {
       id: 3,
       question:
         "Which bug did most of the speaker's brothers and sisters like the best?",
-      timestamp: 534,
+      timestamp: 431,
       answered: false,
       choices: ["Spider", "Ladybug", "Butterfly", "They didn't like bugs"],
       correctAnswer: "Butterfly",

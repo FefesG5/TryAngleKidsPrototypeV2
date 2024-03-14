@@ -90,7 +90,7 @@ const VideoUploadForm: React.FC = () => {
         incorrect: question.feedback.incorrect,
       },
       question: question.question,
-      timestamp: question.timestamp,
+      timestamp: Number(question.timestamp),
     }));
 
     const lessonData = {
