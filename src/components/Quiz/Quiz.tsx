@@ -29,7 +29,7 @@ const QuizModal: React.FC<QuizModalProps> = ({ question, onAnswerSubmit }) => {
     <>
       <div className={styles.overlay}></div>
       <div className={styles.quizModal}>
-        <h2>{question.question}</h2>
+        <h2 className={styles.quizQuestion}>{question.question}</h2>
         <div className={styles.quizChoices}>
           {question.choices.map((choice, index) => (
             <button
@@ -41,7 +41,7 @@ const QuizModal: React.FC<QuizModalProps> = ({ question, onAnswerSubmit }) => {
             </button>
           ))}
         </div>
-        {feedback && <p>{feedback}</p>}
+        {feedback && <p className={styles.feedbackText}>{feedback}</p>}
         <button
           className={styles.quizButton}
           onClick={handleSubmit}
