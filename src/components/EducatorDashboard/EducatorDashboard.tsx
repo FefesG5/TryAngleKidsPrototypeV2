@@ -14,7 +14,9 @@ const EducatorDashboard = ({ signOutUser }: EducatorDashboardProps) => {
             <Link href="/educator/uploads">Uploads (old)</Link>
           </li>
           <li>
-            <Link href="/educator/video-quiz-upload">Upload New Video Quiz</Link>
+            <Link href="/educator/video-quiz-upload">
+              Upload New Video Quiz
+            </Link>
           </li>
           <li>
             <Link href="/educator/settings">Settings</Link>
