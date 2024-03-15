@@ -60,7 +60,7 @@ const EducatorAccess = () => {
   };
 
   if (loading) {
-    return <Spinner />; // Or replace with a spinner component if you have one
+    return <Spinner />;
   }
 
   if (!isAuthenticated) {
