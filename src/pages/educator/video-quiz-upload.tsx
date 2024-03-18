@@ -1,3 +1,4 @@
+import VideoQuizUploadForm from "@/components/VideoQuizUpload/VideoQuizUploadForm";
 import Link from "next/link";
 
 const VideoQuizUpload: React.FC = () => {
@@ -6,7 +7,10 @@ const VideoQuizUpload: React.FC = () => {
   return (
     <>
       <h1>New Quiz Upload</h1>
+
       <Link href="/educator">Back to Dashboard</Link>
+
+      <VideoQuizUploadForm />
     </>
   );
 };
