@@ -45,8 +45,18 @@ const VideoQuizUploadForm: React.FC = () => {
   return (
     <div className={styles.formContainer}>
       <div className={styles.tabs}>
-        <button onClick={() => setActiveTab("details")}>Video Details</button>
-        <button onClick={() => setActiveTab("questions")}>Questions 1</button>
+        <button
+          className={activeTab === "details" ? styles.activeTab : ""}
+          onClick={() => setActiveTab("details")}
+        >
+          Video Details
+        </button>
+        <button
+          className={activeTab === "questions" ? styles.activeTab : ""}
+          onClick={() => setActiveTab("questions")}
+        >
+          Questions 1
+        </button>
       </div>
       <div className={styles.tabContent}>
         {activeTab === "details" && (

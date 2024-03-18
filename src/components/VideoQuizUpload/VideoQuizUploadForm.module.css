@@ -1,0 +1,41 @@
+.formContainer {
+  /* ... your existing styles ... */
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+}
+
+.tabs button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 5px 5px 0 0;
+  border-bottom: 3px solid transparent;
+}
+
+.tabs button:hover {
+  background-color: #f2f2f2;
+}
+
+.tabs button:focus {
+  outline: none;
+}
+
+.tabContent {
+  border: 2px solid #ccc;
+  border-top: none;
+  padding: 20px;
+  border-radius: 0 0 5px 5px;
+}
+
+/* Active tab style */
+.activeTab {
+  border-bottom: 3px solid #007bff;
+  background-color: white;
+}
