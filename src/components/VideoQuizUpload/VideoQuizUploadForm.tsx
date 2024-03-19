@@ -26,15 +26,62 @@ const VideoQuizUploadForm: React.FC = () => {
     ],
   });
 
-  const [activeTab, setActiveTab] = useState<"details" | "questions">(
-    "details",
-  );
+  const [activeTab, setActiveTab] = useState<"details" | string>("details");
+  const [questionIds, setQuestionIds] = useState<number[]>([1]); // Track question IDs
 
-  // Assume first question for simplicity; you can extend this for handling multiple questions
-  const handleQuestionChange = (updatedQuestion: Question) => {
+  const addQuestion = () => {
+    const nextId = questionIds.length > 0 ? Math.max(...questionIds) + 1 : 2; // Start from 2 since 1 is default
+    if (questionIds.length < 4) {
+      // Ensure not more than 4 questions
+      setQuestionIds([...questionIds, nextId]);
+      setVideoData({
+        ...videoData,
+        questions: [
+          ...videoData.questions,
+          {
+            id: nextId,
+            question: "",
+            timestamp: 0,
+            answered: false,
+            choices: ["", "", "", ""],
+            correctAnswer: "",
+            feedback: {
+              correct: "",
+              incorrect: "",
+            },
+          },
+        ],
+      });
+    }
+  };
+
+  const removeQuestion = (id: number) => {
+    if (id === 1) return; // Prevent removing the first question
+    setQuestionIds(questionIds.filter((qId) => qId !== id));
     setVideoData({
       ...videoData,
-      questions: [updatedQuestion, ...videoData.questions.slice(1)],
+      questions: videoData.questions.filter((q) => q.id !== id),
+    });
+    if (`questions ${id}` === activeTab) {
+      setActiveTab("details"); // Fallback to details tab or handle differently as desired
+    }
+  };
+
+  const handleQuestionChange = (updatedQuestion: Question) => {
+    // Map over the existing questions
+    const updatedQuestions = videoData.questions.map((question) => {
+      // If the question's ID matches the updated question's ID, return the updated question
+      if (question.id === updatedQuestion.id) {
+        return updatedQuestion;
+      }
+      // Otherwise, return the question as is
+      return question;
+    });
+
+    // Set the updated questions array in the videoData state
+    setVideoData({
+      ...videoData,
+      questions: updatedQuestions,
     });
   };
 
@@ -51,12 +98,33 @@ const VideoQuizUploadForm: React.FC = () => {
         >
           Video Details
         </button>
-        <button
-          className={activeTab === "questions" ? styles.activeTab : ""}
-          onClick={() => setActiveTab("questions")}
-        >
-          Questions 1
-        </button>
+        {questionIds.map((id, index) => (
+          <div key={id} className={styles.questionTab}>
+            <button
+              className={
+                activeTab === `questions ${id}` ? styles.activeTab : ""
+              }
+              onClick={() => setActiveTab(`questions ${id}`)}
+            >
+              <span className={styles.questionText}>Questions {id}</span>
+              {id !== 1 && ( // Don't show remove button for the first question
+                <span
+                  className={styles.removeQuestionBtn}
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent activating the tab when clicking remove
+                    removeQuestion(id);
+                  }}
+                  aria-label={`Remove question ${id}`}
+                >
+                  X
+                </span>
+              )}
+            </button>
+          </div>
+        ))}
+        {questionIds.length < 4 && (
+          <button onClick={addQuestion}>Add Question</button>
+        )}
       </div>
       <div className={styles.tabContent}>
         {activeTab === "details" && (
@@ -65,22 +133,12 @@ const VideoQuizUploadForm: React.FC = () => {
             onVideoDataChange={handleVideoDataChange}
           />
         )}
-        {activeTab === "questions" && (
+        {activeTab.startsWith("questions") && (
           <QuestionDetailsInput
             questionData={
-              videoData.questions[0] || {
-                // Fallback to a default object if questions[0] is not available
-                id: 0,
-                question: "",
-                timestamp: 0,
-                answered: false,
-                choices: ["", "", "", ""], // Default choices array
-                correctAnswer: "",
-                feedback: {
-                  correct: "",
-                  incorrect: "",
-                },
-              }
+              videoData.questions.find(
+                (q) => q.id.toString() === activeTab.split(" ")[1],
+              ) || videoData.questions[0] // Fallback or handle differently
             }
             onQuestionChange={handleQuestionChange}
           />

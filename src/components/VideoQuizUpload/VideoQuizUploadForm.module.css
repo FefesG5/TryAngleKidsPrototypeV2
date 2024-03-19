@@ -4,12 +4,19 @@
 
 .tabs {
   display: flex;
+  align-items: center; /* Aligns items vertically */
+  flex-wrap: nowrap; /* Prevents wrapping of tabs */
   border-bottom: 2px solid #ccc;
   padding-bottom: 5px;
+  overflow-x: auto; /* Allows horizontal scrolling if tabs overflow */
 }
 
 .tabs button {
-  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the content */
+  min-width: 150px; /* Ensures that all tabs have at least this width */
+  padding: 10px 30px 10px 10px; /* Extra padding on the right for the "X" */
   margin-right: 10px;
   border: none;
   background: none;
@@ -17,6 +24,8 @@
   transition: all 0.3s ease;
   border-radius: 5px 5px 0 0;
   border-bottom: 3px solid transparent;
+  position: relative;
+  flex-shrink: 0;
 }
 
 .tabs button:hover {
@@ -34,8 +43,30 @@
   border-radius: 0 0 5px 5px;
 }
 
+.questionTab {
+  margin-bottom: -1px; /* Overlap the border of the tabs container */
+}
+
+.questionText {
+  margin-right: 24px; /* Provide enough space for the "X" mark */
+}
+
+.removeQuestionBtn {
+  position: absolute;
+  top: 50%;
+  right: 10px; /* Adjust as needed */
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #ff0000;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 0 8px; /* Provides clickable area */
+}
+
 /* Active tab style */
 .activeTab {
-  border-bottom: 3px solid #007bff;
-  background-color: white;
+  background-color: white; /* Matches the tab content area's background */
+  border-bottom: 3px solid #007bff; /* Active tab indicator color */
 }
