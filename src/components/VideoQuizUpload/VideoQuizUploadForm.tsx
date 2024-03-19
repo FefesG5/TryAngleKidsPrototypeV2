@@ -57,13 +57,27 @@ const VideoQuizUploadForm: React.FC = () => {
 
   const removeQuestion = (id: number) => {
     if (id === 1) return; // Prevent removing the first question
-    setQuestionIds(questionIds.filter((qId) => qId !== id));
+
+    const remainingQuestions = videoData.questions.filter((q) => q.id !== id);
+
+    // Reassign IDs based on the new order
+    const reassignedQuestions = remainingQuestions.map((q, index) => ({
+      ...q,
+      id: index + 1, // Reassign IDs starting from 1
+    }));
+
+    setQuestionIds(reassignedQuestions.map((q) => q.id)); // Update the question IDs
     setVideoData({
       ...videoData,
-      questions: videoData.questions.filter((q) => q.id !== id),
+      questions: reassignedQuestions,
     });
+
+    // Adjust the active tab if necessary
     if (`questions ${id}` === activeTab) {
-      setActiveTab("details"); // Fallback to details tab or handle differently as desired
+      setActiveTab("details");
+    } else {
+      const newActiveTabId = Math.min(...reassignedQuestions.map((q) => q.id));
+      setActiveTab(`questions ${newActiveTabId}`);
     }
   };
 
