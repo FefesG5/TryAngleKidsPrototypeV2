@@ -8,6 +8,7 @@
   border-bottom: 2px solid #ccc;
   padding-bottom: 5px;
   overflow-x: auto; /* Allow horizontal scrolling when necessary */
+  justify-content: flex-start;
 }
 
 .questionTab {
@@ -22,6 +23,8 @@
   position: relative; /* Needed for absolute positioning of the "X" button */
   overflow: hidden; /* Ensures no spillover */
   height: 40px; /* Fixed height for all tabs */
+  min-width: 160px;
+  max-width: 200px;
 }
 
 .tabs button {
@@ -32,6 +35,7 @@
   flex-grow: 1; /* Grow to fill the tab container */
   text-align: center; /* Center the text inside the button */
   padding: 8px 16px; /* Padding for the text */
+  white-space: nowrap;
 }
 
 .removeQuestionBtn {
@@ -48,13 +52,15 @@
 
 /* Specific styles for when a tab is active */
 .activeTab {
-  background-color: white;
+  background-color: #e9ecef;
   border-bottom: 3px solid #007bff; /* Highlight color for active tab */
+  color: #0056b3;
+  font-weight: bold;
 }
 
 /* Hover effects */
 .tabs button:not(.activeTab):hover {
-  background-color: #e6e6e6; /* Slight background on hover for inactive tabs */
+  background-color: #dee2e6; /* Slight background on hover for inactive tabs */
 }
 
 .tabContent {
@@ -62,4 +68,14 @@
   border-top: none;
   padding: 20px;
   border-radius: 0 0 5px 5px;
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+  .questionTab {
+    width: auto; /* Allow tabs to shrink to fit content */
+    min-width: 120px; /* Smaller minimum width for small screens */
+    max-width: none; /* Remove max-width restriction on small screens */
+    flex: 1; /* Take up equal space */
+  }
 }
