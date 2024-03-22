@@ -18,7 +18,7 @@ const VideoDetailsInput: React.FC<{
         <input
           type="text"
           name="year"
-          className="detailInput"
+          className={styles.detailInput}
           value={videoData.year}
           onChange={handleChange}
         />
@@ -28,7 +28,7 @@ const VideoDetailsInput: React.FC<{
         <input
           type="text"
           name="lessonNumber"
-          className="detailInput"
+          className={styles.detailInput}
           value={videoData.lessonNumber}
           onChange={handleChange}
         />
@@ -38,7 +38,7 @@ const VideoDetailsInput: React.FC<{
         <input
           type="text"
           name="videoSrc"
-          className="detailInput"
+          className={styles.detailInput}
           value={videoData.videoSrc}
           onChange={handleChange}
         />
@@ -48,7 +48,7 @@ const VideoDetailsInput: React.FC<{
         <input
           type="text"
           name="category"
-          className="detailInput"
+          className={styles.detailInput}
           value={videoData.category}
           onChange={handleChange}
         />
