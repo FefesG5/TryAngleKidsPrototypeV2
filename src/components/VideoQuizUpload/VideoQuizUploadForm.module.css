@@ -1,5 +1,7 @@
 .formContainer {
-  /* ... your existing styles ... */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .tabs {
@@ -68,6 +70,35 @@
   border-top: none;
   padding: 20px;
   border-radius: 0 0 5px 5px;
+}
+
+.submitButton {
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white; /* Text color */
+  border: none; /* No border */
+  padding: 10px 20px; /* Vertical and horizontal padding */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Cursor indicates it's clickable */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  outline: none; /* Remove outline on focus for cleaner look */
+  margin-top: 20px; /* Space from the form above */
+  margin-right: auto; /* Together with margin-left, this centers the button */
+  margin-left: auto; /* Center the button horizontally */
+  width: auto; /* Adjust width to content or to a specific value */
+  max-width: 200px; /* Maximum width of the button */
+}
+
+.submitButton:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+.submitButton:active {
+  background-color: #004085; /* Even darker shade when clicked */
+}
+
+.submitButton:focus {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5); /* Bootstrap focus shadow */
 }
 
 /* Responsive design for smaller screens */

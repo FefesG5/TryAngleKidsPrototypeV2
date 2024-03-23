@@ -103,6 +103,12 @@ const VideoQuizUploadForm: React.FC = () => {
     setVideoData(updatedVideoData);
   };
 
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    console.log("Submitting video quiz data:", videoData);
+    // Here you can add any further actions, like sending the data to a server
+  };
+
   return (
     <div className={styles.formContainer}>
       <div className={styles.tabs}>
@@ -158,6 +164,13 @@ const VideoQuizUploadForm: React.FC = () => {
           />
         )}
       </div>
+      <button
+        type="button" // Use 'button' if triggering via onClick, 'submit' if in a form with onSubmit
+        className={styles.submitButton}
+        onClick={handleSubmit}
+      >
+        Submit Quiz
+      </button>
     </div>
   );
 };
