@@ -7,6 +7,7 @@
   border-radius: 8px; /* Optional: Rounded corners for the outer container */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Shadow for depth */
   overflow: hidden;
+  margin: 40px;
 }
 
 .tabs {
@@ -106,9 +107,10 @@
   border-radius: 5px; /* Rounded corners */
   transition: background-color 0.3s ease; /* Smooth transition for hover effect */
   outline: none; /* Remove outline on focus for cleaner look */
-  margin-top: 20px; /* Space from the form above */
+  margin-top: 30px; /* Space from the form above */
   margin-right: auto; /* Together with margin-left, this centers the button */
   margin-left: auto; /* Center the button horizontally */
+  margin-bottom: 30px;
   width: auto; /* Adjust width to content or to a specific value */
   max-width: 200px; /* Maximum width of the button */
 }
