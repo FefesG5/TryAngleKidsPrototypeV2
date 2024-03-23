@@ -1,0 +1,30 @@
+/* QuestionDetailsInput.module.css */
+
+.questionInputContainer {
+  background-color: #f8f9fa; /* Matched style */
+  border-radius: 5px; /* Matched style */
+  padding: 20px; /* Matched style or adjust as necessary */
+  margin-bottom: 15px; /* Matched style */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Matched style or adjust as necessary */
+}
+
+.questionInputLabel {
+  display: block; /* Matched style */
+  margin-bottom: 5px; /* Matched style */
+  font-weight: 600; /* Matched style */
+  color: #495057; /* Matched style or adjust as necessary */
+}
+
+.questionInput {
+  width: 100%; /* Matched style */
+  padding: 8px 12px; /* Matched style */
+  border-radius: 4px; /* Matched style */
+  border: 1px solid #ced4da; /* Matched style */
+  margin-bottom: 10px; /* Matched style or adjust as necessary */
+}
+
+.questionInput:focus {
+  border-color: #80bdff; /* Matched style */
+  outline: 0; /* Matched style */
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Matched style */
+}

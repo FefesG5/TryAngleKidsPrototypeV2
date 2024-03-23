@@ -1,4 +1,5 @@
 import { Question } from "@/types/quizTypes";
+import styles from "./QuestionDetailsInput.module.css";
 
 const QuestionDetailsInput: React.FC<{
   questionData: Question;
@@ -26,64 +27,70 @@ const QuestionDetailsInput: React.FC<{
 
   // Dynamically generate choice inputs based on the questionData.choices array
   const choiceInputs = questionData.choices.map((choice, index) => (
-    <label key={index}>
+    <label key={index} className={styles.questionInputLabel}>
       Choice {index + 1}
       <input
         type="text"
         name={`choices[${index}]`}
         value={choice}
         onChange={handleChange}
+        className={styles.questionInput}
       />
     </label>
   ));
 
   return (
-    <div>
+    <div className={styles.questionInputContainer}>
       <h2>Question Details</h2>
-      <label>
+      <label className={styles.questionInputLabel}>
         Question
         <input
           type="text"
           name="question"
           value={questionData.question}
           onChange={handleChange}
+          className={styles.questionInput}
         />
       </label>
-      <label>
+      <label className={styles.questionInputLabel}>
         Timestamp
         <input
           type="text"
           name="timestamp"
           value={questionData.timestamp.toString()}
           onChange={handleChange}
+          className={styles.questionInput}
         />
       </label>
       {choiceInputs}
-      <label>
+      <label className={styles.questionInputLabel}>
         Correct Answer
         <input
           type="text"
           name="correctAnswer"
           value={questionData.correctAnswer}
           onChange={handleChange}
+          className={styles.questionInput}
         />
       </label>
-      <label>
+      <label className={styles.questionInputLabel}>
         Correct Feedback
         <input
           type="text"
           name="correct"
           value={questionData.feedback.correct}
           onChange={handleChange}
+          className={styles.questionInput}
         />
       </label>
-      <label>
+      <label className={styles.questionInputLabel}>
         Incorrect Feedback
         <input
           type="text"
           name="incorrect"
           value={questionData.feedback.incorrect}
           onChange={handleChange}
+          className={styles.questionInput}
         />
       </label>
     </div>
