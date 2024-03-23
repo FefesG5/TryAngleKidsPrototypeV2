@@ -2,15 +2,22 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  background: #f9f9f9; /* Continuous background color */
+  border-radius: 8px; /* Optional: Rounded corners for the outer container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Shadow for depth */
+  overflow: hidden;
 }
 
 .tabs {
   display: flex;
   align-items: center; /* Vertically center the tabs */
-  border-bottom: 2px solid #ccc;
+  border-bottom: none;
   padding-bottom: 5px;
   overflow-x: auto; /* Allow horizontal scrolling when necessary */
   justify-content: flex-start;
+  background-color: #f9f9f9;
+  box-shadow: inset 0 -1px 0 0 #dae0e7;
 }
 
 .questionTab {
@@ -19,14 +26,21 @@
   justify-content: center; /* Center content horizontally */
   align-items: center; /* Center content vertically */
   margin-right: 10px; /* Spacing between tabs */
-  background: #f0f0f0; /* Background of tabs */
-  border: 1px solid #ccc; /* Border to match the tab content area */
-  border-radius: 5px 5px 0 0;
+  background-color: transparent; /* Background of tabs */
+  border: none; /* Border to match the tab content area */
+  border-radius: 0;
   position: relative; /* Needed for absolute positioning of the "X" button */
   overflow: hidden; /* Ensures no spillover */
   height: 40px; /* Fixed height for all tabs */
   min-width: 160px;
   max-width: 200px;
+  margin-right: 0; /* Remove space between tabs */
+  border-right: 1px solid #dae0e7;
+}
+
+.questionTab button {
+  color: black; /* Match the inactive tab text color from the screenshot */
+  padding: 10px 20px; /* Adjust padding as necessary */
 }
 
 .tabs button {
@@ -41,23 +55,32 @@
 }
 
 .removeQuestionBtn {
-  font-size: 16px; /* Larger font size for the "X" */
-  position: absolute;
-  top: 0;
-  right: 5px; /* Position towards the right */
-  padding: 0; /* No padding needed */
-  margin-left: 5px; /* Add space between the "X" and the tab text */
-  color: #ff0000;
-  font-weight: bold;
+  width: 16px;
+  height: 16px;
+  line-height: 16px; /* Aligns the 'X' vertically */
+  text-align: center; /* Aligns the 'X' horizontally */
+  border-radius: 16px; /* Makes the background circle */
+  margin: 0 14px 0 12px;
+  padding: 3px;
+  font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.25s; /* Smooth transition for background color */
+  display: inline-block; /* Allows us to set width and height */
+  user-select: none; /* Prevents text selection */
+}
+
+.removeQuestionBtn:hover {
+  background-color: #dae0e7; /* The color when hovering */
+  color: #333; /* Changes the 'X' color to darker on hover if needed */
 }
 
 /* Specific styles for when a tab is active */
 .activeTab {
-  background-color: #e9ecef;
+  background-color: #fff;
   border-bottom: 3px solid #007bff; /* Highlight color for active tab */
   color: #0056b3;
   font-weight: bold;
+  box-shadow: none;
 }
 
 /* Hover effects */
@@ -66,10 +89,11 @@
 }
 
 .tabContent {
-  border: 2px solid #ccc;
+  border: none;
   border-top: none;
   padding: 20px;
   border-radius: 0 0 5px 5px;
+  background: #fff;
 }
 
 .submitButton {

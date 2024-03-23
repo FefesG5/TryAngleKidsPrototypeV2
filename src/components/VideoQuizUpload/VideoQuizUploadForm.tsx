@@ -136,7 +136,7 @@ const VideoQuizUploadForm: React.FC = () => {
                   }}
                   aria-label={`Remove question ${id}`}
                 >
-                  X
+                  ✕ {/* Updated 'X' character */}
                 </span>
               )}
             </button>
