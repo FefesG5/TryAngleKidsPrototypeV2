@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
 
-  background: #f9f9f9; /* Continuous background color */
+  background-color: var(--form-bg-color); /* Continuous background color */
   border-radius: 8px; /* Optional: Rounded corners for the outer container */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Shadow for depth */
   overflow: hidden;
@@ -17,7 +17,7 @@
   padding-bottom: 5px;
   overflow-x: auto; /* Allow horizontal scrolling when necessary */
   justify-content: flex-start;
-  background-color: #f9f9f9;
+  background-color: var(--form-bg-color);
   box-shadow: inset 0 -1px 0 0 #dae0e7;
 }
 
