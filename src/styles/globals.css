@@ -12,6 +12,19 @@
   --accent-color-hover: #0056b3; /* Light theme accent color hover */
   --input-bg-color: #ffffff;
   --form-bg-color: #f9f9f9;
+
+  /* Video Upload Form Color */
+  --form-bg-color: #f9f9f9;
+  --border-color: #dae0e7;
+  --tab-text-color: #292929; /* Light theme tab text color */
+  --tab-bg-color: #fff; /* Light theme tab background color */
+  --button-bg-color: #007bff; /* Light theme button background color */
+  --button-text-color: #fff; /* Light theme button text color */
+  --button-hover-bg-color: #0056b3;
+
+  --input-border-color: #ced4da;
+  --input-focus-border-color: #80bdff;
+  --input-focus-shadow-color: rgba(0, 123, 255, 0.25);
 }
 
 /* Dark theme styles */
@@ -24,6 +37,20 @@
   --secondary-color: #9c27b0; /* Dark theme secondary color */
   --accent-color-hover: #62efff; /* Dark theme accent color hover */
   --input-bg-color: #333333;
+
+  /* Video Upload Form Color */
+  --form-bg-color: #333333;
+  --border-color: #404040;
+  --tab-text-color: #ffffff; /* Dark theme tab text color */
+  --tab-bg-color: #222222; /* Dark theme tab background color */
+  --button-bg-color: #00bcd4; /* Dark theme button background color */
+  --button-text-color: #ffffff; /* Dark theme button text color */
+  --button-hover-bg-color: #62efff; /* Dark theme button hover background color */
+  /* ... other overrides */
+
+  --input-border-color: #555; /* Example border color for dark theme */
+  --input-focus-border-color: #1a73e8; /* Example focus color for dark theme */
+  --input-focus-shadow-color: rgba(26, 115, 232, 0.25);
 }
 
 body {

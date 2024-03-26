@@ -1,6 +1,8 @@
 /* New styles for QuestionDetailsInput and VideoDetailsInput */
 .detailInputContainer {
-  background-color: #f8f9fa; /* Light grey background for contrast */
+  background-color: var(
+    --form-bg-color
+  ); /* Light grey background for contrast */
   border-radius: 5px; /* Rounded corners */
   padding: 20px; /* Padding inside the containers */
   margin-bottom: 15px; /* Space between different inputs */
@@ -11,26 +13,26 @@
   display: block; /* Ensure the label is on a new line */
   margin-bottom: 5px; /* Space between the label and the input */
   font-weight: 600; /* Make the label text slightly bolder */
-  color: #495057; /* Dark grey color for text */
+  color: var(--text-color); /* Dark grey color for text */
 }
 
 .detailInput {
   width: 100%; /* Full width to maximize space */
   padding: 8px 12px; /* Comfortable padding within the input */
   border-radius: 4px; /* Slightly rounded corners for the input */
-  border: 1px solid #ced4da; /* Subtle border color */
+  border: 1px solid var(--input-border-color);
   margin-bottom: 10px; /* Space after the input */
 }
 
 .detailInput:focus {
-  border-color: #80bdff; /* Highlight color when focused */
+  border-color: var(--input-focus-border-color);
   outline: 0; /* Remove default focus outline */
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Glow effect on focus */
+  box-shadow: 0 0 0 0.2rem var(--input-focus-shadow-color); /* Glow effect on focus */
 }
 
 .detailSubmitButton {
-  background-color: #007bff; /* Bootstrap primary button color */
-  color: white;
+  background-color: var(--button-bg-color); /* Bootstrap primary button color */
+  color: var(--button-text-color);
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
@@ -39,5 +41,5 @@
 }
 
 .detailSubmitButton:hover {
-  background-color: #0056b3; /* Darker shade on hover */
+  background-color: var(--button-hover-bg-color);
 }

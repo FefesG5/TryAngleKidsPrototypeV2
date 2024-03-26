@@ -18,7 +18,7 @@
   overflow-x: auto; /* Allow horizontal scrolling when necessary */
   justify-content: flex-start;
   background-color: var(--form-bg-color);
-  box-shadow: inset 0 -1px 0 0 #dae0e7;
+  box-shadow: inset 0 -1px 0 0 var(--border-color);
 }
 
 .questionTab {
@@ -36,11 +36,14 @@
   min-width: 160px;
   max-width: 200px;
   margin-right: 0; /* Remove space between tabs */
-  border-right: 1px solid #dae0e7;
+  border-right: 1px solid var(--border-color);
+  color: var(--tab-text-color);
 }
 
 .questionTab button {
-  color: black; /* Match the inactive tab text color from the screenshot */
+  color: var(
+    --text-color
+  ); /* Match the inactive tab text color from the screenshot */
   padding: 10px 20px; /* Adjust padding as necessary */
 }
 
@@ -77,7 +80,7 @@
 
 /* Specific styles for when a tab is active */
 .activeTab {
-  background-color: #fff;
+  background-color: var(--tab-bg-color);
   border-bottom: 3px solid #007bff; /* Highlight color for active tab */
   color: #0056b3;
   font-weight: bold;
@@ -94,12 +97,12 @@
   border-top: none;
   padding: 20px;
   border-radius: 0 0 5px 5px;
-  background: #fff;
+  background-color: var(--form-bg-color);
 }
 
 .submitButton {
-  background-color: #007bff; /* Bootstrap primary color */
-  color: white; /* Text color */
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
   border: none; /* No border */
   padding: 10px 20px; /* Vertical and horizontal padding */
   font-size: 16px; /* Font size */
@@ -116,7 +119,7 @@
 }
 
 .submitButton:hover {
-  background-color: #0056b3; /* Darker shade on hover */
+  background-color: var(--button-hover-bg-color);
 }
 
 .submitButton:active {

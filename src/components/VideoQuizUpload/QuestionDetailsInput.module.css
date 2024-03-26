@@ -1,7 +1,7 @@
 /* QuestionDetailsInput.module.css */
 
 .questionInputContainer {
-  background-color: #f8f9fa; /* Matched style */
+  background-color: var(--input-bg-color); /* Matched style */
   border-radius: 5px; /* Matched style */
   padding: 20px; /* Matched style or adjust as necessary */
   margin-bottom: 15px; /* Matched style */
@@ -12,19 +12,19 @@
   display: block; /* Matched style */
   margin-bottom: 5px; /* Matched style */
   font-weight: 600; /* Matched style */
-  color: #495057; /* Matched style or adjust as necessary */
+  color: var(--text-color); /* Matched style or adjust as necessary */
 }
 
 .questionInput {
   width: 100%; /* Matched style */
   padding: 8px 12px; /* Matched style */
   border-radius: 4px; /* Matched style */
-  border: 1px solid #ced4da; /* Matched style */
+  border: 1px solid var(--input-border-color); /* Matched style */
   margin-bottom: 10px; /* Matched style or adjust as necessary */
 }
 
 .questionInput:focus {
-  border-color: #80bdff; /* Matched style */
+  border-color: var(--input-focus-border-color); /* Matched style */
   outline: 0; /* Matched style */
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Matched style */
+  box-shadow: 0 0 0 0.2rem var(--input-focus-shadow-color); /* Matched style */
 }
