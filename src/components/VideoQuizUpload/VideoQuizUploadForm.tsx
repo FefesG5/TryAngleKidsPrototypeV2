@@ -126,19 +126,17 @@ const VideoQuizUploadForm: React.FC = () => {
               }
               onClick={() => setActiveTab(`questions ${id}`)}
             >
-              <span className={styles.questionText}>Questions {id}</span>
-              {id !== 1 && ( // Don't show remove button for the first question
-                <span
-                  className={styles.removeQuestionBtn}
-                  onClick={(e) => {
-                    e.stopPropagation(); // Prevent activating the tab when clicking remove
-                    removeQuestion(id);
-                  }}
-                  aria-label={`Remove question ${id}`}
-                >
-                  ✕ {/* Updated 'X' character */}
-                </span>
-              )}
+              <span className={styles.questionText}>Question {id}</span>
+              <span
+                className={`${styles.removeQuestionBtn} ${id === 1 ? styles.hiddenRemoveBtn : ""}`}
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent activating the tab when clicking remove
+                  removeQuestion(id);
+                }}
+                aria-label={`Remove question ${id}`}
+              >
+                ✕
+              </span>
             </button>
           </div>
         ))}
