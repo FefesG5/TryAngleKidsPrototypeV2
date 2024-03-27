@@ -63,7 +63,7 @@
   height: 16px;
   line-height: 16px; /* Aligns the 'X' vertically */
   text-align: center; /* Aligns the 'X' horizontally */
-  border-radius: 16px; /* Makes the background circle */
+  /* border-radius: 16px; */
   margin: 0 14px 0 12px;
   padding: 3px;
   font-size: 16px;
@@ -71,11 +71,6 @@
   transition: background-color 0.25s; /* Smooth transition for background color */
   display: inline-block; /* Allows us to set width and height */
   user-select: none; /* Prevents text selection */
-}
-
-.removeQuestionBtn:hover {
-  background-color: #dae0e7; /* The color when hovering */
-  color: #333; /* Changes the 'X' color to darker on hover if needed */
 }
 
 /* Specific styles for when a tab is active */
