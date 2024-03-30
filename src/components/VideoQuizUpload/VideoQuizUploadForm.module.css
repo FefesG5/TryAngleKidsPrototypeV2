@@ -3,16 +3,16 @@
   flex-direction: column;
   justify-content: center;
 
-  background-color: var(--form-bg-color); /* Continuous background color */
-  border-radius: 8px; /* Optional: Rounded corners for the outer container */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Shadow for depth */
+  background-color: var(--form-bg-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   margin: 40px;
 }
 
 .tabs {
   display: flex;
-  align-items: center; /* Vertically center the tabs */
+  align-items: center;
   border-bottom: none;
   padding-bottom: 5px;
   overflow-x: auto; /* Allow horizontal scrolling when necessary */
@@ -22,54 +22,47 @@
 }
 
 .questionTab {
-  flex: 1; /* Each tab will take up equal width */
+  flex: 1;
   display: flex;
-  justify-content: center; /* Center content horizontally */
-  align-items: center; /* Center content vertically */
-  margin-right: 10px; /* Spacing between tabs */
-  background-color: transparent; /* Background of tabs */
-  border: none; /* Border to match the tab content area */
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
   border-radius: 0;
-  position: relative; /* Needed for absolute positioning of the "X" button */
-  overflow: hidden; /* Ensures no spillover */
-  height: 40px; /* Fixed height for all tabs */
+  position: relative;
+  overflow: hidden;
+  height: 40px;
   min-width: 160px;
   max-width: 200px;
-  margin-right: 0; /* Remove space between tabs */
   border-right: 1px solid var(--border-color);
   color: var(--tab-text-color);
 }
 
+/* Unified button styles for consistency */
+.tabs button,
 .questionTab button {
-  color: var(
-    --text-color
-  ); /* Match the inactive tab text color from the screenshot */
-  padding: 16px 16px; /* Adjust padding as necessary */
-}
-
-.tabs button {
   background: none;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  flex-grow: 1; /* Grow to fill the tab container */
-  text-align: center; /* Center the text inside the button */
-  padding: 16px 16px; /* Padding for the text */
+  text-align: center;
+  padding: 16px;
+  font-size: 1rem;
   white-space: nowrap;
+  transition: background-color 0.3s ease;
+  color: inherit; /* Use the parent color unless specified */
 }
 
 .removeQuestionBtn {
   width: 16px;
   height: 16px;
-  line-height: 16px; /* Aligns the 'X' vertically */
-  text-align: center; /* Aligns the 'X' horizontally */
+  line-height: 16px;
+  text-align: center;
   margin-left: 12px;
-  /* padding: 3px; */
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.25s; /* Smooth transition for background color */
-  display: inline-block; /* Allows us to set width and height */
-  user-select: none; /* Prevents text selection */
+  transition: background-color 0.25s;
+  display: inline-block;
+  user-select: none;
 }
 
 .hiddenRemoveBtn {
@@ -101,19 +94,16 @@
 .submitButton {
   background-color: var(--button-bg-color);
   color: var(--button-text-color);
-  border: none; /* No border */
-  padding: 10px 20px; /* Vertical and horizontal padding */
-  font-size: 16px; /* Font size */
-  cursor: pointer; /* Cursor indicates it's clickable */
-  border-radius: 5px; /* Rounded corners */
-  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
-  outline: none; /* Remove outline on focus for cleaner look */
-  margin-top: 30px; /* Space from the form above */
-  margin-right: auto; /* Together with margin-left, this centers the button */
-  margin-left: auto; /* Center the button horizontally */
-  margin-bottom: 30px;
-  width: auto; /* Adjust width to content or to a specific value */
-  max-width: 200px; /* Maximum width of the button */
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  outline: none;
+  margin: 30px auto;
+  width: auto;
+  max-width: 200px;
 }
 
 .submitButton:hover {
@@ -131,9 +121,9 @@
 /* Responsive design for smaller screens */
 @media screen and (max-width: 768px) {
   .questionTab {
-    width: auto; /* Allow tabs to shrink to fit content */
-    min-width: 120px; /* Smaller minimum width for small screens */
-    max-width: none; /* Remove max-width restriction on small screens */
-    flex: 1; /* Take up equal space */
+    width: auto;
+    min-width: 120px;
+    max-width: none;
+    flex: 1;
   }
 }
