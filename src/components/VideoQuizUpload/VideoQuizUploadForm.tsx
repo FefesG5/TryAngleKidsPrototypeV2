@@ -55,13 +55,20 @@ const VideoQuizUploadForm: React.FC = () => {
 
   const removeQuestion = (id: number) => {
     const remainingQuestions = videoData.questions.filter((q) => q.id !== id);
-    setQuestionIds(remainingQuestions.map((q) => q.id));
-    setVideoData({ ...videoData, questions: remainingQuestions });
+
+    // Reassign IDs to ensure they are consecutive
+    const reassignedQuestions = remainingQuestions.map((question, index) => ({
+      ...question,
+      id: index + 1,
+    }));
+
+    setQuestionIds(reassignedQuestions.map((q) => q.id));
+    setVideoData({ ...videoData, questions: reassignedQuestions });
 
     if (`questions ${id}` === activeTab) {
       setActiveTab(
-        remainingQuestions.length > 0
-          ? `questions ${remainingQuestions[0].id}`
+        reassignedQuestions.length > 0
+          ? `questions ${reassignedQuestions[0].id}`
           : "details",
       );
     }
