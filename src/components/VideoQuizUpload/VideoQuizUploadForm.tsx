@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Video, Question } from "@/types/quizTypes";
 import styles from "./VideoQuizUploadForm.module.css";
 import VideoDetailsInput from "./VideoDetailsInput";
@@ -13,10 +13,9 @@ const VideoQuizUploadForm: React.FC = () => {
     questions: [],
   });
 
-  const [activeTab, setActiveTab] = useState<"details" | string>("details");
-  const [questionIds, setQuestionIds] = useState<number[]>([]); // Start with an empty array
+  const [activeTab, setActiveTab] = useState<string>("details");
+  const [questionIds, setQuestionIds] = useState<number[]>([]);
 
-  // Define a default question object
   const defaultQuestion: Question = {
     id: 0,
     question: "",
@@ -30,125 +29,144 @@ const VideoQuizUploadForm: React.FC = () => {
     },
   };
 
-  const addQuestion = () => {
-    const nextId = questionIds.length > 0 ? Math.max(...questionIds) + 1 : 1; // Determine the next ID
-    setQuestionIds((prevIds) => [...prevIds, nextId]); // Update question IDs
+  const addQuestion = (): void => {
+    const nextId = questionIds.length > 0 ? Math.max(...questionIds) + 1 : 1;
+    setQuestionIds((prevIds) => [...prevIds, nextId]);
     setVideoData((prevData) => ({
       ...prevData,
-      questions: [
-        ...prevData.questions,
-        {
-          id: nextId,
-          question: "",
-          timestamp: 0,
-          answered: false,
-          choices: ["", "", "", ""],
-          correctAnswer: "",
-          feedback: {
-            correct: "",
-            incorrect: "",
-          },
-        },
-      ],
+      questions: [...prevData.questions, { ...defaultQuestion, id: nextId }],
     }));
   };
 
-  const removeQuestion = (id: number) => {
-    const remainingQuestions = videoData.questions.filter((q) => q.id !== id);
+  const removeQuestion = (id: number): void => {
+    // Filter out the question that is to be removed
+    const updatedQuestions = videoData.questions.filter(
+      (question) => question.id !== id,
+    );
 
-    // Reassign IDs to ensure they are consecutive
-    const reassignedQuestions = remainingQuestions.map((question, index) => ({
+    // Renumber the remaining questions' IDs sequentially
+    const renumberedQuestions = updatedQuestions.map((question, index) => ({
       ...question,
       id: index + 1,
     }));
 
-    setQuestionIds(reassignedQuestions.map((q) => q.id));
-    setVideoData({ ...videoData, questions: reassignedQuestions });
+    // Update the state with the renumbered questions
+    setVideoData({
+      ...videoData,
+      questions: renumberedQuestions,
+    });
 
-    if (`questions ${id}` === activeTab) {
-      setActiveTab(
-        reassignedQuestions.length > 0
-          ? `questions ${reassignedQuestions[0].id}`
-          : "details",
-      );
+    // Update the questionIds state as well
+    setQuestionIds(renumberedQuestions.map((question) => question.id));
+
+    // Reset the active tab to 'details' if the removed question was active
+    if (activeTab === `questions${id}`) {
+      setActiveTab("details");
+    } else {
+      // Otherwise, adjust the active tab if necessary
+      const activeId = parseInt(activeTab.replace("questions", ""), 10);
+      if (id < activeId) {
+        // If a question before the current active tab was removed, decrement the active tab's ID
+        setActiveTab(`questions${activeId - 1}`);
+      }
     }
   };
 
-  const handleQuestionChange = (updatedQuestion: Question) => {
-    const updatedQuestions = videoData.questions.map((question) =>
-      question.id === updatedQuestion.id ? updatedQuestion : question,
-    );
-    setVideoData({ ...videoData, questions: updatedQuestions });
+  const handleQuestionChange = (updatedQuestion: Question): void => {
+    setVideoData((prevData) => ({
+      ...prevData,
+      questions: prevData.questions.map((question) =>
+        question.id === updatedQuestion.id ? updatedQuestion : question,
+      ),
+    }));
   };
 
-  const handleVideoDataChange = (updatedVideoData: Video) => {
+  const handleVideoDataChange = (updatedVideoData: Video): void => {
     setVideoData(updatedVideoData);
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     console.log("Submitting video quiz data:", videoData);
+    // Here you might want to send the data to your backend or API
+  };
+
+  const renderTabButton = (label: string, tabId: string): JSX.Element => {
+    // Check if the tab is for a question and not the first question
+    const isQuestionTab = tabId.startsWith("questions");
+    const questionId = isQuestionTab
+      ? parseInt(tabId.replace("questions", ""), 10)
+      : null;
+    const showRemoveButton =
+      isQuestionTab && (questionIds.length > 1 || questionId !== 1);
+
+    return (
+      <div key={tabId} className={styles.tab}>
+        <button
+          className={activeTab === tabId ? styles.activeTab : styles.tabButton}
+          onClick={() => setActiveTab(tabId)}
+        >
+          {label}
+        </button>
+        {showRemoveButton &&
+          questionId !== null && ( // Ensure questionId is not null before using it
+            <button
+              className={styles.removeQuestionBtn}
+              onClick={(e) => {
+                e.stopPropagation();
+                removeQuestion(questionId); // questionId is guaranteed to be a number here
+              }}
+              aria-label={`Remove ${label}`}
+            >
+              ✕
+            </button>
+          )}
+      </div>
+    );
+  };
+
+  const renderTabContent = (): JSX.Element | null => {
+    if (activeTab === "details") {
+      return (
+        <VideoDetailsInput
+          videoData={videoData}
+          onVideoDataChange={handleVideoDataChange}
+        />
+      );
+    }
+
+    const questionId = parseInt(activeTab.replace("questions", ""), 10);
+    const question =
+      videoData.questions.find((q) => q.id === questionId) || defaultQuestion;
+
+    return (
+      <QuestionDetailsInput
+        questionData={question}
+        onQuestionChange={handleQuestionChange}
+      />
+    );
   };
 
   return (
-    <div className={styles.formContainer}>
+    <form className={styles.formContainer} onSubmit={handleSubmit}>
       <div className={styles.tabs}>
+        {renderTabButton("Video Details", "details")}
+        {questionIds.map((id) =>
+          renderTabButton(`Question ${id}`, `questions${id}`),
+        )}
         <button
-          className={activeTab === "details" ? styles.activeTab : ""}
-          onClick={() => setActiveTab("details")}
+          className={styles.addButton}
+          type="button"
+          onClick={addQuestion}
         >
-          Video Details
+          Add Question
         </button>
-        {questionIds.map((id) => (
-          <div key={id} className={styles.questionTab}>
-            <button
-              className={
-                activeTab === `questions ${id}` ? styles.activeTab : ""
-              }
-              onClick={() => setActiveTab(`questions ${id}`)}
-            >
-              Question {id}
-              <span
-                className={`${styles.removeQuestionBtn}`}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  removeQuestion(id);
-                }}
-                aria-label={`Remove question ${id}`}
-              >
-                ✕
-              </span>
-            </button>
-          </div>
-        ))}
-        <button onClick={addQuestion}>Add Question</button>
       </div>
-      <div className={styles.tabContent}>
-        {activeTab === "details" && (
-          <VideoDetailsInput
-            videoData={videoData}
-            onVideoDataChange={handleVideoDataChange}
-          />
-        )}
-        {activeTab.startsWith("questions") && (
-          <QuestionDetailsInput
-            questionData={
-              videoData.questions.find(
-                (q) => q.id.toString() === activeTab.split(" ")[1],
-              ) || defaultQuestion
-            }
-            onQuestionChange={handleQuestionChange}
-          />
-        )}
-      </div>
-      <button
-        type="submit"
-        className={styles.submitButton}
-        onClick={handleSubmit}
-      >
+      <div className={styles.tabContent}>{renderTabContent()}</div>
+      <button type="submit" className={styles.submitButton}>
         Submit Quiz
       </button>
-    </div>
+    </form>
   );
 };
 

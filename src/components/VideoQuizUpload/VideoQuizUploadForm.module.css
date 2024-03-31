@@ -1,129 +1,73 @@
 .formContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  background-color: var(--form-bg-color);
+  font-family: "Open Sans", sans-serif;
+  background-color: #ecf0f1; /* Uniform background for the form */
+  color: #2c3e50; /* Consistent text color for the form */
+  padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  margin: 40px;
+  max-width: 800px;
+  margin: 3rem auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds subtle shadow for depth */
 }
 
 .tabs {
   display: flex;
   align-items: center;
-  border-bottom: none;
-  padding-bottom: 5px;
-  overflow-x: auto; /* Allow horizontal scrolling when necessary */
-  justify-content: flex-start;
-  background-color: var(--form-bg-color);
-  box-shadow: inset 0 -1px 0 0 var(--border-color);
+  margin: 0;
+  padding: 0;
+  background-color: #95a5a6; /* Consistent with tabButton */
+  border-radius: 8px 8px 0 0; /* Rounded top corners */
 }
 
-.questionTab {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-  border: none;
-  border-radius: 0;
-  position: relative;
-  overflow: hidden;
-  height: 40px;
-  min-width: 160px;
-  max-width: 200px;
-  border-right: 1px solid var(--border-color);
-  color: var(--tab-text-color);
-}
-
-/* Unified button styles for consistency */
-.tabs button,
-.questionTab button {
-  background: none;
-  border: none;
+.tabButton,
+.addButton {
+  padding: 10px 15px;
   cursor: pointer;
-  text-align: center;
-  padding: 16px;
-  font-size: 1rem;
-  white-space: nowrap;
-  transition: background-color 0.3s ease;
-  color: inherit; /* Use the parent color unless specified */
+  background: #95a5a6; /* Light grey background for default tabs */
+  color: white;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.activeTab {
+  background-color: #2ecc71; /* Consistent with tabContent */
+  color: #2c3e50;
 }
 
 .removeQuestionBtn {
-  width: 16px;
-  height: 16px;
-  line-height: 16px;
-  text-align: center;
-  margin-left: 12px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.25s;
   display: inline-block;
-  user-select: none;
-}
-
-.hiddenRemoveBtn {
-  visibility: hidden;
-}
-
-/* Specific styles for when a tab is active */
-.activeTab {
-  background-color: var(--tab-bg-color);
-  border-bottom: 3px solid #007bff; /* Highlight color for active tab */
-  color: #0056b3;
-  font-weight: bold;
-  box-shadow: none;
-}
-
-/* Hover effects */
-.tabs button:not(.activeTab):hover {
-  background-color: #dee2e6; /* Slight background on hover for inactive tabs */
+  padding: 0 8px;
+  line-height: 32px;
+  font-size: 16px;
+  background-color: #95a5a6; /* Same as tabButton for consistency */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 10px;
 }
 
 .tabContent {
-  border: none;
-  border-top: none;
+  background-color: #2ecc71; /* Same as activeTab */
+  color: #2c3e50; /* Same as activeTab text color */
   padding: 20px;
-  border-radius: 0 0 5px 5px;
-  background-color: var(--form-bg-color);
+  border-radius: 0 0 8px 8px; /* Rounded bottom corners */
+  margin-top: -1px; /* Aligns seamlessly with tabs */
 }
 
 .submitButton {
-  background-color: var(--button-bg-color);
-  color: var(--button-text-color);
-  border: none;
+  display: block;
+  width: calc(100% - 40px); /* Adjusts width considering padding */
   padding: 10px 20px;
-  font-size: 16px;
+  background-color: #3498db; /* Submit button background */
+  color: white;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  outline: none;
-  margin: 30px auto;
-  width: auto;
-  max-width: 200px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .submitButton:hover {
-  background-color: var(--button-hover-bg-color);
-}
-
-.submitButton:active {
-  background-color: #004085; /* Even darker shade when clicked */
-}
-
-.submitButton:focus {
-  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5); /* Bootstrap focus shadow */
-}
-
-/* Responsive design for smaller screens */
-@media screen and (max-width: 768px) {
-  .questionTab {
-    width: auto;
-    min-width: 120px;
-    max-width: none;
-    flex: 1;
-  }
+  background-color: #2980b9;
 }
