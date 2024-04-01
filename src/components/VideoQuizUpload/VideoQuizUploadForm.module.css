@@ -30,13 +30,10 @@
 
 .tabButton {
   flex: 1; /* Button should fill the entire tab */
-  padding: 10px 15px;
-  cursor: pointer;
-  background: transparent; /* Make the background transparent */
-  color: inherit; /* Inherit text color from parent */
+  background: transparent;
+  color: white;
   border: none;
   transition: background-color 0.3s;
-  /* More button-specific styles */
 }
 
 .inactiveTab {
@@ -49,7 +46,6 @@
   display: flex;
   justify-content: center; /* Center the button text */
   align-items: center; /* Vertically center the button */
-  /* Any additional styling */
 }
 
 .activeTab {
