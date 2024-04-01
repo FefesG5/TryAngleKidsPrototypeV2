@@ -91,8 +91,41 @@ const VideoQuizUploadForm: React.FC = () => {
     // Here you might want to send the data to your backend or API
   };
 
+  // const renderTabButton = (label: string, tabId: string): JSX.Element => {
+  //   // Check if the tab is for a question and not the first question
+  //   const isQuestionTab = tabId.startsWith("questions");
+  //   const questionId = isQuestionTab
+  //     ? parseInt(tabId.replace("questions", ""), 10)
+  //     : null;
+  //   const showRemoveButton =
+  //     isQuestionTab && (questionIds.length > 1 || questionId !== 1);
+
+  //   return (
+  //     <div key={tabId} className={styles.tab}>
+  //       <button
+  //         className={activeTab === tabId ? styles.activeTab : styles.tabButton}
+  //         onClick={() => setActiveTab(tabId)}
+  //       >
+  //         {label}
+  //       </button>
+  //       {showRemoveButton &&
+  //         questionId !== null && ( // Ensure questionId is not null before using it
+  //           <button
+  //             className={styles.removeQuestionBtn}
+  //             onClick={(e) => {
+  //               e.stopPropagation();
+  //               removeQuestion(questionId); // questionId is guaranteed to be a number here
+  //             }}
+  //             aria-label={`Remove ${label}`}
+  //           >
+  //             ✕
+  //           </button>
+  //         )}
+  //     </div>
+  //   );
+  // };
   const renderTabButton = (label: string, tabId: string): JSX.Element => {
-    // Check if the tab is for a question and not the first question
+    const isActive = activeTab === tabId;
     const isQuestionTab = tabId.startsWith("questions");
     const questionId = isQuestionTab
       ? parseInt(tabId.replace("questions", ""), 10)
@@ -101,26 +134,28 @@ const VideoQuizUploadForm: React.FC = () => {
       isQuestionTab && (questionIds.length > 1 || questionId !== 1);
 
     return (
-      <div key={tabId} className={styles.tab}>
+      <div
+        key={tabId}
+        className={`${styles.tab} ${isActive ? styles.activeTab : ""}`}
+      >
         <button
-          className={activeTab === tabId ? styles.activeTab : styles.tabButton}
+          className={`${styles.tabButton} ${isActive ? "" : styles.inactiveTab}`}
           onClick={() => setActiveTab(tabId)}
         >
           {label}
         </button>
-        {showRemoveButton &&
-          questionId !== null && ( // Ensure questionId is not null before using it
-            <button
-              className={styles.removeQuestionBtn}
-              onClick={(e) => {
-                e.stopPropagation();
-                removeQuestion(questionId); // questionId is guaranteed to be a number here
-              }}
-              aria-label={`Remove ${label}`}
-            >
-              ✕
-            </button>
-          )}
+        {isQuestionTab && questionId !== null && showRemoveButton && (
+          <button
+            className={styles.removeQuestionBtn}
+            onClick={(e) => {
+              e.stopPropagation();
+              removeQuestion(questionId);
+            }}
+            aria-label={`Remove ${label}`}
+          >
+            ✕
+          </button>
+        )}
       </div>
     );
   };
