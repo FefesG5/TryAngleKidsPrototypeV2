@@ -39,38 +39,22 @@ const VideoQuizUploadForm: React.FC = () => {
   };
 
   const removeQuestion = (id: number): void => {
-    // Filter out the question that is to be removed
-    const updatedQuestions = videoData.questions.filter(
-      (question) => question.id !== id,
-    );
-
-    // Renumber the remaining questions' IDs sequentially
-    const renumberedQuestions = updatedQuestions.map((question, index) => ({
-      ...question,
-      id: index + 1,
-    }));
-
-    // Update the state with the renumbered questions
-    setVideoData({
-      ...videoData,
-      questions: renumberedQuestions,
-    });
-
-    // Update the questionIds state as well
-    setQuestionIds(renumberedQuestions.map((question) => question.id));
-
-    // Reset the active tab to 'details' if the removed question was active
+    const updatedQuestions = videoData.questions.filter(question => question.id !== id);
+    const renumberedQuestions = updatedQuestions.map((question, index) => ({ ...question, id: index + 1 }));
+    
+    setVideoData({ ...videoData, questions: renumberedQuestions });
+    setQuestionIds(renumberedQuestions.map(question => question.id));
+  
     if (activeTab === `questions${id}`) {
       setActiveTab("details");
     } else {
-      // Otherwise, adjust the active tab if necessary
-      const activeId = parseInt(activeTab.replace("questions", ""), 10);
-      if (id < activeId) {
-        // If a question before the current active tab was removed, decrement the active tab's ID
+      const activeId = activeTab.startsWith("questions") ? parseInt(activeTab.replace("questions", ""), 10) : null;
+      if (activeId && id < activeId) {
         setActiveTab(`questions${activeId - 1}`);
       }
     }
   };
+  
 
   const handleQuestionChange = (updatedQuestion: Question): void => {
     setVideoData((prevData) => ({
@@ -91,64 +75,28 @@ const VideoQuizUploadForm: React.FC = () => {
     // Here you might want to send the data to your backend or API
   };
 
-  // const renderTabButton = (label: string, tabId: string): JSX.Element => {
-  //   // Check if the tab is for a question and not the first question
-  //   const isQuestionTab = tabId.startsWith("questions");
-  //   const questionId = isQuestionTab
-  //     ? parseInt(tabId.replace("questions", ""), 10)
-  //     : null;
-  //   const showRemoveButton =
-  //     isQuestionTab && (questionIds.length > 1 || questionId !== 1);
 
-  //   return (
-  //     <div key={tabId} className={styles.tab}>
-  //       <button
-  //         className={activeTab === tabId ? styles.activeTab : styles.tabButton}
-  //         onClick={() => setActiveTab(tabId)}
-  //       >
-  //         {label}
-  //       </button>
-  //       {showRemoveButton &&
-  //         questionId !== null && ( // Ensure questionId is not null before using it
-  //           <button
-  //             className={styles.removeQuestionBtn}
-  //             onClick={(e) => {
-  //               e.stopPropagation();
-  //               removeQuestion(questionId); // questionId is guaranteed to be a number here
-  //             }}
-  //             aria-label={`Remove ${label}`}
-  //           >
-  //             ✕
-  //           </button>
-  //         )}
-  //     </div>
-  //   );
-  // };
   const renderTabButton = (label: string, tabId: string): JSX.Element => {
     const isActive = activeTab === tabId;
+    // The tab is a question tab if it starts with 'questions'
     const isQuestionTab = tabId.startsWith("questions");
-    const questionId = isQuestionTab
-      ? parseInt(tabId.replace("questions", ""), 10)
-      : null;
-    const showRemoveButton =
-      isQuestionTab && (questionIds.length > 1 || questionId !== 1);
-
+    // Parse the question ID only if it's a question tab
+    const questionId = isQuestionTab ? parseInt(tabId.replace("questions", ""), 10) : null;
+  
+    // Render the tab with the active state if it matches the activeTab
     return (
-      <div
-        key={tabId}
-        className={`${styles.tab} ${isActive ? styles.activeTab : ""}`}
-      >
+      <div key={tabId} className={`${styles.tab} ${isActive ? styles.activeTab : ''}`}>
         <button
-          className={`${styles.tabButton} ${isActive ? "" : styles.inactiveTab}`}
+          className={styles.tabButton}
           onClick={() => setActiveTab(tabId)}
         >
           {label}
         </button>
-        {isQuestionTab && questionId !== null && showRemoveButton && (
+        {isQuestionTab && questionId !== null && (
           <button
             className={styles.removeQuestionBtn}
             onClick={(e) => {
-              e.stopPropagation();
+              e.stopPropagation(); // Prevents the tab button's onClick from firing
               removeQuestion(questionId);
             }}
             aria-label={`Remove ${label}`}
