@@ -27,13 +27,6 @@
   transition: background-color 0.3s;
 }
 
-.tabButton:hover,
-.addButton:hover {
-  background-color: var(
-    --button-hover-bg-color
-  ); /* Use global variable for hover state */
-}
-
 .tabButton {
   flex: 1; /* Button should fill the entire tab */
   background: transparent;
@@ -67,12 +60,9 @@
   padding: 0 8px;
   line-height: 32px;
   font-size: 16px;
-  background-color: #95a5a6; /* Same as tabButton for consistency */
   color: white;
   border: none;
-  border-radius: 50%;
   cursor: pointer;
-  margin-left: 10px;
 }
 
 .tabContent {
