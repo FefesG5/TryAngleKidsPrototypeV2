@@ -14,17 +14,19 @@
   margin: 0;
   padding: 0;
   background-color: #95a5a6; /* Consistent with tabButton */
-  border-radius: 8px 8px 0 0; /* Rounded top corners */
 }
 
-.tabButton,
-.addButton {
+.tabButton {
   padding: 10px 15px;
   cursor: pointer;
   background: var(--button-bg-color);
   color: var(--button-text-color);
   border: none;
   transition: background-color 0.3s;
+}
+
+.addButton {
+  padding: 10px 15px;
 }
 
 .tabButton {
@@ -60,14 +62,13 @@
   padding: 0 8px;
   line-height: 32px;
   font-size: 16px;
-  color: white;
+  color: var(--text-color);
   border: none;
   cursor: pointer;
 }
 
 .tabContent {
   padding: 20px;
-  border-radius: 0 0 8px 8px; /* Rounded bottom corners */
   margin-top: -1px; /* Aligns seamlessly with tabs */
 }
 
