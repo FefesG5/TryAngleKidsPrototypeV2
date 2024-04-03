@@ -1,12 +1,11 @@
 .formContainer {
-  font-family: "Open Sans", sans-serif;
-  background-color: #ecf0f1; /* Uniform background for the form */
-  color: #2c3e50; /* Consistent text color for the form */
+  background-color: var(--form-bg-color);
+  color: var(--text-color);
   padding: 20px;
   border-radius: 8px;
-  max-width: 800px;
+  max-width: 900px;
   margin: 3rem auto;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds subtle shadow for depth */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .tabs {
@@ -22,10 +21,17 @@
 .addButton {
   padding: 10px 15px;
   cursor: pointer;
-  background: #95a5a6; /* Light grey background for default tabs */
-  color: white;
+  background: var(--button-bg-color);
+  color: var(--button-text-color);
   border: none;
   transition: background-color 0.3s;
+}
+
+.tabButton:hover,
+.addButton:hover {
+  background-color: var(
+    --button-hover-bg-color
+  ); /* Use global variable for hover state */
 }
 
 .tabButton {
@@ -48,9 +54,12 @@
   align-items: center; /* Vertically center the button */
 }
 
-.activeTab {
-  background-color: #2ecc71; /* Active tab background */
-  /* Other styles for the active tab */
+.activeTab,
+.tabContent {
+  background-color: var(
+    --accent-color
+  ); /* Use global variable for active tab and content background */
+  color: var(--text-color); /* Use global variable for text color */
 }
 
 .removeQuestionBtn {
@@ -67,8 +76,6 @@
 }
 
 .tabContent {
-  background-color: #2ecc71; /* Same as activeTab */
-  color: #2c3e50; /* Same as activeTab text color */
   padding: 20px;
   border-radius: 0 0 8px 8px; /* Rounded bottom corners */
   margin-top: -1px; /* Aligns seamlessly with tabs */
@@ -78,8 +85,8 @@
   display: block;
   width: calc(100% - 40px); /* Adjusts width considering padding */
   padding: 10px 20px;
-  background-color: #3498db; /* Submit button background */
-  color: white;
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -89,5 +96,5 @@
 }
 
 .submitButton:hover {
-  background-color: #2980b9;
+  background-color: var(--button-hover-bg-color);
 }

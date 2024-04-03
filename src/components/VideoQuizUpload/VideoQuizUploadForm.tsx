@@ -39,22 +39,28 @@ const VideoQuizUploadForm: React.FC = () => {
   };
 
   const removeQuestion = (id: number): void => {
-    const updatedQuestions = videoData.questions.filter(question => question.id !== id);
-    const renumberedQuestions = updatedQuestions.map((question, index) => ({ ...question, id: index + 1 }));
-    
+    const updatedQuestions = videoData.questions.filter(
+      (question) => question.id !== id,
+    );
+    const renumberedQuestions = updatedQuestions.map((question, index) => ({
+      ...question,
+      id: index + 1,
+    }));
+
     setVideoData({ ...videoData, questions: renumberedQuestions });
-    setQuestionIds(renumberedQuestions.map(question => question.id));
-  
+    setQuestionIds(renumberedQuestions.map((question) => question.id));
+
     if (activeTab === `questions${id}`) {
       setActiveTab("details");
     } else {
-      const activeId = activeTab.startsWith("questions") ? parseInt(activeTab.replace("questions", ""), 10) : null;
+      const activeId = activeTab.startsWith("questions")
+        ? parseInt(activeTab.replace("questions", ""), 10)
+        : null;
       if (activeId && id < activeId) {
         setActiveTab(`questions${activeId - 1}`);
       }
     }
   };
-  
 
   const handleQuestionChange = (updatedQuestion: Question): void => {
     setVideoData((prevData) => ({
@@ -75,17 +81,21 @@ const VideoQuizUploadForm: React.FC = () => {
     // Here you might want to send the data to your backend or API
   };
 
-
   const renderTabButton = (label: string, tabId: string): JSX.Element => {
     const isActive = activeTab === tabId;
     // The tab is a question tab if it starts with 'questions'
     const isQuestionTab = tabId.startsWith("questions");
     // Parse the question ID only if it's a question tab
-    const questionId = isQuestionTab ? parseInt(tabId.replace("questions", ""), 10) : null;
-  
+    const questionId = isQuestionTab
+      ? parseInt(tabId.replace("questions", ""), 10)
+      : null;
+
     // Render the tab with the active state if it matches the activeTab
     return (
-      <div key={tabId} className={`${styles.tab} ${isActive ? styles.activeTab : ''}`}>
+      <div
+        key={tabId}
+        className={`${styles.tab} ${isActive ? styles.activeTab : ""}`}
+      >
         <button
           className={styles.tabButton}
           onClick={() => setActiveTab(tabId)}
