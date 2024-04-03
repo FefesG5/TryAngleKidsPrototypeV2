@@ -16,23 +16,16 @@
   background-color: #95a5a6; /* Consistent with tabButton */
 }
 
-.tabButton {
-  padding: 10px 15px;
-  cursor: pointer;
-  background: var(--button-bg-color);
-  color: var(--button-text-color);
-  border: none;
-  transition: background-color 0.3s;
-}
-
+.tabButton,
 .addButton {
   padding: 10px 15px;
+  cursor: pointer;
 }
 
 .tabButton {
   flex: 1; /* Button should fill the entire tab */
   background: transparent;
-  color: white;
+  color: var(--button-text-color);
   border: none;
   transition: background-color 0.3s;
 }
