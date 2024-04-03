@@ -30,11 +30,6 @@
   transition: background-color 0.3s;
 }
 
-.inactiveTab {
-  background: #95a5a6; /* Light grey background for default tabs */
-  /* Other styles for inactive tabs */
-}
-
 .tab {
   flex: 1;
   display: flex;
