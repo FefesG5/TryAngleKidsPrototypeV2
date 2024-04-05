@@ -1,8 +1,5 @@
 .detailInputContainer {
-  background-color: #ecf0f1; /* Uniform background to match formContainer */
-  border: 1px solid #ccc; /* Light border for subtle definition */
   padding: 15px;
-  border-radius: 8px;
   margin-bottom: 15px;
 }
 
@@ -15,7 +12,7 @@
 .detailInput {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc; /* Consistent border color */
+  border: 1px solid #ccc;
   border-radius: 4px;
   background-color: white; /* Consistent input background */
   margin-bottom: 0.75rem;
