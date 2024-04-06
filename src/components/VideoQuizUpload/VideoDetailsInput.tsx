@@ -12,7 +12,7 @@ const VideoDetailsInput: React.FC<{
 
   return (
     <div className={styles.detailInputContainer}>
-      <h2>Video Details</h2>
+      <h2 className={styles.videoDetailsTitle}>Video Content Info</h2>
       <label className={styles.detailInputLabel}>
         Year
         <input
