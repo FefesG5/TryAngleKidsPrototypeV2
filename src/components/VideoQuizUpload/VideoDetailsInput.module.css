@@ -1,21 +1,28 @@
 .detailInputContainer {
-  padding: 15px;
+  padding: 10px;
   margin-bottom: 15px;
+}
+
+.videoDetailsTitle {
+  font-size: 1.6rem;
+  color: var(--tab-text-color);
+  margin-bottom: 0.5rem;
 }
 
 .detailInputLabel {
   display: block;
   margin-bottom: 0.5rem;
-  color: #2c3e50; /* Consistent text color */
+  color: var(--tab-text-color);
+  font-size: 1.2rem;
 }
 
 .detailInput {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: white; /* Consistent input background */
+  border-radius: 8px;
   margin-bottom: 0.75rem;
+  color: var(--tab-text-color);
 }
 
 .detailInput:focus {
