@@ -3,12 +3,6 @@
   margin-bottom: 15px;
 }
 
-.videoDetailsTitle {
-  font-size: 1.6rem;
-  color: var(--tab-text-color);
-  margin-bottom: 0.5rem;
-}
-
 .detailInputLabel {
   display: block;
   margin-bottom: 0.5rem;
