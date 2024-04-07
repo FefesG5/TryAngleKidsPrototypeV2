@@ -8,7 +8,8 @@
 .questionInputLabel {
   display: block;
   margin-bottom: 0.5rem;
-  color: #2c3e50; /* Consistent text color */
+  color: var(--tab-text-color);
+  font-size: 1.2rem;
 }
 
 .questionInput {
