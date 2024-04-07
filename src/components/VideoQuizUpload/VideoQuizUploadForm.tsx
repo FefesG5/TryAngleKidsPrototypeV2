@@ -15,6 +15,7 @@ const VideoQuizUploadForm: React.FC = () => {
 
   const [activeTab, setActiveTab] = useState<string>("details");
   const [questionIds, setQuestionIds] = useState<number[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const defaultQuestion: Question = {
     id: 0,
@@ -75,10 +76,48 @@ const VideoQuizUploadForm: React.FC = () => {
     setVideoData(updatedVideoData);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     e.preventDefault();
+    setLoading(true);
     console.log("Submitting video quiz data:", videoData);
     // Here you might want to send the data to your backend or API
+
+    try {
+      // Send a POST request to your API route with the videoData as the request body
+      const response = await fetch("/api/submitVideoQuiz", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(videoData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        console.log(result.message);
+        // Reset the form here if necessary
+        setVideoData({
+          year: "",
+          lessonNumber: "",
+          videoSrc: "",
+          category: "",
+          questions: [],
+        });
+        setQuestionIds([]);
+        setActiveTab("details");
+        // Show success feedback to the user
+      } else {
+        throw new Error(result.message || "Failed to submit the quiz");
+      }
+    } catch (error) {
+      console.error("There was an error submitting the form:", error);
+      // Show error feedback to the user
+    } finally {
+      setLoading(false);
+    }
   };
 
   const renderTabButton = (label: string, tabId: string): JSX.Element => {
