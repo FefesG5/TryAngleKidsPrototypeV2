@@ -41,7 +41,6 @@ const QuestionDetailsInput: React.FC<{
 
   return (
     <div className={styles.questionInputContainer}>
-      <h2>Question Details</h2>
       <label className={styles.questionInputLabel}>
         Question
         <input
