@@ -31,7 +31,7 @@ const VideoQuizUploadForm: React.FC = () => {
   };
 
   const addQuestion = (): void => {
-    const nextId = questionIds.length > 0 ? Math.max(...questionIds) + 1 : 1;
+    const nextId = Math.max(...questionIds, 0) + 1;
     setQuestionIds((prevIds) => [...prevIds, nextId]);
     setVideoData((prevData) => ({
       ...prevData,
