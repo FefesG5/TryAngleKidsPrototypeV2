@@ -1,10 +1,7 @@
 /* QuestionDetailsInput.module.css */
 
 .questionInputContainer {
-  background-color: #ecf0f1; /* Uniform background to match formContainer */
-  border: 1px solid #ccc; /* Light border for subtle definition */
-  padding: 15px;
-  border-radius: 8px;
+  padding: 10px;
   margin-bottom: 15px;
 }
 
