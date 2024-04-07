@@ -16,7 +16,7 @@
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc; /* Consistent border color */
-  border-radius: 4px;
+  border-radius: 2px;
   background-color: white; /* Consistent input background */
   margin-bottom: 0.75rem;
 }
