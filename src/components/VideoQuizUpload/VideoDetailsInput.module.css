@@ -1,16 +1,16 @@
-.detailInputContainer {
+.videoDetailInputContainer {
   padding: 10px;
   margin-bottom: 15px;
 }
 
-.detailInputLabel {
+.videoDetailInputLabel {
   display: block;
   margin-bottom: 0.5rem;
   color: var(--tab-text-color);
   font-size: 1.2rem;
 }
 
-.detailInput {
+.videoDetailInput {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -19,7 +19,7 @@
   color: var(--tab-text-color);
 }
 
-.detailInput:focus {
+.videoDetailInput:focus {
   border-color: #2ecc71; /* Focus color to match activeTab */
   box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.2);
 }

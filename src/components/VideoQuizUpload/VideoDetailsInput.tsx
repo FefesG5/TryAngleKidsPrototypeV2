@@ -11,43 +11,43 @@ const VideoDetailsInput: React.FC<{
   };
 
   return (
-    <div className={styles.detailInputContainer}>
-      <label className={styles.detailInputLabel}>
+    <div className={styles.videoDetailInputContainer}>
+      <label className={styles.videoDetailInputLabel}>
         Year
         <input
           type="text"
           name="year"
-          className={styles.detailInput}
+          className={styles.videoDetailInput}
           value={videoData.year}
           onChange={handleChange}
         />
       </label>
-      <label className={styles.detailInputLabel}>
+      <label className={styles.videoDetailInputLabel}>
         Lesson Number
         <input
           type="text"
           name="lessonNumber"
-          className={styles.detailInput}
+          className={styles.videoDetailInput}
           value={videoData.lessonNumber}
           onChange={handleChange}
         />
       </label>
-      <label className={styles.detailInputLabel}>
+      <label className={styles.videoDetailInputLabel}>
         Video Source
         <input
           type="text"
           name="videoSrc"
-          className={styles.detailInput}
+          className={styles.videoDetailInput}
           value={videoData.videoSrc}
           onChange={handleChange}
         />
       </label>
-      <label className={styles.detailInputLabel}>
+      <label className={styles.videoDetailInputLabel}>
         Category
         <input
           type="text"
           name="category"
-          className={styles.detailInput}
+          className={styles.videoDetailInput}
           value={videoData.category}
           onChange={handleChange}
         />
