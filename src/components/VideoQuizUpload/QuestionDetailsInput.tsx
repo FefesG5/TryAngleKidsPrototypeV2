@@ -20,76 +20,74 @@ const QuestionDetailsInput: React.FC<{
         feedback: { ...questionData.feedback, [name]: value },
       });
     } else {
-      // This will handle the timestamp input as a text input
       onQuestionChange({ ...questionData, [name]: value });
     }
   };
 
-  // Dynamically generate choice inputs based on the questionData.choices array
   const choiceInputs = questionData.choices.map((choice, index) => (
-    <label key={index} className={styles.questionInputLabel}>
+    <label key={index} className={styles.questionDetailInputLabel}>
       Choice {index + 1}
       <input
         type="text"
         name={`choices[${index}]`}
         value={choice}
         onChange={handleChange}
-        className={styles.questionInput}
+        className={styles.questionDetailInput}
       />
     </label>
   ));
 
   return (
-    <div className={styles.questionInputContainer}>
-      <label className={styles.questionInputLabel}>
+    <div className={styles.questionDetailInputContainer}>
+      <label className={styles.questionDetailInputLabel}>
         Question
         <input
           type="text"
           name="question"
           value={questionData.question}
           onChange={handleChange}
-          className={styles.questionInput}
+          className={styles.questionDetailInput}
         />
       </label>
-      <label className={styles.questionInputLabel}>
+      <label className={styles.questionDetailInputLabel}>
         Timestamp
         <input
           type="text"
           name="timestamp"
           value={questionData.timestamp.toString()}
           onChange={handleChange}
-          className={styles.questionInput}
+          className={styles.questionDetailInput}
         />
       </label>
       {choiceInputs}
-      <label className={styles.questionInputLabel}>
+      <label className={styles.questionDetailInputLabel}>
         Correct Answer
         <input
           type="text"
           name="correctAnswer"
           value={questionData.correctAnswer}
           onChange={handleChange}
-          className={styles.questionInput}
+          className={styles.questionDetailInput}
         />
       </label>
-      <label className={styles.questionInputLabel}>
+      <label className={styles.questionDetailInputLabel}>
         Correct Feedback
         <input
           type="text"
           name="correct"
           value={questionData.feedback.correct}
           onChange={handleChange}
-          className={styles.questionInput}
+          className={styles.questionDetailInput}
         />
       </label>
-      <label className={styles.questionInputLabel}>
+      <label className={styles.questionDetailInputLabel}>
         Incorrect Feedback
         <input
           type="text"
           name="incorrect"
           value={questionData.feedback.incorrect}
           onChange={handleChange}
-          className={styles.questionInput}
+          className={styles.questionDetailInput}
         />
       </label>
     </div>

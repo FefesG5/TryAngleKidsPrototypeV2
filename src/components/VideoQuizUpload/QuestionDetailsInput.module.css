@@ -1,27 +1,25 @@
-/* QuestionDetailsInput.module.css */
-
-.questionInputContainer {
+.questionDetailInputContainer {
   padding: 10px;
   margin-bottom: 15px;
 }
 
-.questionInputLabel {
+.questionDetailInputLabel {
   display: block;
   margin-bottom: 0.5rem;
   color: var(--tab-text-color);
   font-size: 1.2rem;
 }
 
-.questionInput {
+.questionDetailInput {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc; /* Consistent border color */
+  border: 1px solid #ccc;
   border-radius: 2px;
-  background-color: white; /* Consistent input background */
+  background-color: white;
   margin-bottom: 0.75rem;
 }
 
-.questionInput:focus {
-  border-color: #2ecc71; /* Focus color to match activeTab */
+.questionDetailInput:focus {
+  border-color: #2ecc71;
   box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.2);
 }
