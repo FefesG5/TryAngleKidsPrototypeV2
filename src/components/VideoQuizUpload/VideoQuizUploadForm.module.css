@@ -1,0 +1,79 @@
+.formContainer {
+  color: var(--text-color);
+  border-radius: 8px;
+  max-width: 900px;
+  margin: 3rem auto;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  background-color: #95a5a6; /* Consistent with tabButton */
+}
+
+.tabButton,
+.addButton {
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.tabButton {
+  flex: 1; /* Button should fill the entire tab */
+  background: transparent;
+  color: var(--button-text-color);
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* Center the button text */
+  align-items: center; /* Vertically center the button */
+}
+
+.activeTab,
+.tabContent {
+  background-color: var(
+    --accent-color
+  ); /* Use global variable for active tab and content background */
+  color: var(--text-color); /* Use global variable for text color */
+}
+
+.removeQuestionBtn {
+  display: inline-block;
+  padding: 0 8px;
+  line-height: 32px;
+  font-size: 16px;
+  color: var(--text-color);
+  border: none;
+  cursor: pointer;
+}
+
+.tabContent {
+  padding: 20px;
+  margin-top: -1px; /* Aligns seamlessly with tabs */
+}
+
+.submitButton {
+  display: block;
+  width: calc(100% - 40px); /* Adjusts width considering padding */
+  padding: 10px 20px;
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.submitButton:hover {
+  background-color: var(--button-hover-bg-color);
+}

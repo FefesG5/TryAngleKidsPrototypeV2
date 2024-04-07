@@ -1,0 +1,20 @@
+.questionDetailInputContainer {
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.questionDetailInputLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--tab-text-color);
+  font-size: 1.2rem;
+}
+
+.questionDetailInput {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  background-color: white;
+  margin-bottom: 0.75rem;
+}
