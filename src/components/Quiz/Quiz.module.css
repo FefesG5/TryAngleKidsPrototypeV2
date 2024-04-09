@@ -72,6 +72,7 @@
   color: #333;
   text-align: center;
   padding-bottom: 10px;
+  font-size: 1.3rem;
 }
 
 /* Larger screens */
@@ -89,6 +90,9 @@
     font-size: 1.8rem;
     padding: 20px;
   }
+  .feedbackText{
+    font-size: 1.8rem;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -104,6 +108,9 @@
   .quizButton {
     font-size: 1.8rem;
     padding: 25px;
+  }
+  .feedbackText{
+    font-size: 1.8rem;
   }
 }
 
