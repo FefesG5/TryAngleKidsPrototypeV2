@@ -15,10 +15,17 @@ import { app } from "../../../firebaseConfig";
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+// This is a placeholder function to simulate fetching years from a database.
+async function fetchYears(): Promise<number[]> {
+  // Replace with actual database fetching logic
+  return [2024];
+}
+
 const EducatorAccess = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [years, setYears] = useState<number[]>([]);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -36,6 +43,7 @@ const EducatorAccess = () => {
         if (educator) {
           setIsAuthenticated(true);
           setError("");
+          fetchYears().then(setYears);
         } else {
           setError("You are not authorised. Please contact Head of Curriculum");
           await signOut(auth);
@@ -72,7 +80,7 @@ const EducatorAccess = () => {
     );
   }
 
-  return <EducatorDashboard signOutUser={signOutUser} />;
+  return <EducatorDashboard signOutUser={signOutUser} years={years} />;
 };
 
 export default EducatorAccess;

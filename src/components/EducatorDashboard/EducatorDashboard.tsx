@@ -2,9 +2,10 @@ import Link from "next/link";
 
 type EducatorDashboardProps = {
   signOutUser: () => Promise<void>;
+  years: number[];
 };
 
-const EducatorDashboard = ({ signOutUser }: EducatorDashboardProps) => {
+const EducatorDashboard = ({ signOutUser, years }: EducatorDashboardProps) => {
   return (
     <div>
       <h1>Educator Dashboard</h1>
@@ -15,6 +16,11 @@ const EducatorDashboard = ({ signOutUser }: EducatorDashboardProps) => {
               Upload New Video Quiz
             </Link>
           </li>
+
+          <li>
+            <Link href="/educator/video-quizzes">Manage Video Quizzes</Link>
+          </li>
+
           <li>
             <Link href="/educator/settings">Settings</Link>
           </li>
