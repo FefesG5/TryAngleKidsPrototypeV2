@@ -28,7 +28,7 @@
 }
 
 .quizQuestion {
-  font-size: 1rem;
+  font-size: 1.8rem;
   font-weight: bold;
   color: #333;
   margin-bottom: 20px;
@@ -46,13 +46,13 @@
 }
 
 .quizButton {
-  padding: 10px;
+  padding: 15px;
   border: 1px solid #ddd;
   background-color: #f7f7f7;
   color: #333;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-size: 0.9rem;
+  font-size: 1.4rem;
   border-radius: 5px;
   text-align: center;
 }
@@ -77,33 +77,33 @@
 /* Larger screens */
 @media (min-width: 768px) {
   .quizModal {
-    max-width: 60%; /* Adjust the max-width for larger screens */
+    max-width: 80%; /* Adjust the max-width for larger screens */
     padding: 40px;
   }
 
   .quizQuestion {
-    font-size: 1.25rem;
+    font-size: 2.5rem;
   }
 
   .quizButton {
-    font-size: 1rem;
-    padding: 15px;
+    font-size: 1.8rem;
+    padding: 20px;
   }
 }
 
 @media (min-width: 1024px) {
   .quizModal {
-    max-width: 50%;
+    max-width: 80%;
     padding: 40px;
   }
 
   .quizQuestion {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
   }
 
   .quizButton {
-    font-size: 1.1rem;
-    padding: 20px;
+    font-size: 1.8rem;
+    padding: 25px;
   }
 }
 
