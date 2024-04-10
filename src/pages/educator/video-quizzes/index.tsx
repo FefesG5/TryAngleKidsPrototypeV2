@@ -1,21 +1,30 @@
-import { useState } from "react";
 import Link from "next/link";
-import Spinner from "@/components/Spinner/Spinner";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../../../firebaseConfig";
 
-const ManageVideoQuizzes = () => {
-  const [years, setYears] = useState(["2024"]);
-  const [loading, setLoading] = useState(false);
+interface ManageVideoQuizzesProps {
+  years: string[];
+}
 
-  if (loading) {
-    return <Spinner />;
-  }
+export async function getStaticProps() {
+  // Fetch the years from Firestore
+  const yearsCol = collection(db, "years");
+  const yearsSnapshot = await getDocs(yearsCol);
+  const years = yearsSnapshot.docs.map((doc) => doc.id);
 
+  return {
+    props: {
+      years,
+    },
+    revalidate: 86400, // Optionally revalidate once a day if you expect updates to the years
+  };
+}
+
+const ManageVideoQuizzes = ({ years }: ManageVideoQuizzesProps) => {
   return (
     <>
       <Link href="/educator/">Back to Dashboard</Link>
-
       <h1>Select a Year to Manage Video Quizzes</h1>
-
       <ul>
         {years.map((year) => (
           <li key={year}>
