@@ -35,6 +35,7 @@ const LessonsListPage: React.FC<LessonsListPageProps> = ({ lessons }) => {
 
   return (
     <>
+      <Link href="/educator/video-quizzes">Back to Year Management</Link>
       <h1>Lessons for {year}</h1>
       <ul>
         {lessons.map((lesson, index) => (
