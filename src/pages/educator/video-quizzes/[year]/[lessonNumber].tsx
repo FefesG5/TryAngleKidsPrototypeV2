@@ -1,7 +1,8 @@
 import { GetServerSideProps, NextPage } from "next";
+import { useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../../../firebaseConfig";
-import { Video } from "@/types/quizTypes";
+import { Video, Question } from "@/types/quizTypes";
 import QuestionDetailsInput from "@/components/VideoQuizUpload/QuestionDetailsInput";
 import VideoDetailsInput from "@/components/VideoQuizUpload/VideoDetailsInput";
 
@@ -33,27 +34,52 @@ export const getServerSideProps: GetServerSideProps<
   return { props: { videoData } };
 };
 
-const EditVideoQuiz: NextPage<EditVideoQuizProps> = ({ videoData }) => {
+const EditVideoQuiz: NextPage<EditVideoQuizProps> = ({
+  videoData: initialVideoData,
+}) => {
+  const [videoData, setVideoData] = useState<Video | null>(initialVideoData);
+
+  const handleVideoDataChange = (updatedVideo: Video) => {
+    setVideoData(updatedVideo);
+  };
+
+  const handleQuestionChange = (updatedQuestion: Question) => {
+    if (!videoData) return;
+    setVideoData({
+      ...videoData,
+      questions: videoData.questions.map((question) =>
+        question.id === updatedQuestion.id ? updatedQuestion : question,
+      ),
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!videoData) return;
+
+    // Here you will handle the API request to save the data
+    // For now, let's just log the updated data to the console
+    console.log(videoData);
+    // After this, you would typically make a PUT request to your API to update the data
+  };
+
   return (
     <div>
       <h1>Edit Video Quiz</h1>
       {videoData ? (
-        <form>
+        <form onSubmit={handleSubmit}>
           <VideoDetailsInput
             videoData={videoData}
-            onVideoDataChange={(updatedVideo) => {
-              // Logic to handle changes to video details
-            }}
+            onVideoDataChange={handleVideoDataChange}
           />
-          {videoData.questions.map((question) => (
+          {videoData.questions.map((question, index) => (
             <QuestionDetailsInput
-              key={question.id}
+              key={index} // Consider using a more stable key if available
               questionData={question}
-              onQuestionChange={(updatedQuestion) => {
-                // Logic to handle question changes
-              }}
+              onQuestionChange={handleQuestionChange}
             />
           ))}
+          <button type="submit">Save Changes</button>
         </form>
       ) : (
         <p>Video data not found or is loading.</p>
