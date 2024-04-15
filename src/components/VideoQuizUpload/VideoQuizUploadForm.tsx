@@ -3,28 +3,46 @@ import { Video, Question } from "@/types/quizTypes";
 import styles from "./VideoQuizUploadForm.module.css";
 import VideoDetailsInput from "./VideoDetailsInput";
 import QuestionDetailsInput from "./QuestionDetailsInput";
-import {
-  defaultQuizQuestion,
-  defaultVideoData,
-} from "@/utils/videoQuizInitialState";
+// import {
+//   defaultQuizQuestion,
+//   defaultVideoData,
+// } from "@/utils/videoQuizInitialState";
 
 const VideoQuizUploadForm: React.FC = () => {
-  const [videoData, setVideoData] = useState<Video>(defaultVideoData);
+  const [videoData, setVideoData] = useState<Video>({
+    year: "",
+    lessonNumber: "",
+    videoSrc: "",
+    category: "",
+    questions: [],
+  });
 
   const [activeTab, setActiveTab] = useState<string>("details");
   const [questionIds, setQuestionIds] = useState<number[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const defaultQuestion: Question = {
+    id: 0,
+    question: "",
+    timestamp: 0,
+    answered: false,
+    choices: ["", "", "", ""],
+    correctAnswer: "",
+    feedback: {
+      correct: "",
+      incorrect: "",
+    },
+  };
+
   const addQuestion = (): void => {
-    const nextId = Math.max(...questionIds, 0) + 1;
-    setQuestionIds((prevIds) => [...prevIds, nextId]);
-    setVideoData((prevData) => ({
-      ...prevData,
-      questions: [
-        ...prevData.questions,
-        { ...defaultQuizQuestion(), id: nextId },
-      ],
-    }));
+    setQuestionIds((prevIds) => {
+      const nextId = Math.max(...prevIds, 0) + 1;
+      setVideoData((prevData) => ({
+        ...prevData,
+        questions: [...prevData.questions, { ...defaultQuestion, id: nextId }],
+      }));
+      return [...prevIds, nextId];
+    });
   };
 
   const removeQuestion = (id: number): void => {
@@ -68,6 +86,7 @@ const VideoQuizUploadForm: React.FC = () => {
     e: React.FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     e.preventDefault();
+    console.log("Handle submit called");
     setLoading(true);
     console.log("Submitting video quiz data:", videoData);
     // Here you might want to send the data to your backend or API
@@ -87,7 +106,13 @@ const VideoQuizUploadForm: React.FC = () => {
       if (response.ok) {
         console.log(result.message);
         // Reset the form here if necessary
-        setVideoData(defaultVideoData());
+        setVideoData({
+          year: "",
+          lessonNumber: "",
+          videoSrc: "",
+          category: "",
+          questions: [],
+        });
         setQuestionIds([]);
         setActiveTab("details");
         // Show success feedback to the user
@@ -118,6 +143,7 @@ const VideoQuizUploadForm: React.FC = () => {
         className={`${styles.tab} ${isActive ? styles.activeTab : ""}`}
       >
         <button
+          type="button"
           className={styles.tabButton}
           onClick={() => setActiveTab(tabId)}
         >
@@ -125,6 +151,7 @@ const VideoQuizUploadForm: React.FC = () => {
         </button>
         {isQuestionTab && questionId !== null && (
           <button
+            type="button"
             className={styles.removeQuestionBtn}
             onClick={(e) => {
               e.stopPropagation(); // Prevents the tab button's onClick from firing
@@ -151,8 +178,7 @@ const VideoQuizUploadForm: React.FC = () => {
 
     const questionId = parseInt(activeTab.replace("questions", ""), 10);
     const question =
-      videoData.questions.find((q) => q.id === questionId) ||
-      defaultQuizQuestion();
+      videoData.questions.find((q) => q.id === questionId) || defaultQuestion;
 
     return (
       <QuestionDetailsInput
