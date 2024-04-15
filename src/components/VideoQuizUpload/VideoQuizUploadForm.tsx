@@ -3,43 +3,26 @@ import { Video, Question } from "@/types/quizTypes";
 import styles from "./VideoQuizUploadForm.module.css";
 import VideoDetailsInput from "./VideoDetailsInput";
 import QuestionDetailsInput from "./QuestionDetailsInput";
-// import {
-//   defaultQuizQuestion,
-//   defaultVideoData,
-// } from "@/utils/videoQuizInitialState";
+import {
+  defaultQuizQuestion,
+  defaultVideoData,
+} from "@/utils/videoQuizInitialState";
 
 const VideoQuizUploadForm: React.FC = () => {
-  const [videoData, setVideoData] = useState<Video>({
-    year: "",
-    lessonNumber: "",
-    videoSrc: "",
-    category: "",
-    questions: [],
-  });
-
+  const [videoData, setVideoData] = useState<Video>(defaultVideoData());
   const [activeTab, setActiveTab] = useState<string>("details");
   const [questionIds, setQuestionIds] = useState<number[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-
-  const defaultQuestion: Question = {
-    id: 0,
-    question: "",
-    timestamp: 0,
-    answered: false,
-    choices: ["", "", "", ""],
-    correctAnswer: "",
-    feedback: {
-      correct: "",
-      incorrect: "",
-    },
-  };
 
   const addQuestion = (): void => {
     setQuestionIds((prevIds) => {
       const nextId = Math.max(...prevIds, 0) + 1;
       setVideoData((prevData) => ({
         ...prevData,
-        questions: [...prevData.questions, { ...defaultQuestion, id: nextId }],
+        questions: [
+          ...prevData.questions,
+          { ...defaultQuizQuestion(), id: nextId },
+        ],
       }));
       return [...prevIds, nextId];
     });
@@ -106,13 +89,7 @@ const VideoQuizUploadForm: React.FC = () => {
       if (response.ok) {
         console.log(result.message);
         // Reset the form here if necessary
-        setVideoData({
-          year: "",
-          lessonNumber: "",
-          videoSrc: "",
-          category: "",
-          questions: [],
-        });
+        setVideoData(defaultVideoData());
         setQuestionIds([]);
         setActiveTab("details");
         // Show success feedback to the user
@@ -178,7 +155,8 @@ const VideoQuizUploadForm: React.FC = () => {
 
     const questionId = parseInt(activeTab.replace("questions", ""), 10);
     const question =
-      videoData.questions.find((q) => q.id === questionId) || defaultQuestion;
+      videoData.questions.find((q) => q.id === questionId) ||
+      defaultQuizQuestion();
 
     return (
       <QuestionDetailsInput
