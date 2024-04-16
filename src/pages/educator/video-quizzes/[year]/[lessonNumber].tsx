@@ -42,30 +42,73 @@ const EditVideoQuiz: NextPage<EditVideoQuizProps> = ({
   const router = useRouter();
   const year = router.query.year as string;
   const [videoData, setVideoData] = useState<Video | null>(initialVideoData);
+  const [activeTab, setActiveTab] = useState<string>("details");
 
-  const handleVideoDataChange = (updatedVideo: Video) => {
-    setVideoData(updatedVideo);
+  // Handler for changes in video details
+  const handleVideoDataChange = (updatedVideoData: Video) => {
+    setVideoData(updatedVideoData);
   };
 
-  const handleQuestionChange = (updatedQuestion: Question) => {
+  // Handler for changes in individual questions
+  const handleQuestionChange = (updatedQuestionData: Question) => {
     if (!videoData) return;
     setVideoData({
       ...videoData,
       questions: videoData.questions.map((question) =>
-        question.id === updatedQuestion.id ? updatedQuestion : question,
+        question.id === updatedQuestionData.id ? updatedQuestionData : question,
       ),
     });
   };
 
+  // Function to add a new question with default properties
+  const addQuestion = () => {
+    const newId = videoData
+      ? Math.max(0, ...videoData.questions.map((q) => q.id)) + 1
+      : 1;
+    const newQuestion: Question = {
+      id: newId,
+      question: "",
+      timestamp: 0,
+      answered: false,
+      choices: ["", "", "", ""],
+      correctAnswer: "",
+      feedback: { correct: "", incorrect: "" },
+    };
+
+    if (videoData) {
+      setVideoData({
+        ...videoData,
+        questions: [...videoData.questions, newQuestion],
+      });
+      setActiveTab(`question-${newId}`);
+    }
+  };
+
+  // Function to remove a question by its id
+  const removeQuestion = (questionId: number) => {
+    if (!videoData) return;
+    const updatedQuestions = videoData.questions.filter(
+      (q) => q.id !== questionId,
+    );
+    setVideoData({
+      ...videoData,
+      questions: updatedQuestions,
+    });
+    setActiveTab("details");
+  };
+
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!videoData) return;
 
-    // Here you will handle the API request to save the data
-    // For now, let's just log the updated data to the console
-    console.log(videoData);
-    // After this, you would typically make a PUT request to your API to update the data
+    console.log("Updated videoData to submit:", videoData);
+    // Implement your API call to update Firestore here
   };
+
+  if (!videoData) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div>
@@ -73,24 +116,27 @@ const EditVideoQuiz: NextPage<EditVideoQuizProps> = ({
         Back to Edit Lessons for {year}
       </Link>
       <h1>Edit Video Quiz</h1>
-      {videoData ? (
-        <form onSubmit={handleSubmit}>
-          <VideoDetailsInput
-            videoData={videoData}
-            onVideoDataChange={handleVideoDataChange}
-          />
-          {videoData.questions.map((question, index) => (
+      <form onSubmit={handleSubmit}>
+        <VideoDetailsInput
+          videoData={videoData}
+          onVideoDataChange={handleVideoDataChange}
+        />
+        {videoData.questions.map((question, index) => (
+          <div key={question.id}>
             <QuestionDetailsInput
-              key={index} // Consider using a more stable key if available
               questionData={question}
               onQuestionChange={handleQuestionChange}
             />
-          ))}
-          <button type="submit">Save Changes</button>
-        </form>
-      ) : (
-        <p>Video data not found or is loading.</p>
-      )}
+            <button type="button" onClick={() => removeQuestion(question.id)}>
+              Delete Question
+            </button>
+          </div>
+        ))}
+        <button type="button" onClick={addQuestion}>
+          Add Question
+        </button>
+        <button type="submit">Save Changes</button>
+      </form>
     </div>
   );
 };
