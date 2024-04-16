@@ -182,7 +182,7 @@ const VideoQuizUploadForm: React.FC = () => {
         </button>
       </div>
       <div className={styles.tabContent}>{renderTabContent()}</div>
-      <button type="submit" className={styles.submitButton}>
+      <button type="submit" className={styles.submitButton} disabled={loading}>
         Submit Quiz
       </button>
     </form>
