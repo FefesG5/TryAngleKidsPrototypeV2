@@ -1,4 +1,6 @@
 import { GetServerSideProps, NextPage } from "next";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../../../firebaseConfig";
@@ -37,6 +39,8 @@ export const getServerSideProps: GetServerSideProps<
 const EditVideoQuiz: NextPage<EditVideoQuizProps> = ({
   videoData: initialVideoData,
 }) => {
+  const router = useRouter();
+  const year = router.query.year as string;
   const [videoData, setVideoData] = useState<Video | null>(initialVideoData);
 
   const handleVideoDataChange = (updatedVideo: Video) => {
@@ -65,6 +69,9 @@ const EditVideoQuiz: NextPage<EditVideoQuizProps> = ({
 
   return (
     <div>
+      <Link href={`/educator/video-quizzes/${year}`}>
+        Back to Edit Lessons for {year}
+      </Link>
       <h1>Edit Video Quiz</h1>
       {videoData ? (
         <form onSubmit={handleSubmit}>
