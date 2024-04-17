@@ -5,8 +5,13 @@ import { useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../../../firebaseConfig";
 import { Video, Question } from "@/types/quizTypes";
+import {
+  defaultVideoData,
+  defaultQuizQuestion,
+} from "@/utils/videoQuizInitialState";
 import QuestionDetailsInput from "@/components/VideoQuizUpload/QuestionDetailsInput";
 import VideoDetailsInput from "@/components/VideoQuizUpload/VideoDetailsInput";
+import styles from "@/components/VideoQuizUpload/VideoQuizUploadForm.module.css";
 
 interface EditVideoQuizProps {
   videoData: Video | null;
@@ -110,32 +115,83 @@ const EditVideoQuiz: NextPage<EditVideoQuizProps> = ({
     return <p>Loading...</p>;
   }
 
+  const renderTabButton = (label: string, tabId: string) => {
+    const isActive = activeTab === tabId;
+    return (
+      <div
+        key={tabId}
+        className={`${styles.tab} ${isActive ? styles.activeTab : ""}`}
+      >
+        <button
+          type="button"
+          className={styles.tabButton}
+          onClick={() => setActiveTab(tabId)}
+        >
+          {label}
+        </button>
+        {tabId.startsWith("question") && (
+          <button
+            type="button"
+            className={styles.removeQuestionBtn}
+            onClick={() => removeQuestion(parseInt(tabId.split("-")[1], 10))}
+          >
+            ✕
+          </button>
+        )}
+      </div>
+    );
+  };
+
+  const renderTabContent = () => {
+    if (activeTab === "details") {
+      return (
+        <VideoDetailsInput
+          videoData={videoData || defaultVideoData()}
+          onVideoDataChange={handleVideoDataChange}
+        />
+      );
+    } else if (activeTab.startsWith("question")) {
+      const questionId = parseInt(activeTab.split("-")[1], 10);
+      const question =
+        videoData?.questions.find((q) => q.id === questionId) ||
+        defaultQuizQuestion();
+      return (
+        <QuestionDetailsInput
+          questionData={question}
+          onQuestionChange={handleQuestionChange}
+        />
+      );
+    }
+    return null;
+  };
+
   return (
-    <div>
+    <div className={styles.formContainer}>
       <Link href={`/educator/video-quizzes/${year}`}>
         Back to Edit Lessons for {year}
       </Link>
       <h1>Edit Video Quiz</h1>
-      <form onSubmit={handleSubmit}>
-        <VideoDetailsInput
-          videoData={videoData}
-          onVideoDataChange={handleVideoDataChange}
-        />
-        {videoData.questions.map((question, index) => (
-          <div key={question.id}>
-            <QuestionDetailsInput
-              questionData={question}
-              onQuestionChange={handleQuestionChange}
-            />
-            <button type="button" onClick={() => removeQuestion(question.id)}>
-              Delete Question
-            </button>
-          </div>
-        ))}
-        <button type="button" onClick={addQuestion}>
-          Add Question
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles.tabs}>
+          {renderTabButton("Video Details", "details")}
+          {videoData?.questions.map((question) =>
+            renderTabButton(
+              `Question ${question.id}`,
+              `question-${question.id}`,
+            ),
+          )}
+          <button
+            type="button"
+            className={styles.addButton}
+            onClick={addQuestion}
+          >
+            Add Question
+          </button>
+        </div>
+        <div className={styles.tabContent}>{renderTabContent()}</div>
+        <button type="submit" className={styles.submitButton}>
+          Save Changes
         </button>
-        <button type="submit">Save Changes</button>
       </form>
     </div>
   );
