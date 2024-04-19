@@ -70,15 +70,8 @@ const EditVideoQuiz: NextPage<EditVideoQuizProps> = ({
     const newId = videoData
       ? Math.max(0, ...videoData.questions.map((q) => q.id)) + 1
       : 1;
-    const newQuestion: Question = {
-      id: newId,
-      question: "",
-      timestamp: 0,
-      answered: false,
-      choices: ["", "", "", ""],
-      correctAnswer: "",
-      feedback: { correct: "", incorrect: "" },
-    };
+    const newQuestion: Question = defaultQuizQuestion();
+    newQuestion.id = newId;
 
     if (videoData) {
       setVideoData({
@@ -91,15 +84,32 @@ const EditVideoQuiz: NextPage<EditVideoQuizProps> = ({
 
   // Function to remove a question by its id
   const removeQuestion = (questionId: number) => {
-    if (!videoData) return;
-    const updatedQuestions = videoData.questions.filter(
-      (q) => q.id !== questionId,
-    );
-    setVideoData({
-      ...videoData,
-      questions: updatedQuestions,
+    if (!videoData) return; // Guard clause to handle null videoData
+
+    // Filter and reassign IDs
+    const updatedQuestions = videoData.questions
+      .filter((q) => q.id !== questionId)
+      .map((question, index) => ({
+        ...question,
+        id: index + 1, // Reassign IDs sequentially
+      }));
+
+    // Update the state while ensuring all properties are safely handled
+    setVideoData((prevVideoData) => {
+      if (prevVideoData === null) return null; // Return null if previous state was null
+
+      return {
+        ...prevVideoData, // Spread existing properties to retain them
+        questions: updatedQuestions, // Include updated questions array
+      };
     });
-    setActiveTab("details");
+
+    // Update active tab or revert to "details"
+    setActiveTab(
+      updatedQuestions.length > 0
+        ? `question-${updatedQuestions[0].id}`
+        : "details",
+    );
   };
 
   // Handle form submission
