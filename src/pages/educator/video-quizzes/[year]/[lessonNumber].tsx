@@ -118,7 +118,27 @@ const EditVideoQuiz: NextPage<EditVideoQuizProps> = ({
     if (!videoData) return;
 
     console.log("Updated videoData to submit:", videoData);
-    // Implement your API call to update Firestore here
+
+    try {
+      const response = await fetch("/api/updateVideoQuiz", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(videoData),
+      });
+
+      if (!response.ok) {
+        throw new Error(
+          `HTTP error! Status: ${response.status} - ${response.statusText}`,
+        );
+      }
+
+      const result = await response.json();
+      console.log(result.message);
+    } catch (error) {
+      console.error("Failed to update video quiz:", error);
+    }
   };
 
   if (!videoData) {
