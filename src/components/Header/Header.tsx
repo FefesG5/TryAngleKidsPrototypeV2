@@ -29,6 +29,7 @@ const Header: React.FC = () => {
             className={styles.logo}
             width={300}
             height={100}
+            priority
           />
         </Link>
       </div>
