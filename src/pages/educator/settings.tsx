@@ -1,6 +1,7 @@
 // pages/educator/settings.tsx
 import { useState } from "react";
 import Link from "next/link";
+import withAuth from "@/components/WithAuth/withAuth";
 
 const Settings = () => {
   // State for storing user settings
@@ -14,4 +15,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default withAuth(Settings);
