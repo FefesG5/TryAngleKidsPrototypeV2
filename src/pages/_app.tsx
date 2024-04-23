@@ -1,6 +1,7 @@
 import type { AppProps } from "next/app";
 import RootLayout from "@/app/RootLayout";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { AuthProvider } from "@/contexts/AuthContext";
 import "@/styles/globals.css";
 
 import NProgress from "nprogress";
@@ -21,13 +22,15 @@ const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <RootLayout>
-          <Component {...pageProps} />
-        </RootLayout>
-      </ThemeProvider>
-    </QueryClientProvider>
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <RootLayout>
+            <Component {...pageProps} />
+          </RootLayout>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </AuthProvider>
   );
 }
 
