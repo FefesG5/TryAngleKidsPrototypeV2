@@ -1,3 +1,4 @@
+import withAuth from "@/components/WithAuth/withAuth";
 import { GetServerSideProps, NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -227,4 +228,4 @@ const EditVideoQuiz: NextPage<EditVideoQuizProps> = ({
   );
 };
 
-export default EditVideoQuiz;
+export default withAuth(EditVideoQuiz);
