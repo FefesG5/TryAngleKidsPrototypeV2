@@ -1,3 +1,4 @@
+import withAuth from "@/components/WithAuth/withAuth";
 import VideoQuizUploadForm from "@/components/VideoQuizUpload/VideoQuizUploadForm";
 import Link from "next/link";
 
@@ -15,4 +16,4 @@ const VideoQuizUpload: React.FC = () => {
   );
 };
 
-export default VideoQuizUpload;
+export default withAuth(VideoQuizUpload);
