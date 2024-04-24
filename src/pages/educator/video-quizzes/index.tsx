@@ -1,3 +1,4 @@
+import withAuth from "@/components/WithAuth/withAuth";
 import Link from "next/link";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../../firebaseConfig";
@@ -38,4 +39,4 @@ const ManageVideoQuizzes = ({ years }: ManageVideoQuizzesProps) => {
   );
 };
 
-export default ManageVideoQuizzes;
+export default withAuth(ManageVideoQuizzes);
