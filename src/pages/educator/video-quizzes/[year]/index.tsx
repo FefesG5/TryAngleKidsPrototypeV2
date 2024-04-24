@@ -1,3 +1,4 @@
+import withAuth from "@/components/WithAuth/withAuth";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -53,4 +54,4 @@ const LessonsListPage: React.FC<LessonsListPageProps> = ({ lessons }) => {
   );
 };
 
-export default LessonsListPage;
+export default withAuth(LessonsListPage);
