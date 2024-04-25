@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
 import { collection, getDocs } from "firebase/firestore";
@@ -32,6 +33,7 @@ const EducatorsLessons: React.FC = () => {
 
   return (
     <div>
+      <Link href="/educators-lessons/">Back to Educator Lessons by Year </Link>
       {year && <h1>Educators for {year}</h1>}
       <ul>
         {educators?.map((educatorId) => (
