@@ -48,7 +48,7 @@ const EducatorsLessons: React.FC = () => {
       <ul>
         {educators?.map((educator) => (
           <li key={educator.id}>
-            <Link href={`/educator-lessons/${year}/${educator.id}`}>
+            <Link href={`/educators-lessons/${year}/${educator.id}`}>
               {educator.name}
             </Link>
           </li>
