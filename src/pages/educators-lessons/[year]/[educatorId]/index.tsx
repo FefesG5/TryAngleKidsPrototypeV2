@@ -50,17 +50,15 @@ const EducatorLessonsPage: React.FC = () => {
 
   return (
     <div>
-      <Link href={`/educator-lessons/${year}`}>
-        <a>Back to Educators for {year}</a>
+      <Link href={`/educators-lessons/${year}`}>
+        Back to Educators for {year}
       </Link>
       <h1>Lessons for {educatorId}</h1>
       {videos && videos.length > 0 ? (
         <ul>
           {videos.map((video) => (
             <li key={video.lessonNumber}>
-              <Link
-                href={`/educator-lessons/${year}/${educatorId}/lessons/${video.lessonNumber}`}
-              >
+              <Link href={`/educators-lessons/${year}/${educatorId}/lessons/`}>
                 Lesson {video.lessonNumber}
               </Link>
             </li>
