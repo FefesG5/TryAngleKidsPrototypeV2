@@ -53,7 +53,7 @@ const Header: React.FC = () => {
             <Link href="/lessons">Lessons</Link>
           </li>
           <li className={styles.navItem}>
-            <Link href="/educators-lessons">Educators Lessons</Link>
+            <Link href="/extra">Extra</Link>
           </li>
           <li className={styles.navItem}>
             <Link href="/educator">Educator Access</Link>

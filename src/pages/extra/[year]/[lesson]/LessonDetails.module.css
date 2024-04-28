@@ -1,0 +1,18 @@
+/* Base styles */
+.LessonContainer {
+  box-sizing: border-box;
+  padding: 20px; /* Example padding */
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .LessonContainer {
+    padding: 15px; /* Smaller padding for tablet and down */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .LessonContainer {
+    padding: 10px; /* Even smaller padding for mobile phones */
+  }
+}
