@@ -8,7 +8,13 @@ import {
   defaultVideoData,
 } from "@/utils/videoQuizInitialState";
 
-const VideoQuizUploadForm: React.FC = () => {
+interface VideoQuizUploadFormProps {
+  apiEndpoint: string;
+}
+
+const VideoQuizUploadForm: React.FC<VideoQuizUploadFormProps> = ({
+  apiEndpoint,
+}) => {
   const [videoData, setVideoData] = useState<Video>(defaultVideoData());
   const [activeTab, setActiveTab] = useState<string>("details");
   const [questionIds, setQuestionIds] = useState<number[]>([]);
@@ -76,7 +82,7 @@ const VideoQuizUploadForm: React.FC = () => {
 
     try {
       // Send a POST request to your API route with the videoData as the request body
-      const response = await fetch("/api/submitVideoQuiz", {
+      const response = await fetch(apiEndpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
