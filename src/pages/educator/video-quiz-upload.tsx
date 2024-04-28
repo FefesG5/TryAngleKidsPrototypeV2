@@ -11,7 +11,7 @@ const VideoQuizUpload: React.FC = () => {
 
       <Link href="/educator">Back to Dashboard</Link>
 
-      <VideoQuizUploadForm />
+      <VideoQuizUploadForm apiEndpoint="/api/submitVideoQuiz" />
     </>
   );
 };
