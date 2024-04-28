@@ -40,7 +40,7 @@ const LessonsList = () => {
         {lessons?.map((lessonId) => (
           <Link
             key={lessonId}
-            href={`/lessons/${yearString}/${lessonId}`}
+            href={`/extra/${yearString}/${lessonId}`}
             passHref
           >
             <button className={styles.lessonButton}>Lesson {lessonId}</button>
