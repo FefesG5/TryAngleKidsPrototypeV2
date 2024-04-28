@@ -22,6 +22,12 @@ const EducatorDashboard = ({ signOutUser, years }: EducatorDashboardProps) => {
           </li>
 
           <li>
+            <Link href="/educator/extra-video-quiz-upload">
+              Upload New Extra Video Quiz{" "}
+            </Link>
+          </li>
+
+          <li>
             <Link href="/educator/settings">Settings</Link>
           </li>
         </ul>
