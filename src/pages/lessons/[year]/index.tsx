@@ -9,7 +9,11 @@ import styles from "./LessonsList.module.css";
 const fetchLessonsForYear = async (year: string) => {
   const lessonsRef = collection(db, "years", year, "lessons");
   const querySnapshot = await getDocs(lessonsRef);
-  return querySnapshot.docs.map((doc) => doc.id);
+
+  return querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    category: doc.data().category,
+  }));
 };
 
 const LessonsList = () => {
@@ -37,13 +41,15 @@ const LessonsList = () => {
     <div className={styles.lessonsContainer}>
       <h1 className={styles.lessonsHeading}>Lessons for {yearString}</h1>
       <div>
-        {lessons?.map((lessonId) => (
+        {lessons?.map((lesson) => (
           <Link
-            key={lessonId}
-            href={`/lessons/${yearString}/${lessonId}`}
+            key={lesson.id}
+            href={`/lessons/${yearString}/${lesson.id}`}
             passHref
           >
-            <button className={styles.lessonButton}>Lesson {lessonId}</button>
+            <button className={styles.lessonButton}>
+              Lesson {lesson.id}: {lesson.category}
+            </button>
           </Link>
         ))}
       </div>
