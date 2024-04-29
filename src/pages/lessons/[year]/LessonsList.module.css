@@ -3,9 +3,10 @@
 .lessonsContainer {
   padding: 2rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .lessonsHeading {
@@ -19,7 +20,9 @@
   background-color: #f4a261; /* A warm color for the button */
   color: white;
   padding: 0.5rem 1rem;
-  font-size: 1.25rem; /* Slightly smaller than the call-to-action button */
+  width: calc(50% - 1rem);
+  max-width: 200px;
+  font-size: 1rem;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -35,4 +38,12 @@
   box-shadow: 0 3px 8px 0 rgba(0, 118, 255, 0.37);
   transform: scale(1.04);
   /* Moves button up slightly when hovered */
+}
+
+@media screen and (min-width: 1024px) {
+  .lessonButton {
+    width: calc(25% - 1rem); /* 4 buttons per row */
+    padding: 1rem 2rem;
+    font-size: 1.5rem; /* Even larger font size for large screens */
+  }
 }
