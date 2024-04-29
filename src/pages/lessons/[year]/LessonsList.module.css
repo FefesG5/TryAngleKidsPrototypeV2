@@ -1,23 +1,23 @@
-/* LessonsList.module.css */
-
 .lessonsContainer {
   padding: 2rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
+  margin: 0 auto;
+  gap: 1rem;
 }
 
 .lessonsHeading {
   color: var(--text-color);
-  font-size: 2.5rem; /* Slightly smaller than the main heading */
+  font-size: 2.5rem;
   margin-bottom: 1rem;
   text-align: center;
 }
 
 .lessonButton {
-  background-color: #f4a261; /* A warm color for the button */
+  background-color: #f4a261;
   color: white;
   padding: 0.5rem 1rem;
   width: calc(50% - 1rem);
@@ -31,6 +31,8 @@
     box-shadow 0.2s;
   margin: 0.5rem; /* Space between buttons */
   box-shadow: 0px 5px 10px rgba(0, 123, 255, 0.2);
+  flex: 1 1 calc(50% - 0.5rem); /* Allow shrink, base width 50% minus half of gap */
+  max-width: calc(50% - 0.5rem);
 }
 
 .lessonButton:hover {
@@ -44,6 +46,6 @@
   .lessonButton {
     width: calc(25% - 1rem); /* 4 buttons per row */
     padding: 1rem 2rem;
-    font-size: 1.5rem; /* Even larger font size for large screens */
+    font-size: 1.5rem;
   }
 }
