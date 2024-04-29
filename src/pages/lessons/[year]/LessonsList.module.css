@@ -1,12 +1,9 @@
 .lessonsContainer {
   padding: 2rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  margin: 0 auto;
-  gap: 1rem;
+  align-items: center;
 }
 
 .lessonsHeading {
