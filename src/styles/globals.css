@@ -6,6 +6,7 @@
   --header-bg-color: #d1d6d7; /* Light theme header background color */
   --footer-bg-color: #d1d6d7; /* Light theme footer background color */
   --text-color: #292929; /* Light theme text color, slightly off-black for softer contrast */
+  --text-bg-color: #f9f9f9;
   --background-image: url("/background-theme-light.webp"); /* Light theme background image */
   --accent-color: #007bff; /* Light theme accent color */
   --secondary-color: #ffa500; /* Light theme secondary color */
@@ -32,6 +33,7 @@
   --header-bg-color: #27272a; /* Dark theme header background color */
   --footer-bg-color: #27272a; /* Dark theme footer background color */
   --text-color: #ffffff; /* Dark theme text color */
+  --text-bg-color: #121212;
   --background-image: url("/background-theme-dark.webp"); /* Dark theme background image */
   --accent-color: #00bcd4; /* Dark theme accent color */
   --secondary-color: #9c27b0; /* Dark theme secondary color */
