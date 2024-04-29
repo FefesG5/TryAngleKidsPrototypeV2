@@ -1,0 +1,45 @@
+/* LessonCard.module.css */
+.lessonCard {
+  flex-basis: calc(33.33333% - 30px);
+  margin: 15px;
+  overflow: hidden;
+  border-radius: 28px;
+}
+
+.lessonCardLink {
+  display: block;
+  padding: 30px 20px;
+  background-color: #121212;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.5s ease;
+  text-decoration: none;
+  color: white; /* Assuming a light text color */
+}
+
+.lessonCardLink:hover .lessonCardBackground {
+  transform: scale(10);
+}
+
+.lessonCardTitle {
+  font-weight: bold;
+  font-size: 30px;
+  margin: 0 0 25px;
+  position: relative;
+  z-index: 2;
+}
+
+.lessonCardBackground {
+  height: 128px;
+  width: 128px;
+  background-color: #f9b234;
+  position: absolute;
+  top: -75px;
+  right: -75px;
+  border-radius: 50%;
+  transition: transform 0.5s ease;
+  z-index: 1;
+}
+
+/* Add nth-child styles for different colors like in the original CSS */
+/* Add responsive media queries like in the original CSS */
