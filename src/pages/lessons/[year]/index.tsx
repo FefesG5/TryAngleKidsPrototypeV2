@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../../firebaseConfig";
 import Spinner from "@/components/Spinner/Spinner";
+import LessonCard from "@/components/LessonCard/LessonCard";
 import styles from "./LessonsList.module.css";
 
 const fetchLessonsForYear = async (year: string) => {
@@ -20,7 +21,7 @@ const LessonsList = () => {
   const router = useRouter();
   // Directly use the year from the query as yearString after type checking
   const yearString =
-    typeof router.query.year === "string" ? router.query.year : undefined;
+    typeof router.query.year === "string" ? router.query.year : "";
 
   const {
     data: lessons,
@@ -41,7 +42,7 @@ const LessonsList = () => {
     <div className={styles.lessonsContainer}>
       <h1 className={styles.lessonsHeading}>Lessons for {yearString}</h1>
       <div>
-        {lessons?.map((lesson) => (
+        {/* {lessons?.map((lesson) => (
           <Link
             key={lesson.id}
             href={`/lessons/${yearString}/${lesson.id}`}
@@ -51,6 +52,15 @@ const LessonsList = () => {
               Lesson {lesson.id}: {lesson.category}
             </button>
           </Link>
+        ))} */}
+
+        {lessons?.map((lesson) => (
+          <LessonCard
+            key={lesson.id}
+            id={lesson.id}
+            category={lesson.category}
+            year={yearString}
+          />
         ))}
       </div>
     </div>
