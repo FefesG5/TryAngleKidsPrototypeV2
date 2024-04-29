@@ -9,12 +9,12 @@
 .lessonCardLink {
   display: block;
   padding: 30px 20px;
-  background-color: #121212;
+  background-color: var(--text-bg-color);
   overflow: hidden;
   position: relative;
   transition: all 0.5s ease;
   text-decoration: none;
-  color: white; /* Assuming a light text color */
+  color: var(--text-color);
 }
 
 .lessonCardLink:hover .lessonCardBackground {
