@@ -6,7 +6,7 @@
   --header-bg-color: #d1d6d7; /* Light theme header background color */
   --footer-bg-color: #d1d6d7; /* Light theme footer background color */
   --text-color: #292929; /* Light theme text color, slightly off-black for softer contrast */
-  --text-bg-color: #f9f9f9;
+  --text-bg-color: #f5f5f5; /* Reduce white brightness */
   --background-image: url("/background-theme-light.webp"); /* Light theme background image */
   --accent-color: #007bff; /* Light theme accent color */
   --secondary-color: #ffa500; /* Light theme secondary color */
