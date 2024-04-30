@@ -1,22 +1,25 @@
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../../firebaseConfig";
 import Spinner from "@/components/Spinner/Spinner";
+import LessonCard from "@/components/LessonCard/LessonCard";
 import styles from "./LessonsList.module.css";
 
 const fetchLessonsForYear = async (year: string) => {
   const lessonsRef = collection(db, "extra", year, "lessons");
   const querySnapshot = await getDocs(lessonsRef);
-  return querySnapshot.docs.map((doc) => doc.id);
+  return querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    category: doc.data().category,
+  }));
 };
 
 const LessonsList = () => {
   const router = useRouter();
   // Directly use the year from the query as yearString after type checking
   const yearString =
-    typeof router.query.year === "string" ? router.query.year : undefined;
+    typeof router.query.year === "string" ? router.query.year : "";
 
   const {
     data: lessons,
@@ -37,14 +40,14 @@ const LessonsList = () => {
     <div className={styles.lessonsContainer}>
       <h1 className={styles.lessonsHeading}>Lessons for {yearString}</h1>
       <div>
-        {lessons?.map((lessonId) => (
-          <Link
-            key={lessonId}
-            href={`/extra/${yearString}/${lessonId}`}
-            passHref
-          >
-            <button className={styles.lessonButton}>Lesson {lessonId}</button>
-          </Link>
+        {lessons?.map((lesson) => (
+          <LessonCard
+            key={lesson.id}
+            id={lesson.id}
+            category={lesson.category}
+            year={yearString}
+            path="extra"
+          />
         ))}
       </div>
     </div>
