@@ -42,24 +42,13 @@ const LessonsList = () => {
     <div className={styles.lessonsContainer}>
       <h1 className={styles.lessonsHeading}>Lessons for {yearString}</h1>
       <div>
-        {/* {lessons?.map((lesson) => (
-          <Link
-            key={lesson.id}
-            href={`/lessons/${yearString}/${lesson.id}`}
-            passHref
-          >
-            <button className={styles.lessonButton}>
-              Lesson {lesson.id}: {lesson.category}
-            </button>
-          </Link>
-        ))} */}
-
         {lessons?.map((lesson) => (
           <LessonCard
             key={lesson.id}
             id={lesson.id}
             category={lesson.category}
             year={yearString}
+            path="lessons"
           />
         ))}
       </div>
