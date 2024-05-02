@@ -25,12 +25,12 @@ const ManageVideoQuizzes = ({ years }: ManageVideoQuizzesProps) => {
   return (
     <>
       <Link href="/educator/">Back to Dashboard</Link>
-      <h1>Select a Year to Manage Video Quizzes</h1>
+      <h1>Select a Year to Manage Extra Video Quizzes</h1>
       <ul>
         {years.map((year) => (
           <li key={year}>
             <Link href={`/educator/extra-video-quizzes/${year}`}>
-              Manage {year} Quizzes
+              Manage {year} Extra Quizzes
             </Link>
           </li>
         ))}
