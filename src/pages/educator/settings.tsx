@@ -9,8 +9,8 @@ const Settings = () => {
 
   return (
     <div>
-      <h1>Profile Settings</h1>
       <Link href="/educator">Back to Dashboard</Link>
+      <h1>Profile Settings</h1>
     </div>
   );
 };
