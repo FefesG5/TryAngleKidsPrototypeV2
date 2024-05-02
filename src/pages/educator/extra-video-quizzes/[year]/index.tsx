@@ -36,16 +36,17 @@ const LessonsListPage: React.FC<LessonsListPageProps> = ({ lessons }) => {
 
   return (
     <>
-      <Link href="/educator/extra-video-quizzes">Back to Year Management</Link>
-      <h1>Lessons for {year}</h1>
+      <Link href="/educator/extra-video-quizzes">
+        Back to Extra Video Quizzes Year Management
+      </Link>
+      <h1>Extra Video Quizzes for {year}</h1>
       <ul>
         {lessons.map((lesson, index) => (
           <li key={lesson.lessonNumber}>
             <Link
               href={`/educator/extra-video-quizzes/${year}/${lesson.lessonNumber}`}
             >
-              {`Edit Lesson ${lesson.lessonNumber}`}{" "}
-              {/* Ensure this is the correct lesson number */}
+              {`Edit Extra Video Quiz ${lesson.lessonNumber}`}
             </Link>
           </li>
         ))}
