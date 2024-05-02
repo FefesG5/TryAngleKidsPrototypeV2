@@ -1,9 +1,11 @@
+import { useState } from "react";
 import withAuth from "@/components/WithAuth/withAuth";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../../../../firebaseConfig";
 import { Video } from "@/types/quizTypes";
+import DeleteConfirmationDialog from "@/components/DeleteConfirmationDialog/DeleteConfirmationDialog";
 import Link from "next/link";
 
 interface LessonsListPageProps {
@@ -33,6 +35,15 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 const LessonsListPage: React.FC<LessonsListPageProps> = ({ lessons }) => {
   const router = useRouter();
   const { year } = router.query;
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [selectedLesson, setSelectedLesson] = useState<string | null>(null);
+
+  const handleDelete = async () => {
+    if (selectedLesson) {
+      console.log("Lesson deleted successfully");
+      setDialogOpen(false);
+    }
+  };
 
   return (
     <>
@@ -45,11 +56,25 @@ const LessonsListPage: React.FC<LessonsListPageProps> = ({ lessons }) => {
               href={`/educator/video-quizzes/${year}/${lesson.lessonNumber}`}
             >
               {`Edit Lesson ${lesson.lessonNumber}`}{" "}
-              {/* Ensure this is the correct lesson number */}
             </Link>
+            <button
+              onClick={() => {
+                setSelectedLesson(lesson.lessonNumber);
+                setDialogOpen(true);
+              }}
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>
+      {dialogOpen && (
+        <DeleteConfirmationDialog
+          open={dialogOpen}
+          onClose={() => setDialogOpen(false)}
+          onDelete={handleDelete}
+        />
+      )}
     </>
   );
 };
