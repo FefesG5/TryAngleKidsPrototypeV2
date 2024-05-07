@@ -66,6 +66,7 @@ const LessonsListPage: React.FC<LessonsListPageProps> = ({ lessons }) => {
                 setSelectedLesson(lesson.lessonNumber);
                 setDialogOpen(true);
               }}
+              className={styles.deleteButton}
             >
               Delete
             </button>
