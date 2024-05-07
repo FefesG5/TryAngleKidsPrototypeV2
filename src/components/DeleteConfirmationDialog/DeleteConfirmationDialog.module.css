@@ -40,10 +40,11 @@
 }
 
 .confirmButton {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
 }
 
 .cancelButton {
-  background-color: #f8f9fa;
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
 }
