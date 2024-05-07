@@ -51,7 +51,7 @@ const LessonsListPage: React.FC<LessonsListPageProps> = ({ lessons }) => {
       <Link href="/educator/video-quizzes" className={styles.backLink}>
         Back to Year Management
       </Link>
-      <h1>Lessons for {year}</h1>
+      <h1 className={styles.title}>Lessons for {year}</h1>
       <ul>
         {lessons.map((lesson, index) => (
           <li key={lesson.lessonNumber}>
