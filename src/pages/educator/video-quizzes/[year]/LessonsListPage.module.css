@@ -27,7 +27,7 @@
   margin-bottom: 20px;
 }
 
-/* .lessonsList {
+ .lessonsList {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -51,7 +51,7 @@
 .editLink:hover {
   color: var(--accent-color-hover);
 }
-
+/*
 .deleteButton {
   background-color: var(--button-bg-color);
   color: var(--button-text-color);

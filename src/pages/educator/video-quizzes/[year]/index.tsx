@@ -52,11 +52,12 @@ const LessonsListPage: React.FC<LessonsListPageProps> = ({ lessons }) => {
         Back to Year Management
       </Link>
       <h1 className={styles.title}>Lessons for {year}</h1>
-      <ul>
+      <ul className={styles.lessonsList}>
         {lessons.map((lesson, index) => (
-          <li key={lesson.lessonNumber}>
+          <li key={lesson.lessonNumber} className={styles.lessonItem}>
             <Link
               href={`/educator/video-quizzes/${year}/${lesson.lessonNumber}`}
+              className={styles.editLink}
             >
               {`Edit Lesson ${lesson.lessonNumber}`}{" "}
             </Link>
