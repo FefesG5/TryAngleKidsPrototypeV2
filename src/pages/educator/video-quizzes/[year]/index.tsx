@@ -7,6 +7,7 @@ import { db } from "../../../../../firebaseConfig";
 import { Video } from "@/types/quizTypes";
 import DeleteConfirmationDialog from "@/components/DeleteConfirmationDialog/DeleteConfirmationDialog";
 import Link from "next/link";
+import styles from "./LessonsListPage.module.css";
 
 interface LessonsListPageProps {
   lessons: Video[];
@@ -46,8 +47,10 @@ const LessonsListPage: React.FC<LessonsListPageProps> = ({ lessons }) => {
   };
 
   return (
-    <>
-      <Link href="/educator/video-quizzes">Back to Year Management</Link>
+    <div className={styles.container}>
+      <Link href="/educator/video-quizzes" className={styles.backLink}>
+        Back to Year Management
+      </Link>
       <h1>Lessons for {year}</h1>
       <ul>
         {lessons.map((lesson, index) => (
@@ -75,7 +78,7 @@ const LessonsListPage: React.FC<LessonsListPageProps> = ({ lessons }) => {
           onDelete={handleDelete}
         />
       )}
-    </>
+    </div>
   );
 };
 
