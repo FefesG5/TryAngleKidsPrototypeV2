@@ -41,8 +41,28 @@ const LessonsListPage: React.FC<LessonsListPageProps> = ({ lessons }) => {
 
   const handleDelete = async () => {
     if (selectedLesson) {
-      console.log("Lesson deleted successfully");
-      setDialogOpen(false);
+      try {
+        const response = await fetch("/api/deleteVideoQuizLesson", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            year,
+            lessonNumber: selectedLesson,
+          }),
+        });
+        if (!response.ok) {
+          throw new Error("Failed to delete lesson");
+        }
+        console.log("Lesson deleted successfully");
+        // Refresh the page to reflect the deletion
+        router.replace(router.asPath);
+      } catch (error) {
+        console.error("Error deleting lesson:", error);
+      } finally {
+        setDialogOpen(false);
+      }
     }
   };
 
