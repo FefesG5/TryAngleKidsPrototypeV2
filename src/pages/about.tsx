@@ -34,7 +34,6 @@ const About = () => {
             </li>
             <li>Take interactive quizzes that reinforce learning</li>
             <li>Receive immediate feedback on quiz results</li>
-            <li>Track their learning progress over time</li>
           </ul>
           <p className={styles.sectionText}>
             Our mission is to empower children to become confident global
