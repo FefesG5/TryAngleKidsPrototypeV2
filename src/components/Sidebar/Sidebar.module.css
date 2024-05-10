@@ -34,6 +34,7 @@
   justify-content: center; /* Center items horizontally */
   flex-grow: 1; /* Allow items to grow to fill space */
   padding: 1rem; /* Give some padding around each item */
+  font-size: 1.5rem;
 }
 
 .hamburger {
@@ -53,7 +54,7 @@
 
 @media (max-width: 768px) {
   .sidebar {
-    width: 45%; /* Adjust sidebar width on smaller screens */
+    width: 55%; /* Adjust sidebar width on smaller screens */
   }
 
   .themeChangerSidebar {
