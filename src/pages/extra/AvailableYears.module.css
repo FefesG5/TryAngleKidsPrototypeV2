@@ -35,3 +35,10 @@
   box-shadow: 0 3px 10px 0 rgba(0, 118, 255, 0.37);
   transform: scale(1.04);
 }
+
+@media (max-width: 480px) {
+  .yearButton {
+    font-size: 2.4rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
