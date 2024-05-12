@@ -27,7 +27,8 @@ const VideoPlayer = ({ video, onQuestionAnswered }: VideoPlayerProp) => {
   const handleProgress = (state: ProgressState) => {
     const { playedSeconds } = state;
     const nextQuestion = localQuestions.find(
-      (question) => !question.answered && playedSeconds >= question.timestamp,
+      (question) =>
+        !question.answered && playedSeconds >= Number(question.timestamp),
     );
 
     if (nextQuestion && playing) {
