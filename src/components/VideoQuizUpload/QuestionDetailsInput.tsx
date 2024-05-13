@@ -7,7 +7,13 @@ const QuestionDetailsInput: React.FC<{
 }> = ({ questionData, onQuestionChange }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    if (name === "question" || name === "correctAnswer") {
+    if (name === "timestamp") {
+      // Only update if the value is a valid number
+      const timestampNumber = value ? parseFloat(value) : 0; // Default to 0 if empty
+      if (!isNaN(timestampNumber)) {
+        onQuestionChange({ ...questionData, timestamp: timestampNumber });
+      }
+    } else if (name === "question" || name === "correctAnswer") {
       onQuestionChange({ ...questionData, [name]: value });
     } else if (name.includes("choices")) {
       const index = parseInt(name.split("[")[1], 10);
@@ -20,7 +26,9 @@ const QuestionDetailsInput: React.FC<{
         feedback: { ...questionData.feedback, [name]: value },
       });
     } else {
-      onQuestionChange({ ...questionData, [name]: value });
+      // This will handle other numerical fields, ensuring they are saved as numbers
+      const numericValue = !isNaN(Number(value)) ? Number(value) : value;
+      onQuestionChange({ ...questionData, [name]: numericValue });
     }
   };
 
