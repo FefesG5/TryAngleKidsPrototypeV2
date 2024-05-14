@@ -27,7 +27,7 @@ const deleteSchema = z.object({
   year: z
     .string()
     .regex(/^\d{4}$/)
-    .refine((val) => Number(val) > 2024, {
+    .refine((val) => Number(val) >= 2024, {
       message: "Year must be greater than 2024",
     }),
   lessonNumber: z.string().regex(/^\d+$/, {
