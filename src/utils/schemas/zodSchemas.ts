@@ -23,4 +23,16 @@ const videoSchema = z.object({
   questions: z.array(questionSchema),
 });
 
-export { feedbackSchema, questionSchema, videoSchema };
+const deleteSchema = z.object({
+  year: z
+    .string()
+    .regex(/^\d{4}$/)
+    .refine((val) => Number(val) > 2024, {
+      message: "Year must be greater than 2024",
+    }),
+  lessonNumber: z.string().regex(/^\d+$/, {
+    message: "Lesson number must be a string representing a number",
+  }),
+});
+
+export { feedbackSchema, questionSchema, videoSchema, deleteSchema };
