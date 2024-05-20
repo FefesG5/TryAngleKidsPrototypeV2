@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { db } from "../../../firebaseConfig";
-import { collection, doc, setDoc, getDoc } from "firebase/firestore";
+import { collection, doc, setDoc } from "firebase/firestore";
+import { checkDocumentExists } from "@/utils/firebase/checkDocumentExists";
 import { Video, Question } from "@/types/quizTypes";
 import { z } from "zod";
 import { videoSchema } from "@/utils/schemas/zodSchemas";
@@ -26,14 +27,16 @@ export default async function handler(
     );
 
     // Check if the document already exists
-    const lessonSnapshot = await getDoc(lessonRef);
-    if (lessonSnapshot.exists()) {
-      res
-        .status(400)
-        .json({
-          message:
-            "Lesson number already exists. Please choose a different number.",
-        });
+    const documentExists = await checkDocumentExists(
+      ["years", year, "lessons"],
+      lessonNumber,
+    );
+
+    if (documentExists) {
+      res.status(400).json({
+        message:
+          "Lesson number already exists. Please choose a different number.",
+      });
       return;
     }
 
