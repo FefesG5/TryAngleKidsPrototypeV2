@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { db } from "../../../firebaseConfig";
 import { collection, doc, setDoc } from "firebase/firestore";
+import { checkDocumentExists } from "@/utils/firebase/checkDocumentExists";
 import { Video, Question } from "@/types/quizTypes";
 import { z } from "zod";
 import { videoSchema } from "@/utils/schemas/zodSchemas";
@@ -17,12 +18,27 @@ export default async function handler(
 
   try {
     // Validate the incoming request body against the videoSchema
-    const parsedData: Video = videoSchema.parse(req.body); // This throws an error if data is invalid
+    const parsedData: Video = videoSchema.parse(req.body);
+
+    const { year, lessonNumber } = parsedData;
 
     const lessonRef = doc(
-      collection(db, "extra", parsedData.year, "lessons"),
-      parsedData.lessonNumber,
+      collection(db, "extra", year, "lessons"),
+      lessonNumber,
     );
+
+    const documentExists = await checkDocumentExists(
+      ["extra", year, "lessons"],
+      lessonNumber,
+    );
+
+    if (documentExists) {
+      res.status(400).json({
+        message:
+          "Lesson number already exists. Please choose a different number.",
+      });
+      return;
+    }
 
     await setDoc(lessonRef, {
       ...parsedData,
