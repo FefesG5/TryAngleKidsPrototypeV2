@@ -1,0 +1,33 @@
+.tab {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* Center the button text */
+  align-items: center; /* Vertically center the button */
+}
+
+.tabButton {
+  flex: 1; /* Button should fill the entire tab */
+  padding: 10px 15px;
+  cursor: pointer;
+  background: transparent;
+  color: var(--button-text-color);
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.activeTab {
+  background-color: var(
+    --accent-color
+  ); /* Use global variable for active tab background */
+  color: var(--text-color); /* Use global variable for text color */
+}
+
+.removeQuestionBtn {
+  display: inline-block;
+  padding: 0 8px;
+  line-height: 32px;
+  font-size: 16px;
+  color: var(--text-color);
+  border: none;
+  cursor: pointer;
+}
