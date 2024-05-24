@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Video, Question } from "@/types/quizTypes";
 import styles from "./VideoQuizUploadForm.module.css";
-import VideoDetailsInput from "./VideoDetailsInput";
-import QuestionDetailsInput from "./QuestionDetailsInput";
+import QuizTabButton from "./QuizTabButton";
+import QuizTabContent from "./QuizTabContent";
 import {
   defaultQuizQuestion,
   defaultVideoData,
@@ -110,75 +110,25 @@ const VideoQuizUploadForm: React.FC<VideoQuizUploadFormProps> = ({
     }
   };
 
-  const renderTabButton = (label: string, tabId: string): JSX.Element => {
-    const isActive = activeTab === tabId;
-    // The tab is a question tab if it starts with 'questions'
-    const isQuestionTab = tabId.startsWith("questions");
-    // Parse the question ID only if it's a question tab
-    const questionId = isQuestionTab
-      ? parseInt(tabId.replace("questions", ""), 10)
-      : null;
-
-    // Render the tab with the active state if it matches the activeTab
-    return (
-      <div
-        key={tabId}
-        className={`${styles.tab} ${isActive ? styles.activeTab : ""}`}
-      >
-        <button
-          type="button"
-          className={styles.tabButton}
-          onClick={() => setActiveTab(tabId)}
-        >
-          {label}
-        </button>
-        {isQuestionTab && questionId !== null && (
-          <button
-            type="button"
-            className={styles.removeQuestionBtn}
-            onClick={(e) => {
-              e.stopPropagation(); // Prevents the tab button's onClick from firing
-              removeQuestion(questionId);
-            }}
-            aria-label={`Remove ${label}`}
-          >
-            ✕
-          </button>
-        )}
-      </div>
-    );
-  };
-
-  const renderTabContent = (): JSX.Element | null => {
-    if (activeTab === "details") {
-      return (
-        <VideoDetailsInput
-          videoData={videoData}
-          onVideoDataChange={handleVideoDataChange}
-        />
-      );
-    }
-
-    const questionId = parseInt(activeTab.replace("questions", ""), 10);
-    const question =
-      videoData.questions.find((q) => q.id === questionId) ||
-      defaultQuizQuestion();
-
-    return (
-      <QuestionDetailsInput
-        questionData={question}
-        onQuestionChange={handleQuestionChange}
-      />
-    );
-  };
-
   return (
     <form className={styles.formContainer} onSubmit={handleSubmit}>
       <div className={styles.tabs}>
-        {renderTabButton("Video Details", "details")}
-        {questionIds.map((id) =>
-          renderTabButton(`Question ${id}`, `questions${id}`),
-        )}
+        <QuizTabButton
+          label="Video Details"
+          tabId="details"
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+        />
+        {questionIds.map((id) => (
+          <QuizTabButton
+            key={id}
+            label={`Question ${id}`}
+            tabId={`questions${id}`}
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+            removeQuestion={removeQuestion}
+          />
+        ))}
         <button
           className={styles.addButton}
           type="button"
@@ -187,7 +137,14 @@ const VideoQuizUploadForm: React.FC<VideoQuizUploadFormProps> = ({
           Add Question
         </button>
       </div>
-      <div className={styles.tabContent}>{renderTabContent()}</div>
+      <div className={styles.tabContent}>
+        <QuizTabContent
+          activeTab={activeTab}
+          videoData={videoData}
+          onVideoDataChange={handleVideoDataChange}
+          onQuestionChange={handleQuestionChange}
+        />
+      </div>
       <button type="submit" className={styles.submitButton} disabled={loading}>
         Submit Quiz
       </button>
