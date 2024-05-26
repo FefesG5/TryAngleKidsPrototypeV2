@@ -16,16 +16,13 @@ const QuizTabButton: React.FC<QuizTabButtonProps> = ({
   removeQuestion,
 }) => {
   const isActive = activeTab === tabId;
-  const isQuestionTab = tabId.startsWith("questions");
-  const questionId = isQuestionTab
-    ? parseInt(tabId.replace("questions", ""), 10)
+  const isItemTab = tabId.startsWith("question-");
+  const itemId = isItemTab
+    ? parseInt(tabId.replace("question-", ""), 10)
     : null;
 
   return (
-    <div
-      key={tabId}
-      className={`${styles.tab} ${isActive ? styles.activeTab : ""}`}
-    >
+    <div className={`${styles.tab} ${isActive ? styles.activeTab : ""}`}>
       <button
         type="button"
         className={styles.tabButton}
@@ -33,13 +30,13 @@ const QuizTabButton: React.FC<QuizTabButtonProps> = ({
       >
         {label}
       </button>
-      {isQuestionTab && questionId !== null && removeQuestion && (
+      {isItemTab && itemId !== null && removeQuestion && (
         <button
           type="button"
           className={styles.removeQuestionBtn}
           onClick={(e) => {
             e.stopPropagation();
-            removeQuestion(questionId);
+            removeQuestion(itemId);
           }}
           aria-label={`Remove ${label}`}
         >
