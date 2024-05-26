@@ -17,43 +17,36 @@ const VideoQuizUploadForm: React.FC<VideoQuizUploadFormProps> = ({
 }) => {
   const [videoData, setVideoData] = useState<Video>(defaultVideoData());
   const [activeTab, setActiveTab] = useState<string>("details");
-  const [questionIds, setQuestionIds] = useState<number[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   const addQuestion = (): void => {
-    setQuestionIds((prevIds) => {
-      const nextId = Math.max(...prevIds, 0) + 1;
-      setVideoData((prevData) => ({
-        ...prevData,
-        questions: [
-          ...prevData.questions,
-          { ...defaultQuizQuestion(), id: nextId },
-        ],
-      }));
-      return [...prevIds, nextId];
-    });
+    const newId = videoData.questions.length + 1;
+    setVideoData((prevData) => ({
+      ...prevData,
+      questions: [
+        ...prevData.questions,
+        { ...defaultQuizQuestion(), id: newId },
+      ],
+    }));
+    setActiveTab(`question-${newId}`);
   };
 
   const removeQuestion = (id: number): void => {
-    const updatedQuestions = videoData.questions.filter(
-      (question) => question.id !== id,
-    );
-    const renumberedQuestions = updatedQuestions.map((question, index) => ({
-      ...question,
-      id: index + 1,
+    const updatedQuestions = videoData.questions
+      .filter((question) => question.id !== id)
+      .map((question, index) => ({ ...question, id: index + 1 }));
+
+    setVideoData((prevData) => ({
+      ...prevData,
+      questions: updatedQuestions,
     }));
 
-    setVideoData({ ...videoData, questions: renumberedQuestions });
-    setQuestionIds(renumberedQuestions.map((question) => question.id));
-
-    if (activeTab === `questions${id}`) {
+    if (activeTab === `question-${id}`) {
       setActiveTab("details");
-    } else {
-      const activeId = activeTab.startsWith("questions")
-        ? parseInt(activeTab.replace("questions", ""), 10)
-        : null;
-      if (activeId && id < activeId) {
-        setActiveTab(`questions${activeId - 1}`);
+    } else if (activeTab.startsWith("question-")) {
+      const activeId = parseInt(activeTab.replace("question-", ""), 10);
+      if (id < activeId) {
+        setActiveTab(`question-${activeId - 1}`);
       }
     }
   };
@@ -75,13 +68,9 @@ const VideoQuizUploadForm: React.FC<VideoQuizUploadFormProps> = ({
     e: React.FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     e.preventDefault();
-    console.log("Handle submit called");
     setLoading(true);
-    console.log("Submitting video quiz data:", videoData);
-    // Here you might want to send the data to your backend or API
 
     try {
-      // Send a POST request to your API route with the videoData as the request body
       const response = await fetch(apiEndpoint, {
         method: "POST",
         headers: {
@@ -93,18 +82,14 @@ const VideoQuizUploadForm: React.FC<VideoQuizUploadFormProps> = ({
       const result = await response.json();
 
       if (response.ok) {
-        console.log(result.message);
-        // Reset the form here if necessary
         setVideoData(defaultVideoData());
-        setQuestionIds([]);
         setActiveTab("details");
-        // Show success feedback to the user
+        console.log(result.message);
       } else {
         throw new Error(result.message || "Failed to submit the quiz");
       }
     } catch (error) {
       console.error("There was an error submitting the form:", error);
-      // Show error feedback to the user
     } finally {
       setLoading(false);
     }
@@ -119,11 +104,11 @@ const VideoQuizUploadForm: React.FC<VideoQuizUploadFormProps> = ({
           activeTab={activeTab}
           onTabChange={setActiveTab}
         />
-        {questionIds.map((id) => (
+        {videoData.questions.map((question) => (
           <QuizTabButton
-            key={id}
-            label={`Question ${id}`}
-            tabId={`questions${id}`}
+            key={question.id}
+            label={`Question ${question.id}`}
+            tabId={`question-${question.id}`}
             activeTab={activeTab}
             onTabChange={setActiveTab}
             removeQuestion={removeQuestion}
