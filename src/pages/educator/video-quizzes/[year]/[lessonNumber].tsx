@@ -6,13 +6,10 @@ import { useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../../../firebaseConfig";
 import { Video, Question } from "@/types/quizTypes";
-import {
-  defaultVideoData,
-  defaultQuizQuestion,
-} from "@/utils/videoQuizInitialState";
-import QuestionDetailsInput from "@/components/VideoQuizUpload/QuestionDetailsInput";
-import VideoDetailsInput from "@/components/VideoQuizUpload/VideoDetailsInput";
+import { defaultQuizQuestion } from "@/utils/videoQuizInitialState";
 import styles from "@/components/VideoQuizUpload/VideoQuizUploadForm.module.css";
+import QuizTabButton from "@/components/VideoQuizUpload/QuizTabButton";
+import QuizTabContent from "@/components/VideoQuizUpload/QuizTabContent";
 
 interface EditVideoQuizProps {
   videoData: Video | null;
@@ -146,56 +143,6 @@ const EditVideoQuiz: NextPage<EditVideoQuizProps> = ({
     return <p>Loading...</p>;
   }
 
-  const renderTabButton = (label: string, tabId: string) => {
-    const isActive = activeTab === tabId;
-    return (
-      <div
-        key={tabId}
-        className={`${styles.tab} ${isActive ? styles.activeTab : ""}`}
-      >
-        <button
-          type="button"
-          className={styles.tabButton}
-          onClick={() => setActiveTab(tabId)}
-        >
-          {label}
-        </button>
-        {tabId.startsWith("question") && (
-          <button
-            type="button"
-            className={styles.removeQuestionBtn}
-            onClick={() => removeQuestion(parseInt(tabId.split("-")[1], 10))}
-          >
-            ✕
-          </button>
-        )}
-      </div>
-    );
-  };
-
-  const renderTabContent = () => {
-    if (activeTab === "details") {
-      return (
-        <VideoDetailsInput
-          videoData={videoData || defaultVideoData()}
-          onVideoDataChange={handleVideoDataChange}
-        />
-      );
-    } else if (activeTab.startsWith("question")) {
-      const questionId = parseInt(activeTab.split("-")[1], 10);
-      const question =
-        videoData?.questions.find((q) => q.id === questionId) ||
-        defaultQuizQuestion();
-      return (
-        <QuestionDetailsInput
-          questionData={question}
-          onQuestionChange={handleQuestionChange}
-        />
-      );
-    }
-    return null;
-  };
-
   return (
     <div className={styles.formContainer}>
       <Link href={`/educator/video-quizzes/${year}`}>
@@ -204,13 +151,22 @@ const EditVideoQuiz: NextPage<EditVideoQuizProps> = ({
       <h1>Edit Video Quiz</h1>
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.tabs}>
-          {renderTabButton("Video Details", "details")}
-          {videoData?.questions.map((question) =>
-            renderTabButton(
-              `Question ${question.id}`,
-              `question-${question.id}`,
-            ),
-          )}
+          <QuizTabButton
+            label="Video Details"
+            tabId="details"
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+          />
+          {videoData?.questions.map((question) => (
+            <QuizTabButton
+              key={question.id}
+              label={`Question ${question.id}`}
+              tabId={`question-${question.id}`}
+              activeTab={activeTab}
+              onTabChange={setActiveTab}
+              removeQuestion={removeQuestion}
+            />
+          ))}
           <button
             type="button"
             className={styles.addButton}
@@ -219,7 +175,14 @@ const EditVideoQuiz: NextPage<EditVideoQuizProps> = ({
             Add Question
           </button>
         </div>
-        <div className={styles.tabContent}>{renderTabContent()}</div>
+        <div className={styles.tabContent}>
+          <QuizTabContent
+            activeTab={activeTab}
+            videoData={videoData}
+            onVideoDataChange={handleVideoDataChange}
+            onQuestionChange={handleQuestionChange}
+          />
+        </div>
         <button type="submit" className={styles.submitButton}>
           Save Changes
         </button>
