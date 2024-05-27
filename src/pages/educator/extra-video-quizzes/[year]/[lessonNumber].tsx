@@ -7,6 +7,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../../../firebaseConfig";
 import { Video, Question } from "@/types/quizTypes";
 import { addQuestionToVideoQuiz } from "@/utils/addQuestionToVideoQuiz";
+import { removeQuestionFromVideoQuiz } from "@/utils/removeQuestionFromVideoQuiz";
 import QuizTabButton from "@/components/VideoQuizUpload/QuizTabButton";
 import QuizTabContent from "@/components/VideoQuizUpload/QuizTabContent";
 import styles from "@/components/VideoQuizUpload/VideoQuizUploadForm.module.css";
@@ -71,32 +72,16 @@ const EditExtraVideoQuiz: NextPage<EditVideoQuizProps> = ({
     }
   };
 
-  // Function to remove a question by its id
   const removeQuestion = (questionId: number) => {
     if (!videoData) return; // Guard clause to handle null videoData
 
-    // Filter and reassign IDs
-    const updatedQuestions = videoData.questions
-      .filter((q) => q.id !== questionId)
-      .map((question, index) => ({
-        ...question,
-        id: index + 1, // Reassign IDs sequentially
-      }));
-
-    // Update the state while ensuring all properties are safely handled
-    setVideoData((prevVideoData) => {
-      if (prevVideoData === null) return null; // Return null if previous state was null
-
-      return {
-        ...prevVideoData, // Spread existing properties to retain them
-        questions: updatedQuestions, // Include updated questions array
-      };
-    });
+    const updatedVideoData = removeQuestionFromVideoQuiz(videoData, questionId);
+    setVideoData(updatedVideoData);
 
     // Update active tab or revert to "details"
     setActiveTab(
-      updatedQuestions.length > 0
-        ? `question-${updatedQuestions[0].id}`
+      updatedVideoData.questions.length > 0
+        ? `question-${updatedVideoData.questions[0].id}`
         : "details",
     );
   };
