@@ -6,10 +6,10 @@ import { useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../../../firebaseConfig";
 import { Video, Question } from "@/types/quizTypes";
-import { defaultQuizQuestion } from "@/utils/videoQuizInitialState";
-import styles from "@/components/VideoQuizUpload/VideoQuizUploadForm.module.css";
+import { addQuestionToVideoQuiz } from "@/utils/addQuestionToVideoQuiz";
 import QuizTabButton from "@/components/VideoQuizUpload/QuizTabButton";
 import QuizTabContent from "@/components/VideoQuizUpload/QuizTabContent";
+import styles from "@/components/VideoQuizUpload/VideoQuizUploadForm.module.css";
 
 interface EditVideoQuizProps {
   videoData: Video | null;
@@ -65,18 +65,10 @@ const EditVideoQuiz: NextPage<EditVideoQuizProps> = ({
 
   // Function to add a new question with default properties
   const addQuestion = () => {
-    const newId = videoData
-      ? Math.max(0, ...videoData.questions.map((q) => q.id)) + 1
-      : 1;
-    const newQuestion: Question = defaultQuizQuestion();
-    newQuestion.id = newId;
-
     if (videoData) {
-      setVideoData({
-        ...videoData,
-        questions: [...videoData.questions, newQuestion],
-      });
-      setActiveTab(`question-${newId}`);
+      const updatedVideoData = addQuestionToVideoQuiz(videoData);
+      setVideoData(updatedVideoData);
+      setActiveTab(`question-${updatedVideoData.questions.length}`);
     }
   };
 
