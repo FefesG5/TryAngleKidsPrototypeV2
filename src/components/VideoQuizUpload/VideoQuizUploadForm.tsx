@@ -3,6 +3,7 @@ import { Video, Question } from "@/types/quizTypes";
 import QuizTabButton from "./QuizTabButton";
 import QuizTabContent from "./QuizTabContent";
 import { addQuestionToVideoQuiz } from "@/utils/addQuestionToVideoQuiz";
+import { removeQuestionFromVideoQuiz } from "@/utils/removeQuestionFromVideoQuiz";
 import { defaultVideoData } from "@/utils/videoQuizInitialState";
 import styles from "./VideoQuizUploadForm.module.css";
 
@@ -24,14 +25,8 @@ const VideoQuizUploadForm: React.FC<VideoQuizUploadFormProps> = ({
   };
 
   const removeQuestion = (id: number): void => {
-    const updatedQuestions = videoData.questions
-      .filter((question) => question.id !== id)
-      .map((question, index) => ({ ...question, id: index + 1 }));
-
-    setVideoData((prevData) => ({
-      ...prevData,
-      questions: updatedQuestions,
-    }));
+    const updatedVideoData = removeQuestionFromVideoQuiz(videoData, id);
+    setVideoData(updatedVideoData);
 
     if (activeTab === `question-${id}`) {
       setActiveTab("details");
