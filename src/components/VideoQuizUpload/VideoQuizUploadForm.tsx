@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Video, Question } from "@/types/quizTypes";
-import styles from "./VideoQuizUploadForm.module.css";
 import QuizTabButton from "./QuizTabButton";
 import QuizTabContent from "./QuizTabContent";
-import {
-  defaultQuizQuestion,
-  defaultVideoData,
-} from "@/utils/videoQuizInitialState";
+import { addQuestionToVideoQuiz } from "@/utils/addQuestionToVideoQuiz";
+import { defaultVideoData } from "@/utils/videoQuizInitialState";
+import styles from "./VideoQuizUploadForm.module.css";
 
 interface VideoQuizUploadFormProps {
   apiEndpoint: string;
@@ -20,15 +18,9 @@ const VideoQuizUploadForm: React.FC<VideoQuizUploadFormProps> = ({
   const [loading, setLoading] = useState<boolean>(false);
 
   const addQuestion = (): void => {
-    const newId = videoData.questions.length + 1;
-    setVideoData((prevData) => ({
-      ...prevData,
-      questions: [
-        ...prevData.questions,
-        { ...defaultQuizQuestion(), id: newId },
-      ],
-    }));
-    setActiveTab(`question-${newId}`);
+    const updatedVideoData = addQuestionToVideoQuiz(videoData);
+    setVideoData(updatedVideoData);
+    setActiveTab(`question-${updatedVideoData.questions.length}`);
   };
 
   const removeQuestion = (id: number): void => {
