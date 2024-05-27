@@ -15,7 +15,9 @@ interface EditVideoQuizProps {
   videoData: Video | null;
 }
 
-export const getServerSideProps: GetServerSideProps<EditVideoQuizProps> = async (context) => {
+export const getServerSideProps: GetServerSideProps<
+  EditVideoQuizProps
+> = async (context) => {
   const { year, lessonNumber } = context.params as {
     year: string;
     lessonNumber: string;

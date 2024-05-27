@@ -17,13 +17,25 @@ const QuizTabContent: React.FC<QuizTabContentProps> = ({
   onQuestionChange,
 }) => {
   if (activeTab === "details") {
-    return <VideoDetailsInput videoData={videoData} onVideoDataChange={onVideoDataChange} />;
+    return (
+      <VideoDetailsInput
+        videoData={videoData}
+        onVideoDataChange={onVideoDataChange}
+      />
+    );
   }
 
   const questionId = parseInt(activeTab.replace("question-", ""), 10);
-  const question = videoData.questions.find((q) => q.id === questionId) || defaultQuizQuestion();
+  const question =
+    videoData.questions.find((q) => q.id === questionId) ||
+    defaultQuizQuestion();
 
-  return <QuestionDetailsInput questionData={question} onQuestionChange={onQuestionChange} />;
+  return (
+    <QuestionDetailsInput
+      questionData={question}
+      onQuestionChange={onQuestionChange}
+    />
+  );
 };
 
 export default QuizTabContent;
