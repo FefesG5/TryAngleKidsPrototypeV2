@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SignOutButton from "@/components/SignOutButton/SignOutButton";
 
 type EducatorDashboardProps = {
   signOutUser: () => Promise<void>;
@@ -38,7 +39,7 @@ const EducatorDashboard = ({ signOutUser, years }: EducatorDashboardProps) => {
           </li>
         </ul>
       </nav>
-      <button onClick={signOutUser}>Sign Out</button>
+      <SignOutButton signOutUser={signOutUser} />
     </div>
   );
 };
