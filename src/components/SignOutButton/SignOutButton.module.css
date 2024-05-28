@@ -1,0 +1,14 @@
+/* components/SignOutButton.module.css */
+.signOutButton {
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.signOutButton:hover {
+  background-color: var(--button-hover-bg-color);
+}
