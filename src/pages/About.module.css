@@ -33,11 +33,10 @@
 
 .sectionText {
   color: var(--text-color);
-  margin-top: 2.3rem; /* 25px */
+  margin: 2.3rem 0; /* 25px 0 */
   font-size: 1.5rem; /* 18px */
   line-height: 1.6875rem; /* 27px */
 }
-
 .link {
   font-weight: 600;
   color: #007bff;
