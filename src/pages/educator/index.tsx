@@ -11,6 +11,7 @@ import GoogleSignIn from "@/components/GoogleSignIn/GoogleSignIn";
 import Spinner from "@/components/Spinner/Spinner";
 import EducatorDashboard from "@/components/EducatorDashboard/EducatorDashboard";
 import { app } from "../../../firebaseConfig";
+import { UserProfile } from "@/types/userProfileTypes";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -26,6 +27,7 @@ const EducatorAccess = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [years, setYears] = useState<number[]>([]);
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -42,6 +44,11 @@ const EducatorAccess = () => {
         );
         if (educator) {
           setIsAuthenticated(true);
+          setUserProfile({
+            displayName: user.displayName,
+            email: user.email,
+            photoURL: user.photoURL,
+          });
           setError("");
           fetchYears().then(setYears);
         } else {
@@ -80,7 +87,13 @@ const EducatorAccess = () => {
     );
   }
 
-  return <EducatorDashboard signOutUser={signOutUser} years={years} />;
+  return (
+    <EducatorDashboard
+      signOutUser={signOutUser}
+      years={years}
+      userProfile={userProfile}
+    />
+  );
 };
 
 export default EducatorAccess;
