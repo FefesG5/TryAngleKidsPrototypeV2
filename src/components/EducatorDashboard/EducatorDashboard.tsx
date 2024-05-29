@@ -1,12 +1,18 @@
 import Link from "next/link";
 import SignOutButton from "@/components/SignOutButton/SignOutButton";
+import { UserProfile } from "@/types/userProfileTypes";
 
 type EducatorDashboardProps = {
   signOutUser: () => Promise<void>;
   years: number[];
+  userProfile: UserProfile | null;
 };
 
-const EducatorDashboard = ({ signOutUser, years }: EducatorDashboardProps) => {
+const EducatorDashboard = ({
+  signOutUser,
+  years,
+  userProfile,
+}: EducatorDashboardProps) => {
   return (
     <div>
       <h1>Educator Dashboard</h1>
