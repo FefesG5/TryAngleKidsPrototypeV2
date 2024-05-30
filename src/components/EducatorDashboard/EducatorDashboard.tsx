@@ -1,11 +1,11 @@
 import Link from "next/link";
-import SignOutButton from "@/components/SignOutButton/SignOutButton";
+import UserSection from "../UserSection/UserSection";
 import { UserProfile } from "@/types/userProfileTypes";
 
 type EducatorDashboardProps = {
   signOutUser: () => Promise<void>;
   years: number[];
-  userProfile: UserProfile | null;
+  userProfile: UserProfile;
 };
 
 const EducatorDashboard = ({
@@ -45,7 +45,7 @@ const EducatorDashboard = ({
           </li>
         </ul>
       </nav>
-      <SignOutButton signOutUser={signOutUser} />
+      <UserSection userProfile={userProfile} signOutUser={signOutUser} />
     </div>
   );
 };

@@ -88,11 +88,13 @@ const EducatorAccess = () => {
   }
 
   return (
-    <EducatorDashboard
-      signOutUser={signOutUser}
-      years={years}
-      userProfile={userProfile}
-    />
+    userProfile && (
+      <EducatorDashboard
+        signOutUser={signOutUser}
+        years={years}
+        userProfile={userProfile}
+      />
+    )
   );
 };
 
