@@ -1,0 +1,44 @@
+/* EducatorDashboard.module.css */
+.dashboard {
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.dashboardTitle {
+  color: var(--text-color); /* Use global accent color */
+  font-size: 24px;
+  text-align: center;
+}
+
+.dashboardNav {
+  width: 100%; /* Ensure full width */
+  display: flex;
+  justify-content: center; /* Center items horizontally */
+  padding: 0;
+}
+
+.navList {
+  display: flex;
+  flex-direction: column; /* Stack links vertically */
+  align-items: center; /* Center items vertically */
+  list-style: none;
+  padding: 0;
+  width: 100%; /* Full width to the list */
+}
+
+.navItem {
+  margin: 10px 0; /* Consistent margin for all items */
+}
+
+.navLink {
+  display: block; /* Make links block to allow padding and margin */
+  text-decoration: none;
+  font-size: 18px;
+  color: var(--text-color);
+  text-align: center; /* Center the text inside the link */
+}
+
+.navLink:hover {
+  text-decoration: underline;
+  color: var(--accent-color-hover);
+}
