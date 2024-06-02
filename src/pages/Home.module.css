@@ -16,10 +16,10 @@
 }
 
 .callToAction {
-  background-color: var(--accent-color); /* A bright color for the button */
-  color: white; /* White text */
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
   padding: 1rem 2rem;
-  font-size: 1.5rem; /* Larger font size for the button */
+  font-size: 2rem;
   border: none;
   border-radius: 7px; /* Rounded corners */
   cursor: pointer;
