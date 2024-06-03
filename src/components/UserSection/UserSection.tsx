@@ -19,8 +19,8 @@ const UserSection = ({ userProfile, signOutUser }: UserSectionProps) => {
         className={styles.userPhoto}
       />
       <div className={styles.userInfo}>
-        <p>{userProfile.displayName}</p>
-        <p>{userProfile.email}</p>
+        <p className={styles.userName}>{userProfile.displayName}</p>
+        <p className={styles.userEmail}>{userProfile.email}</p>
       </div>
       <SignOutButton signOutUser={signOutUser} />
     </div>
