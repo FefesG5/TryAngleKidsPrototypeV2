@@ -1,44 +1,80 @@
-/* EducatorDashboard.module.css */
 .dashboard {
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
+  padding: 20px;
+  position: relative;
 }
 
-.dashboardTitle {
-  color: var(--text-color); /* Use global accent color */
-  font-size: 24px;
-  text-align: center;
+.userSectionWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.dashboardContent {
+  display: flex;
+  flex-grow: 1;
 }
 
 .dashboardNav {
-  width: 100%; /* Ensure full width */
-  display: flex;
-  justify-content: center; /* Center items horizontally */
-  padding: 0;
+  width: 200px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-right: 1px solid #ddd;
 }
 
 .navList {
-  display: flex;
-  flex-direction: column; /* Stack links vertically */
-  align-items: center; /* Center items vertically */
   list-style: none;
   padding: 0;
-  width: 100%; /* Full width to the list */
+  margin: 0;
 }
 
 .navItem {
-  margin: 10px 0; /* Consistent margin for all items */
+  margin-bottom: 10px;
 }
 
 .navLink {
-  display: block; /* Make links block to allow padding and margin */
+  display: block;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
   color: var(--text-color);
-  text-align: center; /* Center the text inside the link */
+  padding: 10px;
+  border-radius: 4px;
 }
 
 .navLink:hover {
-  text-decoration: underline;
-  color: var(--accent-color-hover);
+  background-color: var(--accent-color-hover);
+  color: #fff;
+}
+
+.mainContent {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-left: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 10px;
+  }
+
+  .dashboardContent {
+    flex-direction: column;
+  }
+
+  .dashboardNav {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+  }
+
+  .mainContent {
+    margin-left: 0;
+  }
 }
