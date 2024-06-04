@@ -9,7 +9,7 @@
 .userSectionWrapper {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
 }
 
 .dashboardContent {
@@ -76,5 +76,9 @@
 
   .mainContent {
     margin-left: 0;
+  }
+
+  .userSectionWrapper {
+    justify-content: center;
   }
 }
