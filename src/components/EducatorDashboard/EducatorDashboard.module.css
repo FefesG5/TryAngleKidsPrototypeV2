@@ -18,9 +18,9 @@
 }
 
 .dashboardNav {
-  width: 200px;
+  width: 300px;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: var(--form-bg-color);
   border-right: 1px solid #ddd;
 }
 
@@ -37,7 +37,7 @@
 .navLink {
   display: block;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 1.5rem;
   color: var(--text-color);
   padding: 10px;
   border-radius: 4px;
@@ -45,19 +45,17 @@
 
 .navLink:hover {
   background-color: var(--accent-color-hover);
-  color: #fff;
 }
 
 .mainContent {
   flex-grow: 1;
   padding: 20px;
-  background-color: #fff;
+  background-color: var(--form-bg-color);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-left: 20px;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .dashboard {
     padding: 10px;
