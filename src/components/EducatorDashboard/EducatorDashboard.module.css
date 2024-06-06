@@ -21,7 +21,6 @@
   width: 300px;
   padding: 20px;
   background-color: var(--form-bg-color);
-  border-right: 1px solid #ddd;
 }
 
 .navList {
@@ -67,8 +66,6 @@
 
   .dashboardNav {
     width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #ddd;
     margin-bottom: 20px;
   }
 
