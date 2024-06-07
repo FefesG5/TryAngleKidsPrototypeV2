@@ -93,15 +93,3 @@ textarea:valid,
 textarea:focus {
   background-color: var(--input-bg-color);
 }
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-  .accent-color {
-    color: rgb(var(--accent-color-rgb));
-  }
-  .secondary-color {
-    color: rgb(var(--secondary-color-rgb));
-  }
-}
