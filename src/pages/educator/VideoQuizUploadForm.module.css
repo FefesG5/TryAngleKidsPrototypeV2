@@ -1,0 +1,34 @@
+.container {
+  margin: 1rem;
+}
+
+.headerSection {
+  background-color: var(--form-bg-color);
+  text-align: center;
+}
+
+.title {
+  font-size: 24px;
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+.backLink {
+  display: inline-block;
+  color: #2563eb;
+  transition:
+    color 0.3s ease,
+    text-decoration 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  .container {
+    margin: 0;
+    padding: 0;
+  }
+}
