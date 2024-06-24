@@ -26,6 +26,22 @@
   text-decoration: underline;
 }
 
+.sampleButton {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sampleButton:hover {
+  background-color: #1e4bb8;
+}
+
 @media (max-width: 767px) {
   .container {
     margin: 0;
