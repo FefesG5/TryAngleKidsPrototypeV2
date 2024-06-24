@@ -1,10 +1,15 @@
-import withAuth from "@/components/WithAuth/withAuth";
-import VideoQuizUploadForm from "@/components/VideoQuizUpload/VideoQuizUploadForm";
+import { useState } from "react";
 import Link from "next/link";
+import VideoQuizUploadForm from "@/components/VideoQuizUpload/VideoQuizUploadForm";
+import withAuth from "@/components/WithAuth/withAuth";
+import SampleDataModal from "@/components/SampleDataModal/SampleDataModal";
 import styles from "./VideoQuizUploadForm.module.css";
 
 const VideoQuizUpload: React.FC = () => {
-  // Component logic and JSX go here
+  const [showModal, setShowModal] = useState(false);
+
+  const handleShowModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
 
   return (
     <div className={styles.container}>
@@ -14,6 +19,10 @@ const VideoQuizUpload: React.FC = () => {
           Back to Dashboard
         </Link>
       </div>
+      <button onClick={handleShowModal} className={styles.sampleButton}>
+        Copy Sample Data
+      </button>
+      <SampleDataModal show={showModal} onClose={handleCloseModal} />
       <VideoQuizUploadForm apiEndpoint="/api/submitVideoQuiz" />
     </div>
   );
