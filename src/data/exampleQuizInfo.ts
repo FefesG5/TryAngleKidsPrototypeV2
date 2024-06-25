@@ -166,3 +166,5 @@ export const exampleQuizInfo2: Video = {
     },
   ],
 };
+
+export const exampleQuizInfos: Video[] = [exampleQuizInfo1, exampleQuizInfo2];
