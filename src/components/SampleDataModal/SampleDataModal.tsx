@@ -24,7 +24,7 @@ const SampleDataModal: React.FC<SampleDataModalProps> = ({ show, onClose }) => {
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent}>
-        <h2>Sample Data Template</h2>
+        <h2 className={styles.modalHeading}>Sample Data Template</h2>
         <div className={styles.selector}>
           {exampleQuizInfos.map((_, index) => (
             <button
