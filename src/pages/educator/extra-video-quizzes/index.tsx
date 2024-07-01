@@ -2,6 +2,7 @@ import withAuth from "@/components/WithAuth/withAuth";
 import Link from "next/link";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../../firebaseConfig";
+import styles from "./ManageVideoQuizzes.module.css";
 
 interface ManageVideoQuizzesProps {
   years: string[];
@@ -23,19 +24,26 @@ export async function getStaticProps() {
 
 const ManageVideoQuizzes = ({ years }: ManageVideoQuizzesProps) => {
   return (
-    <>
-      <Link href="/educator/">Back to Dashboard</Link>
-      <h1>Select a Year to Manage Extra Video Quizzes</h1>
-      <ul>
+    <div className={styles.container}>
+      <Link href="/educator/" className={styles.backLink}>
+        Back to Dashboard
+      </Link>
+      <h1 className={styles.title}>
+        Select a Year to Manage Extra Video Quizzes
+      </h1>
+      <ul className={styles.yearsList}>
         {years.map((year) => (
-          <li key={year}>
-            <Link href={`/educator/extra-video-quizzes/${year}`}>
+          <li key={year} className={styles.yearItem}>
+            <Link
+              href={`/educator/extra-video-quizzes/${year}`}
+              className={styles.manageLink}
+            >
               Manage {year} Extra Quizzes
             </Link>
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };
 
