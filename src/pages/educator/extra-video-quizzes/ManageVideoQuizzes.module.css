@@ -1,0 +1,49 @@
+.container {
+  margin: 20px;
+  padding: 20px;
+  background-color: var(--form-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #2563eb;
+  transition:
+    color 0.3s ease,
+    text-decoration 0.3s ease;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
+.title {
+  font-size: 24px;
+  color: var(--text-color);
+  margin-bottom: 20px;
+}
+
+.yearsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.yearItem {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.manageLink {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.manageLink:hover {
+  color: var(--accent-color-hover);
+}
