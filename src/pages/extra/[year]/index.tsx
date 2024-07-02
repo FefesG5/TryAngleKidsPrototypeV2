@@ -38,9 +38,9 @@ const LessonsList = () => {
 
   // Sort the lessons by lesson number (assuming id is the lesson number)
   const sortedLessons = lessons
-    ?.map(lesson => ({ ...lesson, id: parseInt(lesson.id, 10) })) // Convert id to number
+    ?.map((lesson) => ({ ...lesson, id: parseInt(lesson.id, 10) })) // Convert id to number
     .sort((a, b) => a.id - b.id) // Sort numerically
-    .map(lesson => ({ ...lesson, id: lesson.id.toString() })); // Convert id back to string
+    .map((lesson) => ({ ...lesson, id: lesson.id.toString() })); // Convert id back to string
 
   return (
     <div className={styles.lessonsContainer}>
