@@ -24,6 +24,9 @@
   --input-border-color: #ced4da;
   --input-focus-border-color: #80bdff;
   --input-focus-shadow-color: rgba(0, 123, 255, 0.25);
+
+  --backlink-color: #2563eb;
+  --backlink-hover-color: #1e40af;
 }
 
 /* Dark theme styles */
@@ -49,6 +52,9 @@
   --input-border-color: #555;
   --input-focus-border-color: #1a73e8;
   --input-focus-shadow-color: rgba(26, 115, 232, 0.25);
+
+  --backlink-color: #80cbc4;
+  --backlink-hover-color: #4db6ac;
 }
 
 body {
