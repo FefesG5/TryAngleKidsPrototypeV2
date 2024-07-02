@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../../firebaseConfig";
@@ -38,11 +37,17 @@ const LessonsList = () => {
 
   if (error) return <div>An error has occurred: {error.message}</div>;
 
+  // Sort the lessons by lesson number (assuming id is the lesson number)
+  const sortedLessons = lessons
+    ?.map((lesson) => ({ ...lesson, id: parseInt(lesson.id, 10) })) // Convert id to number
+    .sort((a, b) => a.id - b.id) // Sort numerically
+    .map((lesson) => ({ ...lesson, id: lesson.id.toString() })); // Convert id back to string
+
   return (
     <div className={styles.lessonsContainer}>
       <h1 className={styles.lessonsHeading}>Lessons for {yearString}</h1>
       <div>
-        {lessons?.map((lesson) => (
+        {sortedLessons?.map((lesson) => (
           <LessonCard
             key={lesson.id}
             id={lesson.id}
