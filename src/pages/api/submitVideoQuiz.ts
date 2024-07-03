@@ -21,17 +21,21 @@ export default async function handler(
     const parsedData: Video = videoSchema.parse(req.body);
     const { year, lessonNumber } = parsedData;
 
+    // Convert year and lessonNumber to strings for Firestore paths
+    const yearStr = year.toString();
+    const lessonNumberStr = lessonNumber.toString();
+
     const lessonRef = doc(
-      collection(db, "years", year, "lessons"),
-      lessonNumber,
+      collection(db, "years", yearStr, "lessons"),
+      lessonNumberStr,
+    );
+
+    const documentExists = await checkDocumentExists(
+      ["years", yearStr, "lessons"],
+      lessonNumberStr,
     );
 
     // Check if the document already exists
-    const documentExists = await checkDocumentExists(
-      ["years", year, "lessons"],
-      lessonNumber,
-    );
-
     if (documentExists) {
       res.status(400).json({
         message:
