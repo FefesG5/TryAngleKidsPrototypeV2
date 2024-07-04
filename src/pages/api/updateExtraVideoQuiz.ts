@@ -20,7 +20,10 @@ export default async function updateHandler(
     const parsedData: Video = videoSchema.parse(req.body);
     const { year, lessonNumber } = parsedData;
 
-    const lessonRef = doc(db, "extra", year, "lessons", lessonNumber);
+    const yearStr = year.toString();
+    const lessonNumberStr = lessonNumber.toString();
+
+    const lessonRef = doc(db, "extra", yearStr, "lessons", lessonNumberStr);
 
     // Update the database entry
     await updateDoc(lessonRef, {
