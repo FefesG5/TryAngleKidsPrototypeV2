@@ -32,7 +32,7 @@ export const getServerSideProps: GetServerSideProps<
   if (lessonSnapshot.exists()) {
     videoData = {
       ...(lessonSnapshot.data() as Omit<Video, "lessonNumber" | "year">),
-      lessonNumber,
+      lessonNumber: Number(lessonNumber), // Convert lessonNumber to number
       year,
     };
   }
