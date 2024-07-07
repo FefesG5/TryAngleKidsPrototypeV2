@@ -58,12 +58,18 @@ const VideoQuizUploadForm: React.FC<VideoQuizUploadFormProps> = ({
     setLoading(true);
 
     try {
+      // Convert lessonNumber to a number
+      const videoDataToSend = {
+        ...videoData,
+        lessonNumber: Number(videoData.lessonNumber),
+      };
+
       const response = await fetch(apiEndpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(videoData),
+        body: JSON.stringify(videoDataToSend),
       });
 
       const result = await response.json();
