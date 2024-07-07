@@ -1,8 +1,8 @@
 import { useState } from "react";
 import withAuth from "@/components/WithAuth/withAuth";
 import { useRouter } from "next/router";
-import { GetServerSidePropsContext } from "next";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "../../../../../firebaseConfig";
 import { Video } from "@/types/quizTypes";
 import DeleteConfirmationDialog from "@/components/DeleteConfirmationDialog/DeleteConfirmationDialog";
@@ -13,34 +13,33 @@ interface LessonsListPageProps {
   lessons: Video[];
 }
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const year = context.params?.year as string;
-  // Adjust your query to filter documents by the year
+export const getServerSideProps: GetServerSideProps<
+  LessonsListPageProps
+> = async (context: GetServerSidePropsContext) => {
+  const { year } = context.params as { year: string };
   const lessonsQuery = query(collection(db, "years", year, "lessons"));
   const lessonsSnapshot = await getDocs(lessonsQuery);
-  const lessons = lessonsSnapshot.docs.map(
-    (doc) =>
-      ({
-        ...doc.data(),
-        lessonNumber: doc.id, // this is the key of the document in Firestore
-      }) as Video,
-  );
+  const lessons = lessonsSnapshot.docs.map((doc) => ({
+    ...doc.data(),
+    lessonNumber: Number(doc.id),
+    year,
+  })) as Video[];
 
   return {
     props: {
       lessons,
     },
   };
-}
+};
 
 const LessonsListPage: React.FC<LessonsListPageProps> = ({ lessons }) => {
   const router = useRouter();
-  const { year } = router.query;
+  const { year } = router.query as { year: string };
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [selectedLesson, setSelectedLesson] = useState<string | null>(null);
+  const [selectedLesson, setSelectedLesson] = useState<number | null>(null);
 
   const handleDelete = async () => {
-    if (selectedLesson) {
+    if (selectedLesson !== null) {
       try {
         const response = await fetch("/api/deleteVideoQuizLesson", {
           method: "DELETE",
@@ -56,7 +55,6 @@ const LessonsListPage: React.FC<LessonsListPageProps> = ({ lessons }) => {
           throw new Error("Failed to delete lesson");
         }
         console.log("Lesson deleted successfully");
-        // Refresh the page to reflect the deletion
         router.replace(router.asPath);
       } catch (error) {
         console.error("Error deleting lesson:", error);
@@ -79,7 +77,7 @@ const LessonsListPage: React.FC<LessonsListPageProps> = ({ lessons }) => {
               href={`/educator/video-quizzes/${year}/${lesson.lessonNumber}`}
               className={styles.editLink}
             >
-              {`Edit Lesson ${lesson.lessonNumber}`}{" "}
+              {`Edit Lesson ${lesson.lessonNumber}`}
             </Link>
             <button
               onClick={() => {
