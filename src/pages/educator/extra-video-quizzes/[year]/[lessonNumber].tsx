@@ -32,7 +32,7 @@ export const getServerSideProps: GetServerSideProps<
   if (lessonSnapshot.exists()) {
     videoData = {
       ...(lessonSnapshot.data() as Omit<Video, "lessonNumber" | "year">),
-      lessonNumber,
+      lessonNumber: Number(lessonNumber), // Ensure lessonNumber is a number
       year,
     };
   }
@@ -48,12 +48,10 @@ const EditExtraVideoQuiz: NextPage<EditVideoQuizProps> = ({
   const [videoData, setVideoData] = useState<Video | null>(initialVideoData);
   const [activeTab, setActiveTab] = useState<string>("details");
 
-  // Handler for changes in video details
   const handleVideoDataChange = (updatedVideoData: Video) => {
     setVideoData(updatedVideoData);
   };
 
-  // Handler for changes in individual questions
   const handleQuestionChange = (updatedQuestionData: Question) => {
     if (!videoData) return;
     setVideoData({
@@ -66,19 +64,18 @@ const EditExtraVideoQuiz: NextPage<EditVideoQuizProps> = ({
 
   const addQuestion = () => {
     if (videoData) {
-      const updatedVideoData = addQuestionToVideoQuiz(videoData); // Use the utility function
+      const updatedVideoData = addQuestionToVideoQuiz(videoData);
       setVideoData(updatedVideoData);
       setActiveTab(`question-${updatedVideoData.questions.length}`);
     }
   };
 
   const removeQuestion = (questionId: number) => {
-    if (!videoData) return; // Guard clause to handle null videoData
+    if (!videoData) return;
 
     const updatedVideoData = removeQuestionFromVideoQuiz(videoData, questionId);
     setVideoData(updatedVideoData);
 
-    // Update active tab or revert to "details"
     setActiveTab(
       updatedVideoData.questions.length > 0
         ? `question-${updatedVideoData.questions[0].id}`
@@ -86,12 +83,9 @@ const EditExtraVideoQuiz: NextPage<EditVideoQuizProps> = ({
     );
   };
 
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!videoData) return;
-
-    console.log("Updated extra videoData to submit:", videoData);
 
     try {
       const response = await fetch("/api/updateExtraVideoQuiz", {
@@ -133,14 +127,14 @@ const EditExtraVideoQuiz: NextPage<EditVideoQuizProps> = ({
             activeTab={activeTab}
             onTabChange={setActiveTab}
           />
-          {videoData?.questions.map((question) => (
+          {videoData.questions.map((question) => (
             <QuizTabButton
               key={question.id}
               label={`Question ${question.id}`}
               tabId={`question-${question.id}`}
               activeTab={activeTab}
               onTabChange={setActiveTab}
-              removeQuestion={removeQuestion}
+              removeQuestion={() => removeQuestion(question.id)}
             />
           ))}
           <button
