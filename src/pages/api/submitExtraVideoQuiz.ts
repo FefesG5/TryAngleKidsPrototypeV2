@@ -22,14 +22,17 @@ export default async function handler(
 
     const { year, lessonNumber } = parsedData;
 
+    const yearStr = year.toString();
+    const lessonNumberStr = lessonNumber.toString();
+
     const lessonRef = doc(
-      collection(db, "extra", year, "lessons"),
-      lessonNumber,
+      collection(db, "extra", yearStr, "lessons"),
+      lessonNumberStr,
     );
 
     const documentExists = await checkDocumentExists(
-      ["extra", year, "lessons"],
-      lessonNumber,
+      ["extra", yearStr, "lessons"],
+      lessonNumberStr,
     );
 
     if (documentExists) {

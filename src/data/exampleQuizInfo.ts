@@ -2,7 +2,7 @@ import { Video } from "@/types/quizTypes";
 
 export const exampleQuizInfo1: Video = {
   year: "2024",
-  lessonNumber: "2",
+  lessonNumber: 1,
   videoSrc: "https://www.youtube.com/watch?v=zF_dBk8EPDk",
   category: "World Cultures",
   questions: [
@@ -92,7 +92,7 @@ export const exampleQuizInfo1: Video = {
 
 export const exampleQuizInfo2: Video = {
   year: "2024",
-  lessonNumber: "2",
+  lessonNumber: 2,
   videoSrc: "https://www.youtube.com/watch?v=zF_dBk8EPDk",
   category: "Data Analysis",
   questions: [

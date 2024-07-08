@@ -15,7 +15,7 @@ export const defaultQuizQuestion = (): Question => ({
 
 export const defaultVideoData = (): Video => ({
   year: "",
-  lessonNumber: "",
+  lessonNumber: 0,
   videoSrc: "",
   category: "",
   questions: [],

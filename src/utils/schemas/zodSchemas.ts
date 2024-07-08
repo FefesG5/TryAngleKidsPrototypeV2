@@ -17,7 +17,7 @@ const questionSchema = z.object({
 
 const videoSchema = z.object({
   year: z.string(),
-  lessonNumber: z.string(),
+  lessonNumber: z.number(),
   videoSrc: z.string(),
   category: z.string(),
   questions: z.array(questionSchema),

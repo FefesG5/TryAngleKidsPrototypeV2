@@ -2,8 +2,6 @@ import withAuth from "@/components/WithAuth/withAuth";
 import Link from "next/link";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../../firebaseConfig";
-
-// Importing styles from the extra-video-quizzes module to maintain consistency
 import styles from "../extra-video-quizzes/ManageVideoQuizzes.module.css";
 
 interface ManageVideoQuizzesProps {
@@ -11,7 +9,6 @@ interface ManageVideoQuizzesProps {
 }
 
 export async function getStaticProps() {
-  // Fetch the years from Firestore
   const yearsCol = collection(db, "years");
   const yearsSnapshot = await getDocs(yearsCol);
   const years = yearsSnapshot.docs.map((doc) => doc.id);
@@ -20,11 +17,11 @@ export async function getStaticProps() {
     props: {
       years,
     },
-    revalidate: 86400, // Optionally revalidate once a day if you expect updates to the years
+    revalidate: 86400,
   };
 }
 
-const ManageVideoQuizzes = ({ years }: ManageVideoQuizzesProps) => {
+const ManageVideoQuizzes: React.FC<ManageVideoQuizzesProps> = ({ years }) => {
   return (
     <div className={styles.container}>
       <Link href="/educator/" className={styles.backLink}>
