@@ -25,9 +25,11 @@ export const getServerSideProps: GetServerSideProps<
     year,
   })) as Video[];
 
+  const sortedLessons = lessons.sort((a, b) => a.lessonNumber - b.lessonNumber);
+
   return {
     props: {
-      lessons,
+      lessons: sortedLessons,
     },
   };
 };
