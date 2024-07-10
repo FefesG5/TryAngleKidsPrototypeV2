@@ -15,7 +15,7 @@
 
 .backLink {
   display: inline-block;
-  color: #2563eb;
+  color: var(--backlink-color);
   transition:
     color 0.3s ease,
     text-decoration 0.3s ease,
