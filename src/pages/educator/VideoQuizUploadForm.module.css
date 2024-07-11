@@ -30,7 +30,7 @@
   display: inline-block;
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #2563eb;
+  background-color: var(--button-bg-color);
   color: white;
   border: none;
   border-radius: 4px;
@@ -39,7 +39,7 @@
 }
 
 .sampleButton:hover {
-  background-color: #1e4bb8;
+  background-color: var(--button-hover-bg-color);
 }
 
 @media (max-width: 767px) {
