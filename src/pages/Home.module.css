@@ -9,9 +9,9 @@
 
 .heading {
   color: var(--text-color);
-  font-size: 4rem; /* Moderately large */
-  margin-bottom: 1rem; /* Adds spacing at the top */
-  text-align: center; /* Centers the heading */
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
 .callToAction {
@@ -20,17 +20,17 @@
   padding: 1rem 2rem;
   font-size: 2rem;
   border: none;
-  border-radius: 7px; /* Rounded corners */
+  border-radius: 7px;
   cursor: pointer;
   transition:
     transform 0.2s,
-    box-shadow 0.2s; /* Smooth transition for interaction */
-  margin-top: 2rem; /* Extra space above the button */
+    box-shadow 0.2s;
+  margin-top: 2rem;
   box-shadow: 0px 10px 20px rgba(0, 123, 255, 0.3);
 }
 
 .callToAction:hover {
   background-color: var(--button-hover-bg-color);
-  box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39); /* Subtle shadow effect */
-  transform: scale(1.04); /* Slightly enlarges the button when hovered */
+  box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39);
+  transform: scale(1.04);
 }
