@@ -1,5 +1,3 @@
-/* AvailableYears.module.css */
-
 .yearsContainer {
   padding: 2rem;
   display: flex;
@@ -10,23 +8,23 @@
 
 .yearHeading {
   color: var(--text-color);
-  font-size: 3rem; /* Slightly smaller than the main heading */
+  font-size: 3rem;
   margin-bottom: 1rem;
   text-align: center;
 }
 
 .yearButton {
-  background-color: #fada5e; /* A calming color for the button */
+  background-color: #fada5e;
   color: white;
   padding: 0.75rem 1.5rem;
-  font-size: 3rem; /* Slightly smaller than the call-to-action button */
+  font-size: 3rem;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition:
     transform 0.2s,
     box-shadow 0.2s;
-  margin: 0.5rem; /* Space between buttons */
+  margin: 0.5rem;
   box-shadow: 0px 5px 15px rgba(0, 123, 255, 0.2);
 }
 
