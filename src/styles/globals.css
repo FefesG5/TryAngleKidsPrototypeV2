@@ -29,6 +29,7 @@
   --backlink-hover-color: #1e40af;
 
   --year-buttton-bg-color: #c7a600;
+  --year-buttton-bg-hover-color: #ffd700;
 }
 
 /* Dark theme styles */
@@ -59,6 +60,7 @@
   --backlink-hover-color: #4db6ac;
 
   --year-buttton-bg-color: #9f8400;
+  --year-buttton-bg-hover-color: #ffd700;
 }
 
 body {
