@@ -15,7 +15,7 @@
 
 .yearButton {
   background-color: var(--year-buttton-bg-color);
-  color: white;
+  color: var(--year-buttton-text-color);
   padding: 0.75rem 1.5rem;
   font-size: 3rem;
   border: none;
