@@ -14,8 +14,8 @@
 }
 
 .yearButton {
-  background-color: #fada5e;
-  color: white;
+  background-color: var(--year-buttton-bg-color);
+  color: var(--year-buttton-text-color);
   padding: 0.75rem 1.5rem;
   font-size: 3rem;
   border: none;
@@ -29,7 +29,7 @@
 }
 
 .yearButton:hover {
-  background-color: #c7a600;
+  background-color: var(--year-buttton-bg-hover-color);
   box-shadow: 0 3px 10px 0 rgba(0, 118, 255, 0.37);
   transform: scale(1.04);
 }
