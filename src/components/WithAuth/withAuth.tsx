@@ -1,7 +1,6 @@
-// components/withAuth.tsx
 import { useRouter } from "next/router";
-import React, { ComponentType, useEffect } from "react";
-import { useAuth } from "@/contexts/AuthContext"; // Adjust the path as needed to point to your AuthContext
+import { ComponentType, useEffect } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const withAuth = <P extends object>(
   WrappedComponent: ComponentType<P>,
@@ -12,12 +11,12 @@ const withAuth = <P extends object>(
 
     useEffect(() => {
       if (!loading && !user) {
-        router.push("/educator"); // Redirect to login if not authenticated
+        router.push("/educator");
       }
     }, [user, loading, router]);
 
     if (loading || !user) {
-      return null; // Or loading spinner, etc.
+      return null;
     }
 
     return <WrappedComponent {...props} />;
