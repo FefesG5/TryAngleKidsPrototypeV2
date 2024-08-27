@@ -42,8 +42,8 @@ const LessonDetails = () => {
 
   return (
     <div className={styles.LessonContainer}>
-      <h1>Lesson {lesson}</h1>
-      <p>
+      <h1 className={styles.LessonTitle}>Lesson {lesson}</h1>
+      <p className={styles.LessonDescription}>
         Details for lesson {lesson} in the year {year}.
       </p>
       {lessonDetail ? (
