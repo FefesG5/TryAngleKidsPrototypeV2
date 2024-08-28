@@ -1,16 +1,27 @@
 .LessonContainer {
   box-sizing: border-box;
-  padding: 20px;
+  padding: 1.5rem;
+}
+
+.LessonTitle {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+}
+
+.LessonDescription {
+  font-size: 1.2rem;
+  padding-left: 1rem;
 }
 
 @media screen and (max-width: 768px) {
   .LessonContainer {
-    padding: 15px;
+    padding: 1rem;
   }
 }
 
 @media screen and (max-width: 480px) {
   .LessonContainer {
-    padding: 10px;
+    padding: 0.5rem;
   }
 }
