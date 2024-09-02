@@ -1,8 +1,8 @@
 /* Styles for managing video quizzes, shared between extra-video-quizzes and video-quizzes pages */
 
 .container {
-  margin: 20px;
-  padding: 20px;
+  margin: 1rem;
+  padding: 1rem;
   background-color: var(--form-bg-color);
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -11,7 +11,7 @@
 
 .backLink {
   display: inline-block;
-  margin-bottom: 20px;
+  margin-bottom: 0.5rem;
   color: var(--backlink-color);
   transition:
     color 0.3s ease,
@@ -24,9 +24,8 @@
 }
 
 .title {
-  font-size: 24px;
+  font-size: 1.4rem;
   color: var(--text-color);
-  margin-bottom: 20px;
 }
 
 .yearsList {
@@ -36,7 +35,7 @@
 }
 
 .yearItem {
-  padding: 10px 0;
+  padding: 0.5rem 0;
   border-bottom: 1px solid var(--border-color);
 }
 
