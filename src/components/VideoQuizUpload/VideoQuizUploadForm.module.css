@@ -18,7 +18,9 @@
 
 .tabButton,
 .addButton {
-  padding: 10px 15px;
+  /* padding: 10px 15px; */
+  /* padding: 0.5rem 1rem; */
+  padding: 0.5rem 1rem;
   cursor: pointer;
 }
 
@@ -43,16 +45,6 @@
     --accent-color
   ); /* Use global variable for active tab and content background */
   color: var(--text-color); /* Use global variable for text color */
-}
-
-.removeQuestionBtn {
-  display: inline-block;
-  padding: 0 8px;
-  line-height: 32px;
-  font-size: 16px;
-  color: var(--text-color);
-  border: none;
-  cursor: pointer;
 }
 
 .tabContent {
