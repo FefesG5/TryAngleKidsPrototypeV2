@@ -18,8 +18,6 @@
 
 .tabButton,
 .addButton {
-  /* padding: 10px 15px; */
-  /* padding: 0.5rem 1rem; */
   padding: 0.5rem 1rem;
   cursor: pointer;
 }
@@ -48,8 +46,7 @@
 }
 
 .tabContent {
-  padding: 20px;
-  margin-top: -1px; /* Aligns seamlessly with tabs */
+  padding: 1.2rem;
 }
 
 .submitButton {
