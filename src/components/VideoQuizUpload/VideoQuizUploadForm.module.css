@@ -51,14 +51,14 @@
 
 .submitButton {
   display: block;
-  width: calc(100% - 40px); /* Adjusts width considering padding */
-  padding: 10px 20px;
+  width: calc(100% - 2.5rem);
+  padding: 0.5rem 2rem;
   background-color: var(--button-bg-color);
   color: var(--button-text-color);
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  margin-top: 20px;
+  margin: 1.2rem;
   margin-left: auto;
   margin-right: auto;
 }
