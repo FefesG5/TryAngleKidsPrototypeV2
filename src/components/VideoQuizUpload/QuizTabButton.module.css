@@ -7,7 +7,7 @@
 
 .tabButton {
   flex: 1; /* Button should fill the entire tab */
-  padding: 10px 15px;
+  padding: 1rem 1rem;
   cursor: pointer;
   background: transparent;
   color: var(--button-text-color);
@@ -19,14 +19,14 @@
   background-color: var(
     --accent-color
   ); /* Use global variable for active tab background */
-  color: var(--text-color); /* Use global variable for text color */
+  color: var(--text-color);
 }
 
 .removeQuestionBtn {
   display: inline-block;
-  padding: 0 8px;
-  line-height: 32px;
-  font-size: 16px;
+  padding-right: 0.8rem;
+  line-height: 2rem;
+  font-size: 1.5rem;
   color: var(--text-color);
   border: none;
   cursor: pointer;
