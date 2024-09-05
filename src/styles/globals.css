@@ -21,6 +21,8 @@
   --button-text-color: #fff;
   --button-hover-bg-color: #0062cc;
 
+  --remove-question-btn-hover-color: #ff0000;
+
   --input-border-color: #ced4da;
   --input-focus-border-color: #80bdff;
   --input-focus-shadow-color: rgba(0, 123, 255, 0.25);
@@ -52,6 +54,8 @@
   --button-bg-color: #d32f2f;
   --button-text-color: #ffffff;
   --button-hover-bg-color: #b71c1c;
+
+  --remove-question-btn-hover-color: #cc6666;
 
   --input-border-color: #555;
   --input-focus-border-color: #1a73e8;
