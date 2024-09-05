@@ -31,3 +31,7 @@
   border: none;
   cursor: pointer;
 }
+
+.removeQuestionBtn:hover {
+  color: var(--remove-question-btn-hover-color);
+}
