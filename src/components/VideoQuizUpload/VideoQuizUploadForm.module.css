@@ -22,6 +22,10 @@
   cursor: pointer;
 }
 
+.addButton:hover {
+  color: var(--remove-question-btn-hover-color);
+}
+
 .tabButton {
   flex: 1; /* Button should fill the entire tab */
   background: transparent;
