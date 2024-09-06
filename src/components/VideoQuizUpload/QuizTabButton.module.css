@@ -15,6 +15,10 @@
   transition: background-color 0.3s;
 }
 
+.tabButton:hover {
+  color: var(--remove-question-btn-hover-color);
+}
+
 .activeTab {
   background-color: var(
     --accent-color
