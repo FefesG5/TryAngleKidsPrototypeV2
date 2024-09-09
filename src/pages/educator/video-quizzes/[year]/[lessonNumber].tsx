@@ -115,10 +115,13 @@ const EditVideoQuiz: NextPage<EditVideoQuizProps> = ({
 
   return (
     <div className={styles.formContainer}>
-      <Link href={`/educator/video-quizzes/${year}`}>
+      <Link
+        href={`/educator/video-quizzes/${year}`}
+        className={styles.backLink}
+      >
         Back to Edit Lessons for {year}
       </Link>
-      <h1>Edit Video Quiz</h1>
+      <h1 className={styles.heading}>Edit Video Quiz</h1>
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.tabs}>
           <QuizTabButton
