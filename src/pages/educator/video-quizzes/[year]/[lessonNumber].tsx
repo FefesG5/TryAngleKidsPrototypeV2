@@ -45,6 +45,7 @@ const EditVideoQuiz: NextPage<EditVideoQuizProps> = ({
 }) => {
   const router = useRouter();
   const year = router.query.year as string;
+  const lessonNumber = router.query.lessonNumber as string;
   const [videoData, setVideoData] = useState<Video | null>(initialVideoData);
   const [activeTab, setActiveTab] = useState<string>("details");
 
@@ -121,7 +122,9 @@ const EditVideoQuiz: NextPage<EditVideoQuizProps> = ({
       >
         Back to Edit Lessons for {year}
       </Link>
-      <h1 className={styles.title}>Edit Video Quiz</h1>
+      <h1 className={styles.title}>
+        Edit Video Quiz Lesson Number {lessonNumber}
+      </h1>
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.tabs}>
           <QuizTabButton
