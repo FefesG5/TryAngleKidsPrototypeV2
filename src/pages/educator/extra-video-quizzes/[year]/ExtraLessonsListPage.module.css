@@ -1,3 +1,6 @@
+/* Shared Stylesheet: This stylesheet is used in both 
+  the ExtraLessonsListPage and the LessonsListPage components. */
+
 .container {
   margin: 1rem;
   padding: 1rem;
