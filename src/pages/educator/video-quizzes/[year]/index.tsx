@@ -7,7 +7,7 @@ import { db } from "../../../../../firebaseConfig";
 import { Video } from "@/types/quizTypes";
 import DeleteConfirmationDialog from "@/components/DeleteConfirmationDialog/DeleteConfirmationDialog";
 import Link from "next/link";
-import styles from "./LessonsListPage.module.css";
+import styles from "../../extra-video-quizzes/[year]/ExtraLessonsListPage.module.css"
 
 interface LessonsListPageProps {
   lessons: Video[];
